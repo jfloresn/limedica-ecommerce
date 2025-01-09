@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="19px" height="15px" viewBox="0 0 19 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>email-footer</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1-Home" transform="translate(-436.000000, -5848.000000)" fill="#53565A">
+            <g id="Footer" transform="translate(0.000000, 5713.000000)">
+                <g id="Info" transform="translate(434.000000, 82.000000)">
+                    <path d="M4,66 L4,59.0047224 C5.55016646,60.6570057 8.15512465,62.765179 11.409464,62.8452776 C11.4738875,62.8469123 11.5375486,62.8476388 11.6015909,62.8476388 C14.1920633,62.8476388 16.6729396,61.5553451 19,59 L19,66 L4,66 Z M19,55 L19,55.9064498 L18.9723627,55.8877716 C16.545808,59.3404244 14.0174719,61.0619879 11.4653104,60.9982954 C7.2385194,60.8964996 4.08500851,55.9768663 4.05374978,55.9271825 L4,55.9596824 L4,55 L19,55 Z M2,68 L21,68 L21,53 L2,53 L2,68 Z" id="email-footer"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

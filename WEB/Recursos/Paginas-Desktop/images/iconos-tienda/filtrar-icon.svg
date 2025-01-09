@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="22px" viewBox="0 0 28 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>filtrar-icon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="7-Tienda" transform="translate(-1013.000000, -456.000000)" fill="#53565A">
+            <g id="Filtros" transform="translate(0.000000, 427.000000)">
+                <g id="Filtrar" transform="translate(864.000000, 29.000000)">
+                    <path d="M177.000074,12.999963 L177.000074,22 L168.000074,22 L168.000074,18.999963 L149,18.999963 L149,15.999963 L168.000074,15.999963 L168.000074,12.999963 L177.000074,12.999963 Z M174.000074,15.999963 L171.000074,15.999963 L171.000074,18.999963 L174.000074,18.999963 L174.000074,15.999963 Z M158.000074,2.31814568e-13 L158.000074,2.99996296 L177.000074,2.99996296 L177.000074,5.99996296 L158.000074,5.99996296 L158.000074,8.99996296 L149.000109,8.99996296 L149.000109,2.31814568e-13 L158.000074,2.31814568e-13 Z M155.000074,2.99996296 L152.000074,2.99996296 L152.000074,5.99996296 L155.000074,5.99996296 L155.000074,2.99996296 Z" id="filtrar-icon"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

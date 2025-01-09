@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="38px" height="24px" viewBox="0 0 38 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>mastercard</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1-Home" transform="translate(-1552.000000, -6062.000000)">
+            <g id="Footer" transform="translate(0.000000, 5713.000000)">
+                <g id="Opciones-de-Pago" transform="translate(1508.000000, 349.000000)">
+                    <g id="mastercard" transform="translate(44.000000, 0.000000)">
+                        <path d="M35.4666667,24 L2.53333333,24 C1.13472222,24 0,22.925 0,21.6 L0,2.4 C0,1.075 1.13472222,0 2.53333333,0 L35.4666667,0 C36.8652778,0 38,1.075 38,2.4 L38,21.6 C38,22.925 36.8652778,24 35.4666667,24 Z" id="Path" fill="#FFFFFF"></path>
+                        <circle id="Oval" fill="#EC001C" fill-rule="nonzero" cx="14" cy="12" r="7"></circle>
+                        <circle id="Oval" fill="#F79F1B" fill-rule="nonzero" opacity="0.8" cx="24" cy="12" r="7"></circle>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

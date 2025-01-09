@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>check</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="17-Checkout---Iniciar-Sesión" transform="translate(-679.000000, -401.000000)">
+            <g id="Información-de-Entrega" transform="translate(357.000000, 343.000000)">
+                <g id="Datos-de-Entrega" transform="translate(0.000000, 58.000000)">
+                    <g id="check" transform="translate(322.000000, 0.000000)">
+                        <circle id="Oval" fill="#E9711C" cx="12" cy="12" r="12"></circle>
+                        <polygon id="Fill-1" fill="#FFFFFF" points="18.5445516 6 9.04792696 15.1825806 5.42813543 11.8118622 4 13.2749318 9.07482606 18 20 7.43558654"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

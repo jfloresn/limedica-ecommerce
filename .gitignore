@@ -230,17 +230,5 @@ webpack.config.ts
 *.tar.bz2
 *.gz
 
-# Images
-*.png
-*.jpg
-*.jpeg
-*.gif
-*.ico
-*.bmp
-*.tif
-*.tiff
-*.psd
-*.svg
-*.ai
 
 # End of `.gitignore`
