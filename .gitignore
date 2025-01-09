@@ -54,8 +54,6 @@ nCrunchTemp_
 
 # Windows
 *.class
-*.dll
-*.exe
 *.pdb
 *.pdb.*
 *.obj
