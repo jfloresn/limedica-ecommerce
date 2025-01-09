@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CommandContracts.Xmarket.Pedido" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CommandContracts.Xmarket.Pedido" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CommandContracts.Common" />
+  <xs:complexType name="RegistrarClienteContactoCommand">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/CommandContracts.Common" base="q1:Command">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="contactoNumeroDocumento" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="contactoTipoDocumento" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="contactoTipoDocumentoPedido" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="direcciones" nillable="true" type="tns:ArrayOfDireccion" />
+          <xs:element minOccurs="0" name="facturacionInfomoIgualEntrega" type="xs:boolean" />
+          <xs:element minOccurs="0" name="sesionPublico" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RegistrarClienteContactoCommand" nillable="true" type="tns:RegistrarClienteContactoCommand" />
+  <xs:complexType name="ArrayOfDireccion">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Direccion" nillable="true" type="tns:Direccion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDireccion" nillable="true" type="tns:ArrayOfDireccion" />
+  <xs:complexType name="Direccion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idDireccion" type="xs:int" />
+      <xs:element minOccurs="0" name="tipoDireccion" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Direccion" nillable="true" type="tns:Direccion" />
+  <xs:complexType name="RegistrarPedidoCommand">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/CommandContracts.Common" base="q2:Command">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="comprobantePago" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="correo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="direccionClientes" nillable="true" type="tns:ArrayOfDireccionCliente" />
+          <xs:element minOccurs="0" name="estado" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="idBanco" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="idCarrito" type="xs:long" />
+          <xs:element minOccurs="0" name="idUsuarioLibre" type="xs:long" />
+          <xs:element minOccurs="0" name="idUsuarioRegistrar" type="xs:int" />
+          <xs:element minOccurs="0" name="informacionFacturaEsIgualEntrega" type="xs:boolean" />
+          <xs:element minOccurs="0" name="metodoPago" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="numeroDocumento" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="origenPedido" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="tipoDocumento" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="transferenciaFechaDeposito" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="transferenciaMontoDeposito" nillable="true" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RegistrarPedidoCommand" nillable="true" type="tns:RegistrarPedidoCommand" />
+  <xs:complexType name="ArrayOfDireccionCliente">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DireccionCliente" nillable="true" type="tns:DireccionCliente" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDireccionCliente" nillable="true" type="tns:ArrayOfDireccionCliente" />
+  <xs:complexType name="DireccionCliente">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idDireccion" type="xs:int" />
+      <xs:element minOccurs="0" name="tipoDireccion" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DireccionCliente" nillable="true" type="tns:DireccionCliente" />
+  <xs:complexType name="RegistrarClienteSinSesionCommand">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/CommandContracts.Common" base="q3:Command">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="contactoCorreoElectronico" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="contactoNumeroDocumento" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="contactoTelefono" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="contactoTipoDocumento" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="contactoTipoDocumentoPedido" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="entregaApellido" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="entregaDepartamento" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="entregaDireccion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="entregaDistrito" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="entregaNombre" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="entregaProvincia" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="entregaReferencia" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="facturacionInfomoIgualEntrega" type="xs:boolean" />
+          <xs:element minOccurs="0" name="sesionPublico" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RegistrarClienteSinSesionCommand" nillable="true" type="tns:RegistrarClienteSinSesionCommand" />
+</xs:schema>

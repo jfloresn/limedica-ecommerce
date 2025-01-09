@@ -1,0 +1,9 @@
+﻿@model IEnumerable<QueryContracts.Xmarket.Book.BookFiltroDTO>
+
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        @Html.Partial("_Libros", item)
+    }
+}

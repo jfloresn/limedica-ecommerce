@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Producto" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Producto" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfProductoDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductoDTO" nillable="true" type="tns:ProductoDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductoDTO" nillable="true" type="tns:ArrayOfProductoDTO" />
+  <xs:complexType name="ProductoDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Cantidad" type="xs:int" />
+      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EsOferta" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IdAlmacen" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdCategoria" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdCategoriaPadre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdEmpresa" type="xs:int" />
+      <xs:element minOccurs="0" name="IdFabricante" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdProducto" type="xs:int" />
+      <xs:element minOccurs="0" name="IdProductoCategoria" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdProductoTxt" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Imagen" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Img" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="NombrePro" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Peso" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Precio" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PrecioAnterior" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ProductoCarrito" nillable="true" type="tns:ProductoCarrito" />
+      <xs:element minOccurs="0" name="Stock" type="xs:int" />
+      <xs:element minOccurs="0" name="visible" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductoDTO" nillable="true" type="tns:ProductoDTO" />
+  <xs:complexType name="ProductoCarrito">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Cantidad" type="xs:int" />
+      <xs:element minOccurs="0" name="IdCarrito" type="xs:int" />
+      <xs:element minOccurs="0" name="IdProducto" type="xs:int" />
+      <xs:element minOccurs="0" name="IdProductoTxt" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Peso" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Precio" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductoCarrito" nillable="true" type="tns:ProductoCarrito" />
+</xs:schema>

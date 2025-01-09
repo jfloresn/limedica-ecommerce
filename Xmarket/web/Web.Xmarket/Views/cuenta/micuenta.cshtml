@@ -1,0 +1,87 @@
+﻿@model Web.Xmarket.Models.Cuenta.MiCuentaModel
+@{
+
+    Layout = "~/Views/Shared/_Layoutv.cshtml";
+}
+
+
+@section Styles {
+    <style>
+        .limedica-catalogo-virtual-text-1-1 {
+            font-size: 20px !important;
+            text-align: left !important;
+        }
+
+        .limedica-catalogo-virtual-text-2-2 {
+            font-size: 34px !important; 
+            text-align: left !important;
+        }
+
+        #limedica-catalogo-button {
+            text-align: left !important;
+        }
+    </style>
+}
+
+<header class="bg-header">
+    <div class="container">
+        <div class="row gx-5 align-items-center ">
+
+            <div class="header-cuenta" style="">
+
+                <div class="limedica-cuenta">
+
+                    <div class="slider-body-path">
+                        <a href="~/" class="limedica-path">Home</a>
+                        <i class="fas fa-chevron-right dropdown-arrow text-path"></i>
+                        <span class="limedica-path">Mi Cuenta</span>
+
+
+
+                    </div>
+
+
+
+                    <div class="limedica-micuenta-body">
+
+                        <h1 class="my-5"> Hola, @Model.nombreCompleto</h1>
+
+                        <div class="row limedica-micuenta-content mb-10">
+
+
+
+                            <div class="col-8 limedica-micuenta-item">
+
+                                <p>
+
+                                    No eres @Model.nombre? <a href="@Url.Action("SignOut")"> Cerrar Sesión</a>
+                                </p>
+
+                                <p>
+                                    Desde el panel de control de su cuenta, puede ver sus pedidos recientes, administrar sus direcciones de envío y <br />
+                                    facturación, y editar su contraseña y los detalles de su cuenta.
+                                </p>
+
+                                @Html.Partial("_Catalogo")
+
+                            </div>
+
+                            <div class="col-4 limedica-micuenta-item">
+
+                                @Html.Partial("_CuentaMenu", Model)
+
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</header>
+

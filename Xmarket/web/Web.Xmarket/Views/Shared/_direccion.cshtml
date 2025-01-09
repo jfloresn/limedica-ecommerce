@@ -1,0 +1,55 @@
+﻿@model   Web.Xmarket.Entidad.UsuarioDireccionNuevoDTO
+
+
+
+    <div class="col-md-6 mb-4">
+        <div class="limedica-checkout-datoentrega-item limedica-activo">
+
+            <a href="javascript:seleccionar(@Model.direccion.idDireccion,@Model.correlativo)">
+           
+                    <img title="habilitado"
+                         id="imgDireccion_@Model.direccion.idDireccion"
+                         src="~/Content/assets/img/checkout-iconos/check-desactivado.svg"
+                         class="limedica-checkout-datoentrega-habilitado" />
+  
+            </a>
+
+            <h4 class="limedica-checkout-datoentrega-item-titulo">@Model.direccion.nombreContacto</h4>
+
+          
+                <input type="hidden" id="ClienteDireccionListarResult_direccion_@Model.correlativo"
+                       name="ClienteDireccionListarResult.direcciones[@Model.correlativo].seleccionado" class="clienteDirecciones"
+                       value="false">
+            
+
+            <input type="hidden" name="ClienteDireccionListarResult.direcciones[@Model.correlativo].idDireccion"
+                   value="@Model.direccion.idDireccion">
+            <input type="hidden" name="ClienteDireccionListarResult.direcciones[@Model.correlativo].idUsuario"
+                   value="@Model.direccion.idUsuario">
+
+            <div class="limedica-checkout-datoentrega-item-body">
+                <div>@Model.direccion.direccion</div>
+                <div>Distrito: @Model.direccion.distrito</div>
+                <div>Provincia: @Model.direccion.provincia</div>
+                <div>Departamento: @Model.direccion.departamento</div>
+
+                <div>@Model.direccion.celularContacto</div>
+
+            </div>
+
+            <div class="limedica-checkout-datoentrega-item-footer mt-2">
+
+                <a title="Modificar dirección" href="javascript:modificarDireccion(@Model.direccion.idDireccion)">Modificar dirección</a>
+
+                <a title="Modificar dirección" href="javascript:eliminarDireccion(@Model.direccion.idDireccion)">Eliminar dirección</a>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+

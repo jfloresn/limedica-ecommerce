@@ -1,0 +1,83 @@
+﻿@model Web.Xmarket.Models.Coleccion.ColeccionModel
+
+@{
+
+    Layout = "~/Views/Shared/_Layoutv.cshtml";
+}
+
+@section Styles {
+    <link href="@Url.Content("~/Content/css/style_limedica_coleccion.css")" rel="stylesheet">
+}
+
+<header class="page-header-ui-dark">
+
+    <div class="slide-contenedor">
+        <div class="row gx-5 align-items-center">
+
+            <div class="miSlider slider-default fade-slider" style="        background-image: url(Content/assets/img/colecciones-banner.jpg)">
+
+                <div class="slider-body slider-body-default">
+                    <div class="slider-body-path">
+                        <a href="~/" class="text-white">Home</a>                 
+                        <i class="fas fa-chevron-right dropdown-arrow"></i> Colecciones
+                    </div>
+
+                    <div class="slider-default-titulo">
+
+                        <h1 class="mt-3 slider-default-titulo">Colecciones</h1>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</header>
+
+<section class="" style="background-color:  #F5F5F5;">
+    <div class="container limedica-tienda-filtro">
+
+        <div class="limedica-tienda-item limedica-tienda-total">
+
+        </div>
+
+
+        <div class="limedica-tienda-item limedica-tienda-mas-filtro">
+
+
+        </div>
+
+        <div class="limedica-tienda-item limedica-tienda-vistas">
+
+
+            <select class="form-select" style="width:150px">
+
+
+                <option selected>Ordenar Por</option>
+                <option>Nombre</option>
+                <option>Precio</option>
+
+            </select>
+
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container px-5">
+
+        <div class="row gx-5 mb-5">
+
+            @foreach (var item in Model.colecciones)
+            {
+
+                @Html.Partial("_coleccionPrincipal",item)
+            }
+
+        </div>
+
+  
+
+    </div>
+
+</section>

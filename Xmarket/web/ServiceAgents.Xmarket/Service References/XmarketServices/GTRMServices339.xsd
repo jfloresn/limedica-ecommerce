@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CommandContracts.Xmarket.Contactenos" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CommandContracts.Xmarket.Contactenos" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CommandContracts.Common" />
+  <xs:complexType name="ContactenosRegistrarCommand">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/CommandContracts.Common" base="q1:Command">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Mensaje" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="apellido" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="asunto" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="correo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="idCiudad" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="numeroTelefono" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ContactenosRegistrarCommand" nillable="true" type="tns:ContactenosRegistrarCommand" />
+</xs:schema>

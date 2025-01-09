@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CommandContracts.Xmarket.Cliente" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CommandContracts.Xmarket.Cliente" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CommandContracts.Common" />
+  <xs:complexType name="RegistrarDireccionCommand">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/CommandContracts.Common" base="q1:Command">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="celularContacto" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="direccion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="estado" type="xs:int" />
+          <xs:element minOccurs="0" name="idPais" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="idUsuario" type="xs:int" />
+          <xs:element minOccurs="0" name="nombreContacto" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="tipoDireccion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ubigeoDepartamento" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ubigeoDistrito" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ubigeoProvincia" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RegistrarDireccionCommand" nillable="true" type="tns:RegistrarDireccionCommand" />
+</xs:schema>

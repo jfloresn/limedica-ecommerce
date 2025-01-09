@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="GTRMBackendService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="main_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CommandContracts.Common" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/CommandContracts.Xmarket.Sesion" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/CommandContracts.Xmarket.Pedido" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/CommandContracts.Xmarket.Cuenta" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/CommandContracts.Xmarket.General" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/CommandContracts.Xmarket.Contactenos" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/CommandContracts.Xmarket.Cliente" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/CommandContracts.Xmarket.Carrito" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/CommandContracts.Xmarket.Sesion.Output" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/CommandContracts.Xmarket.General.Output" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/CommandContracts.Xmarket.Contactenos.Output" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd13" namespace="http://schemas.datacontract.org/2004/07/CommandContracts.Xmarket.Cliente.Output" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd14" namespace="http://schemas.datacontract.org/2004/07/CommandContracts.Xmarket.Carrito.Output" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd15" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Common" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd16" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Seguridad.Parameters" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd17" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Producto.Parameters" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd18" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd19" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Parametro.Parameters" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd20" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Marca.Parameters" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd21" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Categoria.Parameters" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd22" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.General.Parameters" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd23" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Especialidad.Parameters" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd24" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Editorial.Parameters" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd25" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Coleccion.Parameters" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd26" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Cliente.Parameters" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd27" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Carrito.Parameters" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd28" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Book.Parameters" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd29" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Banner.Parameters" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd30" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Account.Parameters" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd31" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Common.Seguridad.Parameters" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd32" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Seguridad.Result" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd33" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Producto.Result" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd34" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Producto" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd35" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Parametro.Result" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd36" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Parametro" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd37" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Marca.Result" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd38" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Marca" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd39" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Categoria.Result" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd40" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Categoria" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd41" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.General.Result" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd42" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.General" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd43" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Especialidad.Result" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd44" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Especialidad" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd45" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Editorial.Result" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd46" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Editorial" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd47" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Coleccion.Result" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd48" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Coleccion" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd49" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Cliente.Result" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd50" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Cliente" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd51" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Carrito.Result" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd52" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Carrito" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd53" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Book.Result" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd54" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Book" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd55" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Banner.Results" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd56" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Banner" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd57" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Account.Results" />
+      <xsd:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd58" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Common.Seguridad.Results" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IBackendService_ExecuteCommand_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExecuteCommand" />
+  </wsdl:message>
+  <wsdl:message name="IBackendService_ExecuteCommand_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExecuteCommandResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBackendService_ExecuteCommand_CommandFaultFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/CommandContracts.Common" name="detail" element="q1:CommandFault" />
+  </wsdl:message>
+  <wsdl:message name="IBackendService_ExecuteQuery_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExecuteQuery" />
+  </wsdl:message>
+  <wsdl:message name="IBackendService_ExecuteQuery_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExecuteQueryResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IBackendService">
+    <wsdl:operation name="ExecuteCommand">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBackendService/ExecuteCommand" message="tns:IBackendService_ExecuteCommand_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBackendService/ExecuteCommandResponse" message="tns:IBackendService_ExecuteCommand_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IBackendService/ExecuteCommandCommandFaultFault" name="CommandFaultFault" message="tns:IBackendService_ExecuteCommand_CommandFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteQuery">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBackendService/ExecuteQuery" message="tns:IBackendService_ExecuteQuery_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBackendService/ExecuteQueryResponse" message="tns:IBackendService_ExecuteQuery_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="main" type="tns:IBackendService">
+    <wsp:PolicyReference URI="#main_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ExecuteCommand">
+      <soap12:operation soapAction="http://tempuri.org/IBackendService/ExecuteCommand" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CommandFaultFault">
+        <soap12:fault use="literal" name="CommandFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteQuery">
+      <soap12:operation soapAction="http://tempuri.org/IBackendService/ExecuteQuery" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GTRMBackendService">
+    <wsdl:port name="main" binding="tns:main">
+      <soap12:address location="http://localhost:8082/GTRMServices.svc" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>http://localhost:8082/GTRMServices.svc</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>localhost</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

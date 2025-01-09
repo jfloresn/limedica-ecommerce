@@ -1,0 +1,8 @@
+/* CircularStd @font-face kit */
+@font-face {
+  font-family: "GothamRounded";
+  src: url("Gotham-Rounded-Bold.eot");
+  src: url("Gotham-Rounded-Bold.eot?#iefix") format("embedded-opentype"), url("Gotham-Rounded-Bold.woff") format("woff"), url("Gotham-Rounded-Bold.ttf") format("truetype"), url("Gotham-Rounded-Bold.svg#bcc26993292869431e54c666aafa8fcd") format("svg");
+  font-weight: 700;
+  font-style: normal;
+}

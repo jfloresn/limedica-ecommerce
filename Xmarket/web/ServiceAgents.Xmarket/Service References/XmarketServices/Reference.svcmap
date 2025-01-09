@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="d07d5b51-ee15-4a4d-bdfe-5430c748fae3" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8082/GTRMServices.svc?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="GTRMServices3353.xsd" MetadataType="Schema" ID="d6f5ce2a-ce33-4ebc-b74c-8818447940b9" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd21" />
+    <MetadataFile FileName="GTRMServices3314.xsd" MetadataType="Schema" ID="dcc5f6b6-c811-4dc1-a759-d236e8a71e2a" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd35" />
+    <MetadataFile FileName="GTRMServices3315.xsd" MetadataType="Schema" ID="55da9bb3-d253-4ab0-9603-9264f8e7e157" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd41" />
+    <MetadataFile FileName="GTRMServices3317.xsd" MetadataType="Schema" ID="2f1c05a1-2c6a-4255-a451-fd61ed6176b5" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd38" />
+    <MetadataFile FileName="GTRMServices3342.xsd" MetadataType="Schema" ID="7c1f8d0b-9529-4d7c-8a2e-c29a8d021c1b" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd51" />
+    <MetadataFile FileName="GTRMServices11.xsd" MetadataType="Schema" ID="068e868a-4a17-4da5-8638-25f78261fa58" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd58" />
+    <MetadataFile FileName="GTRMServices337.xsd" MetadataType="Schema" ID="7e5e3f0f-fff2-4d99-83d3-cd0770716e5a" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd9" />
+    <MetadataFile FileName="GTRMServices3345.xsd" MetadataType="Schema" ID="ed16ed8b-ca2c-4bb4-9998-db8598391376" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd31" />
+    <MetadataFile FileName="GTRMServices3318.xsd" MetadataType="Schema" ID="1caae624-3515-40d8-92ef-38f6c0715efd" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd55" />
+    <MetadataFile FileName="GTRMServices3313.xsd" MetadataType="Schema" ID="e688a762-6371-4d11-a718-ff3bbca7ce62" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd12" />
+    <MetadataFile FileName="GTRMServices336.xsd" MetadataType="Schema" ID="11d9c7e0-8cf0-457b-b0ed-ff11e014c036" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd49" />
+    <MetadataFile FileName="GTRMServices3325.xsd" MetadataType="Schema" ID="c1f75cfe-ab53-4f9a-8e3d-01a0d67720b7" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd44" />
+    <MetadataFile FileName="GTRMServices3344.xsd" MetadataType="Schema" ID="2bd35e0a-3d97-4a4d-82fe-901bd97a9e49" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd0" />
+    <MetadataFile FileName="GTRMServices33.xsd" MetadataType="Schema" ID="0d933e15-5e63-4729-87df-bdeedc52a586" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd34" />
+    <MetadataFile FileName="GTRMServices3333.xsd" MetadataType="Schema" ID="f664c432-cd4e-4f27-83f1-8e545a5e5c8e" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd43" />
+    <MetadataFile FileName="GTRMServices3335.xsd" MetadataType="Schema" ID="e2357c49-05be-4b25-bdc4-8d1ff8f5f143" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd53" />
+    <MetadataFile FileName="GTRMServices3327.xsd" MetadataType="Schema" ID="c06f1799-8938-4942-8967-609d11275e46" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd13" />
+    <MetadataFile FileName="GTRMServices3336.xsd" MetadataType="Schema" ID="fe436ba2-210c-4b3a-bc42-09bb1bb1e26c" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd23" />
+    <MetadataFile FileName="GTRMServices3338.xsd" MetadataType="Schema" ID="620c99f1-87b2-42b7-8437-3e113f22cb17" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd33" />
+    <MetadataFile FileName="GTRMServices3355.xsd" MetadataType="Schema" ID="2fa4838f-1aec-4d01-8068-d3694f798d12" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd40" />
+    <MetadataFile FileName="GTRMServices3322.xsd" MetadataType="Schema" ID="9ea73cb1-1a7a-4064-a20d-42eb2661e592" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd47" />
+    <MetadataFile FileName="GTRMServices3334.xsd" MetadataType="Schema" ID="75ef4926-fe2f-46bc-9b47-3caa7af59ed5" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd30" />
+    <MetadataFile FileName="GTRMServices3311.xsd" MetadataType="Schema" ID="d48f5add-778e-43f4-bb4a-ceaaca51c816" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd37" />
+    <MetadataFile FileName="GTRMServices3346.xsd" MetadataType="Schema" ID="6b9d3456-4697-4b22-8b09-df77a7e16ec9" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd50" />
+    <MetadataFile FileName="GTRMServices3321.xsd" MetadataType="Schema" ID="0d73f862-7cd4-4500-bdd1-8a03883456b0" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd8" />
+    <MetadataFile FileName="GTRMServices3340.xsd" MetadataType="Schema" ID="c3dec796-6cf1-41f3-8cf6-1bcc33765cd5" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd17" />
+    <MetadataFile FileName="GTRMServices3351.xsd" MetadataType="Schema" ID="a92de44c-6e6d-4e9c-aefd-638fc09dc41d" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd27" />
+    <MetadataFile FileName="GTRMServices3337.xsd" MetadataType="Schema" ID="95cfd80d-f855-4d71-8b3c-9207c23ce81d" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd10" />
+    <MetadataFile FileName="GTRMServices3347.xsd" MetadataType="Schema" ID="a6e11466-a9c1-49a8-946f-ffadbae87dce" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd20" />
+    <MetadataFile FileName="GTRMServices331.xsd" MetadataType="Schema" ID="ab5a80d2-ca28-4433-a0c1-ca3967fff979" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd5" />
+    <MetadataFile FileName="GTRMServices338.xsd" MetadataType="Schema" ID="205c6c8b-25a0-402a-8e5c-b6f5e00b0a53" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd6" />
+    <MetadataFile FileName="GTRMServices339.xsd" MetadataType="Schema" ID="e90512e9-0dd8-4f80-aba4-7835b09ac956" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd7" />
+    <MetadataFile FileName="GTRMServices3326.xsd" MetadataType="Schema" ID="d9082ae8-224e-4a45-9359-6c36eccf2ef3" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd22" />
+    <MetadataFile FileName="GTRMServices3349.xsd" MetadataType="Schema" ID="2b1beb5f-8152-4ab2-a555-b00e881698d6" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd1" />
+    <MetadataFile FileName="GTRMServices332.xsd" MetadataType="Schema" ID="a5b5e4c6-07ba-44bc-b830-c15f0eb4dd7c" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd2" />
+    <MetadataFile FileName="GTRMServices333.xsd" MetadataType="Schema" ID="ca47581a-93cf-4911-8db6-460c73a06dd1" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd3" />
+    <MetadataFile FileName="GTRMServices3310.xsd" MetadataType="Schema" ID="6a8e0171-73fe-478b-8985-3d371b37ce0b" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd4" />
+    <MetadataFile FileName="GTRMServices3343.xsd" MetadataType="Schema" ID="706b1a7a-39f9-4185-a47e-6bad17b140fe" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd54" />
+    <MetadataFile FileName="GTRMServices3323.xsd" MetadataType="Schema" ID="44628ad0-21d7-4241-8bb2-e34f10d59a73" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd42" />
+    <MetadataFile FileName="GTRMBackendService1.wsdl" MetadataType="Wsdl" ID="cee296c4-5d2a-4874-a1fe-4e08a6ba30bf" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?wsdl" />
+    <MetadataFile FileName="GTRMServices3328.xsd" MetadataType="Schema" ID="75b4237a-7dc3-4246-b97e-3d32e7a2a1cc" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd32" />
+    <MetadataFile FileName="GTRMServices3352.xsd" MetadataType="Schema" ID="5f5ba093-0dca-4d0e-b248-ddb35a2b54a0" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd14" />
+    <MetadataFile FileName="GTRMServices334.xsd" MetadataType="Schema" ID="25a031ac-d98c-4ce3-929d-040460bbc8de" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd24" />
+    <MetadataFile FileName="GTRMServices335.xsd" MetadataType="Schema" ID="d147bbbc-0ba7-409a-a996-b42e5e47fe53" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd15" />
+    <MetadataFile FileName="GTRMServices3312.xsd" MetadataType="Schema" ID="8fb5eab3-632c-4528-b816-c741b14c8a6a" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd25" />
+    <MetadataFile FileName="GTRMServices3330.xsd" MetadataType="Schema" ID="4a7558c0-a0ee-408c-abaf-771c172735b3" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd16" />
+    <MetadataFile FileName="GTRMServices3339.xsd" MetadataType="Schema" ID="516c22cd-da4e-4095-be77-baae0044bf02" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd26" />
+    <MetadataFile FileName="GTRMServices3341.xsd" MetadataType="Schema" ID="5f47745b-4180-4457-9be4-649be8b4c9f2" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd36" />
+    <MetadataFile FileName="GTRMServices3319.xsd" MetadataType="Schema" ID="7dfb2fc5-cff5-4193-be6e-7bd3b4de65ee" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd46" />
+    <MetadataFile FileName="GTRMServices3348.xsd" MetadataType="Schema" ID="b628dc6e-b70b-40c2-841d-1ca731334b76" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd11" />
+    <MetadataFile FileName="GTRMServices3354.xsd" MetadataType="Schema" ID="5b3a95dd-90b3-4517-ab20-b697990c3052" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd48" />
+    <MetadataFile FileName="GTRMServices1.xsd" MetadataType="Schema" ID="6ce5b3cd-ce24-4dbf-8aac-3b8b48491b44" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd57" />
+    <MetadataFile FileName="GTRMServices3350.xsd" MetadataType="Schema" ID="2774fbc9-229c-4e17-90c4-24c2f03eb78b" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd45" />
+    <MetadataFile FileName="GTRMServices3320.xsd" MetadataType="Schema" ID="1293339c-b8e6-4dad-840e-72e2b9924bcc" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd18" />
+    <MetadataFile FileName="GTRMServices3316.xsd" MetadataType="Schema" ID="3dc1baf9-117b-416a-8926-56733cfef16e" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd28" />
+    <MetadataFile FileName="GTRMServices3332.xsd" MetadataType="Schema" ID="4f1f0f90-2964-4763-a539-f93458b60069" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd19" />
+    <MetadataFile FileName="GTRMServices3329.xsd" MetadataType="Schema" ID="9b1eb4b2-5094-4772-9295-44bac603c54e" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd29" />
+    <MetadataFile FileName="GTRMServices3331.xsd" MetadataType="Schema" ID="cbb417a2-1f30-47ed-b9fd-fbbabaade2d1" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd39" />
+    <MetadataFile FileName="GTRMServices3324.xsd" MetadataType="Schema" ID="63ee5446-ae7e-4ee9-a379-0e9fd34852e5" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd52" />
+    <MetadataFile FileName="GTRMServices.xsd" MetadataType="Schema" ID="e5eecc03-30ed-4b6a-8d48-a9acc46100e7" SourceId="1" SourceUrl="http://localhost:8082/GTRMServices.svc?xsd=xsd56" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

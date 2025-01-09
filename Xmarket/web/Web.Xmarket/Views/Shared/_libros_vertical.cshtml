@@ -1,0 +1,61 @@
+﻿@model  Web.Xmarket.Models.Home.LibrosVerticalModel
+
+@if (Model != null)
+{
+
+<div class="row">
+    @foreach (var item in Model.libros)
+    {
+        <div class="col-xl-4 col-sm-4 col-12 ">
+            <a class="Card-Limedica lift-limedica" href="@Url.RouteUrl("BookDetail", new { title=item.bookTitleUrl, isbn = item.bookISBN})">
+                <div class="card-body p-1">
+                    <div class="row">
+                        <div class="col-6">
+                            <img class="lazyload card-img-top" loading="lazy"
+                                 src="@item.bookImagen"
+                                 alt="@item.bookTitulo" />
+                        </div>
+                        <div class="col-6">
+                            <div class="limedica-home-libro-idioma">
+                                @item.idiomaNombre
+                            </div>
+                            <div class="card-title mb-0 limedica-home-libro-titulo">
+                                @item.bookTitulo
+                            </div>
+                            <div class="limedica-home-libro-edicion">
+                                Autores: @item.bookAutores <br />
+                                Edición: @item.bookEdicion &nbsp;Año:<strong> @item.bookAnio </strong>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    }
+</div>
+
+    if (Model.tipofiltro.Equals("especialidad"))
+    {
+        <div class="display-4 mt-1 text-center mb-1">
+            <a class="btn-limedica btn-limedica-secondary "
+               href="@Url.RouteUrl("TiendaEspecialidadOpcion2",new { especialidad=Model.especialidad, id= Model.idEspecialidad})"
+               >
+                Ver
+                más
+            </a>
+        </div>
+    }
+    else if (Model.tipofiltro.Equals("editorial"))
+    {
+        <div class="display-4 mt-1 text-center mb-1">
+            <a class="btn-limedica btn-limedica-secondary "
+                     href="@Url.RouteUrl("TiendaEditorialOpcion2",new { editorial=Model.editorial, id= Model.idEditorial})"
+               >
+                Ver
+                más
+            </a>
+        </div>
+    }
+
+}

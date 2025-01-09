@@ -1,0 +1,225 @@
+﻿@model  Web.Xmarket.Models.Coleccion.ColeccionDetalleModel
+
+@{
+
+    Layout = "~/Views/Shared/_Layoutv.cshtml";
+}
+@section Scripts {
+
+    <script type="text/javascript">
+
+        var tiendaRegistroInicio = 0;
+        var tiendaCantidadCompaginado = @Utilitario.Common.ParametrosConfigurado.COMPAGINADO;
+        var tiendaCantidadRegistro = 0;
+        var coleccionCod = 0;
+        var coleccionNombre ="";
+
+        $(document).ready(function () {
+
+            tiendaCantidadRegistro =parseInt('@Model.bookListarResult.cantidadRegistro');
+
+            tiendaRegistroInicio = tiendaCantidadCompaginado;
+
+            coleccionCod = @Model.request.idColeccion;
+            coleccionNombre = "@Model.request.coleccionNombre";
+            
+        });
+
+
+        function obtenerLibros() {
+
+            $("#cantidadRegistroInicio").val(tiendaRegistroInicio);
+            $("#cantidadRegistroCompaginado").val(tiendaCantidadCompaginado);
+            $("#cantidadRegistro").val(tiendaCantidadRegistro);
+   
+            $("#idColeccion").val(coleccionCod);
+            $("#coleccionNombre").val(coleccionNombre);
+
+            var dataModelo = $('#frmFiltrarProducto').serialize();
+
+            let cantidadRegistroFin = (tiendaRegistroInicio + 1) + (tiendaCantidadCompaginado - 1);
+
+            if (cantidadRegistroFin >= tiendaCantidadRegistro) {
+
+                $("#btnFiltrarMas").hide();
+            }
+
+            $.ajax({
+                url: "@Url.Action("obtenerLibrosCompaginados", "Colecciones")",
+                type: "post",
+                data: dataModelo,
+                async: true,
+                beforeSend: function (data) {
+                    
+                    $("#btnFiltrarMas").hide();
+                    $("#loaderColeccionLibros").show();
+                    
+                },
+                success: function (data) {
+                    $("#btnFiltrarMas").show();
+                    $("#loaderColeccionLibros").hide();
+                  
+                    
+                    if (data != "") {
+
+                        tiendaRegistroInicio = tiendaRegistroInicio + tiendaCantidadCompaginado;
+
+                        $("#colecionLibros").append(data);
+                    }
+                    else {
+                        alert("Estimado cliente, no se encontro libros para la editorial seleccionado.");
+                    }
+
+                },
+                error: function (data) {
+                    $("#btnFiltrarMas").show();
+                    $("#loaderColeccionLibros").hide();
+                    alert("Ocurrio un error interno, intente nuevamente por favor.");
+                }
+            });
+        }
+
+    </script>
+
+}
+
+@section Styles {
+    <link href="@Url.Content("~/Content/css/style_limedica_coleccion.css")" rel="stylesheet">
+}
+
+
+<header class="page-header-ui-dark">
+
+    <div class="slide-contenedor">
+        <div class="row gx-5 align-items-center">
+
+            <div class="miSlider slider-default fade-slider" style="        background-image: url(@Url.Content("~/Content/assets/img/tienda-banner.jpg"))">
+
+                <div class="slider-body slider-body-default">
+                    <div class="slider-body-path">
+                        <a href="~/" class="text-white">Home</a>
+                        <i class="fas fa-chevron-right dropdown-arrow"></i>
+                        <a href="@Url.Action("Index","Colecciones")" class="text-white">Colecciones</a>
+                        @if (Model.coleccionResult.Hit != null)
+                        {
+
+                            <i class="fas fa-chevron-right dropdown-arrow"></i> @Model.coleccionResult.Hit.nombreColeccion
+                       
+
+                        }
+
+                    </div>
+
+                    <div class="slider-default-titulo">
+                        @if (Model.coleccionResult.Hit != null)
+                        {
+
+
+                            <h1 class="mt-3 slider-default-titulo">@Model.coleccionResult.Hit.nombreColeccion</h1>
+
+                        }
+                        else
+                        {
+                            <h1 class="mt-3 slider-default-titulo">Colecciones</h1>
+
+                        }
+
+
+
+
+
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</header>
+
+<section class="" style="background-color:  #F5F5F5;">
+
+    <div class="container limedica-tienda-filtro">
+        <div class="limedica-tienda-item limedica-tienda-total">
+        
+            <span class="text-primary" style=""> @Model.bookListarResult.cantidadRegistro </span>  Resultados
+
+
+        </div>
+
+        <div class="limedica-tienda-item limedica-tienda-mas-filtro">
+        </div>
+
+        <div class="limedica-tienda-item limedica-tienda-vistas">
+
+
+            <select class="form-select" style="width:150px">
+
+
+                <option selected>Ordenar Por</option>
+                <option>Nombre</option>
+                <option>Precio</option>
+
+            </select>
+
+        </div>
+
+
+
+
+    </div>
+</section>
+<section class="py-5">
+    <div class="container px-5">
+
+        <form id="frmFiltrarProducto">
+
+            <input type="hidden" name="cantidadRegistroInicio" id="cantidadRegistroInicio" />
+            <input type="hidden" name="cantidadRegistroCompaginado" id="cantidadRegistroCompaginado" />
+            <input type="hidden" name="cantidadRegistro" id="cantidadRegistro" />
+
+            <input type="hidden" name="idColeccion" id="idColeccion" />
+            <input type="hidden" name="coleccionNombre" id="coleccionNombre" />
+
+
+
+
+        </form>
+
+
+        @if (Model.bookListarResult.Hit != null)
+        {
+            <div class="row" id="colecionLibros">
+                @foreach (var itemProduct in Model.bookListarResult.Hit)
+                {
+                    @Html.Partial("_Libros", itemProduct)
+                }
+            </div>
+        }
+
+    <div id="loaderColeccionLibros" class="display-4 mt-5 text-center mb-3" style="display:none">
+
+        <div class='lds-ripple' ><div></div><div></div></div>
+    </div>
+        @if (Model.bookListarResult.cantidadRegistro > Utilitario.Common.ParametrosConfigurado.COMPAGINADO)
+        {
+            <div class="display-4 mt-5 text-center mb-3">
+                <a class="btn-limedica btn-limedica-secondary " href="javascript:obtenerLibros()"
+                   id="btnFiltrarMas">
+                    Ver
+                    más
+                </a>
+            </div>
+        }
+
+
+    </div>
+</section>
+
+

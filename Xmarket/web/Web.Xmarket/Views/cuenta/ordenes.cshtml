@@ -1,0 +1,94 @@
+﻿@model Web.Xmarket.Models.Cuenta.OrdenesModel
+@{
+
+    Layout = "~/Views/Shared/_Layoutv.cshtml";
+}
+
+
+@section Styles {
+    <meta name="robots" content="noindex, nofollow">
+}
+
+<header class="bg-header">
+    <div class="container">
+        <div class="row gx-5 align-items-center ">
+
+            <div class="header-cuenta" style="">
+
+                <div class="limedica-cuenta">
+
+                    <div class="slider-body-path">
+                        <a href="~/" class="limedica-path">Home</a>
+                        <i class="fas fa-chevron-right dropdown-arrow text-path"></i>
+                        <a href="@Url.Content("~/cuenta/micuenta")" class="limedica-path">Mi Cuenta</a>
+                        <i class="fas fa-chevron-right dropdown-arrow text-path"></i>
+                        <span class="limedica-path">Ordenes </span>
+
+
+
+                    </div>
+
+
+
+                    <div class="limedica-micuenta-body">
+
+                        <h1 class="my-5"> Órdenes</h1>
+
+                        <div class="row limedica-micuenta-content mb-10">
+
+
+
+                            <div class="col-8 limedica-micuenta-item ">
+
+
+                                <table class="table table-striped">
+
+                                    <tbody>
+                                        <tr>
+                                            <td>Pedido</td>
+                                            <th>Fecha</th>
+                                            <th>Estado</th>
+                                            <th>Total</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                        <tr>
+                                            <th>1</th>
+                                            <td>A1</td>
+                                            <td>B1</td>
+                                            <td>B1</td>
+                                            <td> <button class="btn-limedica btn-limedica-secondary" type="submit">Ver</button></td>
+                                        </tr>
+                                        <tr>
+                                            <th>1</th>
+                                            <td>A1</td>
+                                            <td>B1</td>
+                                            <td>B1</td>
+                                            <td><button class="btn-limedica btn-limedica-secondary" type="submit">Ver</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+
+
+                            </div>
+
+                            <div class="col-4 limedica-micuenta-item">
+
+                                @Html.Partial("_CuentaMenu", Model)
+
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</header>
+

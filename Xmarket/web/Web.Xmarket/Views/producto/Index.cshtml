@@ -1,0 +1,702 @@
+﻿@model Web.Xmarket.Models.Producto.ProductoModel
+@{
+
+    Layout = "~/Views/Shared/_Layoutv.cshtml";
+}
+@section Styles {
+    <style>
+        #share-button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
+}
+@section Scripts {
+    <script type="text/javascript">
+
+        function getDetalleLibro(idTab, tipo) {
+
+            let sender = $("#tab_producto_tab_" + idTab);
+            $(".limedica-card-home-tabs").find("div").removeClass("limedica-producto-title-activo");
+            $(".limedica-card-home-tabs").find("div").addClass("limedica-producto-title-inactivo");
+            $(".limedica-card-home-tabs").find("hr").removeClass("tab-activo");
+            $(".limedica-card-home-tabs").find("hr").removeClass("tab-inactivo");
+            $(".limedica-card-home-tabs").find("hr").addClass("tab-inactivo");
+            sender.find(".limedica-card-home-tabs-content").removeClass("limedica-producto-title-inactivo");
+            sender.find(".limedica-card-home-tabs-content").addClass("limedica-producto-title-activo");
+            sender.find("hr").removeClass("tab-inactivo");
+            sender.find("hr").addClass("tab-activo");
+
+            $(".limedica-producto-contenido").hide();
+            if (tipo == "Detalle") {
+                $("#limedicaActual").show();
+            }
+            else if (tipo == "Indice") {
+                $("#limedicaIndice").show();
+            }
+            else if (tipo == "Resena") {
+                $("#limedicaResena").show();
+            }
+        }
+
+        function agregarCarrito() {
+
+            formatProductSeleccionado = $("#limedica-producto-formato").val();
+
+            if (formatProductSeleccionado == "") {
+                swal({ title: "Alerta!", text: "Estimado cliente, debe seleccionar un formato de libro.", type: "warning", confirmButtonText: "Aceptar" });
+                return;
+            }
+
+            let formProducto = $('#frmProducto')[0];
+            var dataModelo = $('#frmProducto').serialize();
+
+
+            $.ajax({
+                url: formProducto.action,
+                type: "post",
+                dataType: "json",
+                data: dataModelo,
+                async: true,
+                beforeSend: function (data) {
+
+                    $("#loader").show();
+                    $("#limedicaAnclaAgregarCarrito").prop("enabled", false);
+
+                },
+                success: function (response) {
+                    $("#loader").hide();
+
+
+
+
+                    if (response.OperacionType.estado_operacion == "0") {
+                        let cantidadProductos = response.OperacionType.Objeto1.CantidadProductos;
+                        $("#limedicaSpanCantidadCarrito").html(cantidadProductos);
+                        $("#limedicaSpanCantidadCarritoMovil").html(cantidadProductos);
+
+                        $("#limedicaDivContentAgregarCarrito").hide();
+                        $("#limedicaDivProductoMensaje").show();
+                        $("#limedicaStrongProductoMensajeTitulo").html("Producto agregado al carrito, muchas gracias");
+
+                    }
+                    else if (response.OperacionType.estado_operacion > "0") {
+                        swal({ title: "Alerta!", text: response.OperacionType.mensaje_operacion, type: "warning", confirmButtonText: "Aceptar" });
+                    }
+                    else {
+
+                        alert(response.OperacionType.mensaje_operacion);
+                    }
+
+
+                },
+                error: function (data) {
+                    $("#loader").hide();
+                    $("#limedicaAnclaAgregarCarrito").prop("enabled", true);
+                    alert("Ocurrio un error interno, intente nuevamente por favor. ");
+                }
+            });
+
+        }
+
+        function getContentLibroRelacionado() {
+
+          $.ajax({
+              url: "@Url.Action("getProductRelation", "Producto")",
+              type: "POST",
+              data: { id: @Model.bookResult.Hit.idEspecialidadRelacionado },
+              beforeSend: function (data) {
+                  $("#loadContentLibroRelacionado").show();
+
+                  $("#contentLibroRelacionado").html("");
+              },
+              success: function (data) {
+                  $("#loadContentLibroRelacionado").hide();
+                  $("#contentLibroRelacionado").show();
+                  if (data != "") {
+
+                      $("#contentLibroRelacionado").html(data);
+                  } else {
+
+                      $("#contentLibroRelacionado").html("Estimado cliente, no se encontro libros para la especialidad seleccionado.");
+                  }
+              },
+              error: function (data) {
+                  $("#loadContentLibroRelacionado").hide();
+
+                  $("#contentLibroRelacionado").html("Ocurrio un error interno, intente nuevamente por favor.");
+              }
+          });
+        }
+
+        function actualizarCantidad(cantidad) { let cantidadProductoActual = parseInt($("#limedica-producto-cantidad-input").val()); let cantidadProductoNuevo = cantidadProductoActual + cantidad; if (cantidadProductoNuevo > 0) { $("#limedica-productoCantidad").html(cantidadProductoNuevo); $("#limedica-producto-cantidad-input").val(cantidadProductoNuevo); } }
+
+        function seleccionarVirtual() {
+            $("#limedica-producto-formato").val("vm");
+
+            $(".limedica-fisico").removeClass("limedica-producto-seleccionado");
+            $(".limedica-virtual").removeClass("limedica-producto-seleccionado");
+            $(".limedica-hibrido").removeClass("limedica-producto-seleccionado");
+
+            $(".limedica-virtual").addClass("limedica-producto-seleccionado");
+
+            //$("#pPrecioBook").hide();
+            //$("#pPrecioEBook").show();
+
+        }
+
+        function seleccionarFisico() {
+            $("#limedica-producto-formato").val("fs");
+            $(".limedica-fisico").removeClass("limedica-producto-seleccionado");
+            $(".limedica-virtual").removeClass("limedica-producto-seleccionado");
+            $(".limedica-hibrido").removeClass("limedica-producto-seleccionado");
+
+            $(".limedica-fisico").addClass("limedica-producto-seleccionado");
+
+            //$("#pPrecioBook").show();
+            //$("#pPrecioEBook").hide();
+
+        }
+
+        function seleccionarHibrido() {
+            $("#limedica-producto-formato").val("hi");
+            $(".limedica-fisico").removeClass("limedica-producto-seleccionado");
+            $(".limedica-virtual").removeClass("limedica-producto-seleccionado");
+            $(".limedica-hibrido").removeClass("limedica-producto-seleccionado");
+
+            $(".limedica-hibrido").addClass("limedica-producto-seleccionado");
+
+            //$("#pPrecioBook").show();
+            //$("#pPrecioEBook").hide();
+        }
+
+        var listObjectTypeBook = [];
+
+        $(document).ready(function () {
+
+            aEBook = $("#aEBook");
+            aHibrido = $("#aHibrido");
+            aFisico = $("#aFisico");
+
+            if (aEBook[0] != undefined)
+                listObjectTypeBook.push(aEBook[0]);
+            if (aHibrido[0] != undefined)
+                listObjectTypeBook.push(aHibrido[0]);
+            if (aFisico[0] != undefined)
+                listObjectTypeBook.push(aFisico[0]);
+
+            if (listObjectTypeBook.length == 1) {
+                objectTypeBook = $(listObjectTypeBook[0]);
+
+                objectTypeBook.addClass("limedica-producto-seleccionado");
+                idObjectYpeBook = objectTypeBook.prop("id");
+
+                switch (idObjectYpeBook) {
+
+                    case "aEBook":
+                        $("#limedica-producto-formato").val("vm");
+                        break;
+                    case "aHibrido":
+                        $("#limedica-producto-formato").val("hi");
+                        break;
+                    case "aFisico":
+                        $("#limedica-producto-formato").val("fs");
+                        break;
+
+                }
+
+
+
+            }
+
+            getContentLibroRelacionado();
+
+
+            var shareButton = document.getElementById('share-button');
+            var sharePopup = document.getElementById('share-popup');
+            var closeButton = document.querySelector('.close-button');
+            var urlToShare = window.location.href;
+            var textToShare = "Mira esta increíble página: ";
+
+            shareButton.addEventListener('click', function () {
+                sharePopup.style.display = 'flex';
+            });
+
+            closeButton.addEventListener('click', function () {
+                sharePopup.style.display = 'none';
+            });
+
+            window.addEventListener('click', function (event) {
+                if (event.target == sharePopup) {
+                    sharePopup.style.display = 'none';
+                }
+            });
+
+            document.getElementById('facebook-share').addEventListener('click', function () {
+                var facebookUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(urlToShare);
+                window.open(facebookUrl, '_blank');
+            });
+
+            document.getElementById('twitter-share').addEventListener('click', function () {
+                var twitterUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(textToShare + urlToShare);
+                window.open(twitterUrl, '_blank');
+            });
+
+            document.getElementById('whatsapp-share').addEventListener('click', function () {
+                var whatsappUrl = 'https://api.whatsapp.com/send?text=' + encodeURIComponent(textToShare + urlToShare);
+                window.open(whatsappUrl, '_blank');
+            });
+
+        });
+
+    </script>
+}
+
+
+@using (Html.BeginForm("AgregarProducto", "Carrito", FormMethod.Post, new { @id = "frmProducto" }))
+{
+    <input type="hidden" name="bookIsbn" value="@Model.bookResult.Hit.bookISBN">
+    <input type="hidden" name="bookId" value="@Model.bookResult.Hit.bookCodigo">
+    <input type="hidden" name="bookCantidadComprar" id="limedica-producto-cantidad-input" value="1">
+    <input type="hidden" name="bookFormato" id="limedica-producto-formato" value="">
+}
+
+<!-- Header-->
+<header class="bg-header">
+    <div class="container">
+        <div class="row gx-5 align-items-center ">
+
+            <div class="header-producto" style="">
+
+                <div class="contacto-producto">
+
+                    <div class="slider-body-path">
+                        <a href="~/" class="limedica-path">Home</a>
+                        <img src="~/Content/assets/img/producto-iconos/arrow-breadcrumbs.svg" alt="Separador de home" class="lazyloaded" />
+                        <a href="javascript:history.go(-1)" class="limedica-path">Tienda</a>
+                        <img src="~/Content/assets/img/producto-iconos/arrow-breadcrumbs.svg" alt="Separador de tienda" class="lazyloaded" />
+                        <a href="@Url.RouteUrl("BookDetail", new { title=Model.bookResult.Hit.bookTitleUrl, isbn=Model.bookResult.Hit.bookISBN})">@Model.bookResult.Hit.bookTitulo</a>
+
+
+                    </div>
+
+                    <div class="producto-body">
+                        <div class="producto-item">
+                            <div class="limedica-producto-galeria">
+                                <div class="limedica-producto-galeria-item">
+                                    <img src="@Model.bookResult.Hit.bookImagenSmall" alt="@Model.bookResult.Hit.bookTitulo" class="lazyloaded" height="50px" />
+
+                                </div>
+
+                                <div class="limedica-producto-galeria-item limedica-producto-imagen mx-5">
+                                    <img src="@Model.bookResult.Hit.bookImagen" alt="@Model.bookResult.Hit.bookTitulo" class="lazyloaded" />
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="producto-item">
+                            <div class="ec-stars-wrapper">
+                                <a href="#" data-value="1" title="Votar con 1 estrellas">&#9733;</a>
+                                <a href="#" data-value="2" title="Votar con 2 estrellas">&#9733;</a>
+                                <a href="#" data-value="3" title="Votar con 3 estrellas">&#9733;</a>
+                                <a href="#" data-value="4" title="Votar con 4 estrellas">&#9733;</a>
+                                <a href="#" data-value="5" title="Votar con 5 estrellas">&#9733;</a>
+                            </div>
+                            <span class="limedica-producto-resenia">10</span>
+                            <p class="limedica-idioma">@Model.bookResult.Hit.idiomaNombre</p>
+                            <h1 class="limedica-producto-titulo">@Model.bookResult.Hit.bookTitulo</h1>
+                            <h2 class="limedica-producto-sub-titulo">@Model.bookResult.Hit.bookSubTitulo</h2>
+                            <p class="limedica-autor-edicion-editorial">Autores: @Model.bookResult.Hit.bookAutores | Editorial:  @Model.bookResult.Hit.editorialNombre | Edición: @Model.bookResult.Hit.bookEdicion  Año:<strong> @Model.bookResult.Hit.bookAnio</strong></p>
+                            @Html.Raw(Model.bookResult.Hit.descripcionCorta)
+                            <p class="limedica-descripcion">Formato:</p>
+                            <div class="limedica-producto-formato-libro">
+                                @if (Model.bookResult.Hit.esFisico)
+                                {
+                                    <a href="javascript:seleccionarFisico()" id="aFisico"
+                                       class="limedica-producto-formato-libro-item limedica-fisico limedica-producto py-2"
+                                       style="margin-right: 0.5rem">
+
+                                        <img src="~/Content/assets/img/producto-iconos/libro-fisico-icon.svg" alt="Libro en físico" /> <span> Físico</span>
+                                        @if (Model.bookResult.Hit.bookPrecio > 0)
+                                        {
+                                            <span class="limedica-producto-precio" id="pPrecioEBook">
+                                                S/.     @Model.bookResult.Hit.bookPrecio
+                                            </span>
+                                        }
+                                    </a>
+                                }
+
+                                @if (Model.bookResult.Hit.esHibrido)
+                                {
+                                    <a href="javascript:seleccionarHibrido()" id="aHibrido"
+                                       class="limedica-producto-formato-libro-item limedica-hibrido limedica-producto py-2">
+                                        <div>
+                                            <img src="~/Content/assets/img/producto-iconos/libro-fisico-icon.svg" alt="Libro en físico" />
+                                            <img src="~/Content/assets/img/producto-iconos/ebook-icon.svg" alt="Libro eBook" />
+                                            <span>Fisico + eBook </span>
+                                        </div>
+                                        @if (Model.bookResult.Hit.bookPrecio > 0)
+                                        {
+                                            <div>
+                                                <span class="limedica-producto-precio" id="pPrecioEBook">
+                                                    S/. @Model.bookResult.Hit.bookPrecio
+                                                </span>
+                                            </div>
+                                        }
+                                    </a>
+                                }
+
+                                @if (Model.bookResult.Hit.esEbook)
+                                {
+                                    <a href="javascript:seleccionarVirtual()" id="aEBook"
+                                       class="limedica-producto-formato-libro-item limedica-virtual limedica-producto mx-2">
+                                        <div>
+                                            <img src="~/Content/assets/img/producto-iconos/ebook-icon.svg" alt="Libro en eBook" /> <span> eBook</span>
+                                        </div>
+                                        @if (Model.bookResult.Hit.precioEBook > 0)
+                                        {
+                                            <div>
+                                                <span class="limedica-producto-precio" id="pPrecioEBook">
+
+
+                                                    S/. @Model.bookResult.Hit.precioEBook
+                                                </span>
+                                            </div>
+                                        }
+
+                                    </a>
+                                }
+
+                            </div>
+                            @if (Model.productoCarrito.Hit == null)
+                            {
+                                if (@Model.bookResult.Hit.bookPrecio > 0 || @Model.bookResult.Hit.precioEBook > 0)
+                                {
+                                    <div class="limedica-producto-comprar mt-5 mb-3 py-2" id="limedicaDivContentAgregarCarrito">
+                                        <div class="limedica-producto-cantidad">
+                                            <a href="javascript:actualizarCantidad(-1)" class="limedica-producto-cantidad-top"> <img src="~/Content/assets/img/producto-iconos/-.svg" alt="Reducir cantidad de producto" /> </a>
+                                            <div class="limedica-producto-cantidad-middle">  <div class="limedica-producto-cantidad-item" id="limedica-productoCantidad">1</div>  </div>
+                                            <a href="javascript:actualizarCantidad(1)" class="limedica-producto-cantidad-bottom">  <img src="~/Content/assets/img/producto-iconos/sumar.svg" alt="Aumentar cantidad producto" />  </a>
+                                        </div>
+                                        <a class="btn-limedica btn-limedica-primary mx-2" id="limedicaAnclaAgregarCarrito" href="javascript:agregarCarrito()">
+                                            <span id="limedicaAgregarCarritoTitulo">
+                                                Añadir al carrito
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <div id="loader" class="display-4 mt-5 text-center mb-3" style="display:none">
+                                        <div class='lds-ripple'><div></div><div></div></div>
+                                    </div>
+                                    <div class="limedica-producto-comprar mt-5 mb-3 pb-5" id="limedicaDivProductoMensaje" style="display:none">
+                                        <strong id="limedicaStrongProductoMensajeTitulo"
+                                                class="limedica-producto-mensaje-carrito-agreado"> Producto agregado al carrito :)  </strong>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div class="limedica-producto-comprar mt-5 mb-3 pb-5" id="limedicaDivProductoMensaje">
+                                    <strong id="limedicaStrongProductoMensajeTitulo"
+                                            class="limedica-producto-mensaje-carrito-agreado"> Producto agregado al carrito :)  </strong>
+                                </div>
+
+                            }
+
+                            <br />
+                            <div class="limedica-producto-compartir">
+                                <button id="share-button" class="text-limedica-descripcion">
+                                    <img src="~/Content/assets/img/producto-iconos/compartir-icon.svg" alt="Compartir información de libro en las distintas redes sociales" /> <span>Compartir libro</span>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</header>
+
+<section class="py-2">
+    <div class="container">
+
+        <div class="row  mt-5">
+
+            <div class="col-12">
+                <div class="row">
+                    <a class="col-4 limedica-card-home-tabs"
+                       id="tab_producto_tab_1"
+                       href="javascript:getDetalleLibro(1,'Detalle')">
+
+                        <div class="limedica-card-home-tabs-content limedica-producto-title-activo">
+                            Detalle de Libro
+                        </div>
+                        <hr class="tab-activo">
+                    </a>
+                    <a class="col-4 limedica-card-home-tabs"
+                       id="tab_producto_tab_2"
+                       href="javascript:getDetalleLibro(2,'Indice')">
+
+                        <div class="limedica-card-home-tabs-content limedica-producto-title-inactivo">
+                            Indice
+                        </div>
+                        <hr class="tab-inactivo">
+                    </a>
+
+                    <a class="col-4 limedica-card-home-tabs"
+                       id="tab_producto_tab_4"
+                       style="display:none"
+                       href="javascript:getDetalleLibro(4,'Resena')">
+
+                        <div class="limedica-card-home-tabs-content limedica-producto-title-inactivo">
+                            Reseña (10)
+                        </div>
+                        <hr class="tab-inactivo">
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="col-lg-12">
+
+                <div class="row limedica-producto-contenido" id="limedicaActual">
+
+
+                    <div class="col-md-6">
+                        <table class="table ">
+
+                            <tbody>
+
+                                <tr>
+
+                                    <td>
+                                        <strong>  ISBN:</strong>
+                                    </td>
+                                    <td>
+                                        @Model.bookResult.Hit.bookISBN
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                    <td>
+                                        <strong>  ISBN eBook:</strong>
+                                    </td>
+                                    <td>
+                                        @Model.bookResult.Hit.isbnEBook
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                    <td>
+                                        <strong>  Editorial:</strong>
+                                    </td>
+                                    <td>
+                                        @Model.bookResult.Hit.editorialNombre
+                                    </td>
+                                </tr>
+
+                                <tr>
+
+                                    <td>
+                                        <strong>   Páginas:</strong>
+                                    </td>
+                                    <td>
+                                        @Model.bookResult.Hit.pagina
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                    <td>
+                                        <strong> Edición:</strong>
+                                    </td>
+                                    <td>
+                                        @Model.bookResult.Hit.bookEdicion
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>
+                                        <strong> Idioma:</strong>
+                                    </td>
+                                    <td>
+                                        @Model.bookResult.Hit.idiomaNombre
+                                    </td>
+
+
+                                </tr>
+                                @if (!string.IsNullOrEmpty(Model.bookResult.Hit.peso))
+                                {
+                                    <tr>
+
+                                        <td>
+                                            <strong> Peso:</strong>
+                                        </td>
+                                        <td>
+                                            @Model.bookResult.Hit.peso
+                                        </td>
+                                    </tr>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.bookResult.Hit.alto))
+                                {
+                                    <tr>
+
+                                        <td>
+                                            <strong> Alto:</strong>
+                                        </td>
+                                        <td>
+                                            @Model.bookResult.Hit.alto
+                                        </td>
+                                    </tr>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.bookResult.Hit.ancho))
+                                {
+                                    <tr>
+
+                                        <td>
+                                            <strong>   Ancho:</strong>
+                                        </td>
+                                        <td>
+                                            @Model.bookResult.Hit.ancho
+                                        </td>
+                                    </tr>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.bookResult.Hit.largo))
+                                {
+                                    <tr>
+
+                                        <td>
+                                            <strong>   Largo:</strong>
+                                        </td>
+                                        <td>
+                                            @Model.bookResult.Hit.largo
+                                        </td>
+                                    </tr>
+                                }
+
+                                <tr>
+
+                                    <td>
+                                        <strong>  Encuadernación:</strong>
+                                    </td>
+                                    <td>
+                                        @Model.bookResult.Hit.encuadernacion
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        <strong>  Año:</strong>
+                                    </td>
+                                    <td>
+                                        @Model.bookResult.Hit.bookAnio
+                                    </td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="col-md-6" style="display:flex; justify-content:end">
+                        <img src="@Model.bookResult.Hit.bookImagenSmall" alt="@Model.bookResult.Hit.bookTitulo" class="lazyloaded" />
+                    </div>
+
+                    <div class="col-md-6">
+                        <br />
+                        <strong>   Detalles:</strong>
+                        <br />
+
+                        @Html.Raw(Model.bookResult.Hit.descripcionLarga)
+
+                    </div>
+
+
+
+                </div>
+
+                <div class="row limedica-producto-contenido" id="limedicaIndice" style="display:none">
+
+                    <div class="col-md-12">
+
+                        @Html.Raw(Model.bookResult.Hit.indice)
+                    </div>
+
+
+
+                </div>
+
+                <div class="row limedica-producto-contenido" id="limedicaResenan" style="display:none">
+                    <div class="col-md-12">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<section class="py-5">
+    <div id="loadContentLibroRelacionado" class="display-4 mt-5 text-center mb-3" style="display:none">
+        <div class='lds-ripple'><div></div><div></div></div>
+    </div>
+
+    <div class="container" id="contentLibroRelacionado">
+
+
+
+    </div>
+</section>
+
+<div id="share-popup" class="popup">
+    <div class="popup-content">
+        <span class="close-button">&times;</span>
+        <button id="facebook-share">Compartir en Facebook</button>
+        <button id="twitter-share">Compartir en Twitter</button>
+        <button id="whatsapp-share">Compartir en WhatsApp</button>
+    </div>
+</div>
+
+

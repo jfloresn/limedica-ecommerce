@@ -1,0 +1,57 @@
+﻿@model  Web.Xmarket.Models.Account.ValidarCuentaModel
+
+@{
+    ViewBag.Title = "ValidarCuenta";
+    Layout = "~/Views/Shared/_Layoutpublic.cshtml";
+}
+
+
+@section Styles {
+    <meta name="robots" content="noindex, nofollow">
+}
+
+
+@section scripts
+{
+
+
+
+
+
+
+}
+
+@section PageHeader {
+
+}
+
+
+
+<section class="p-b-40 p-t-40">
+    <div class="container">
+        <div class="m-t-90 m-b-30">
+            <h1 class="text-center"> Validar Cuenta</h1>
+        </div>
+    </div>
+</section>
+
+
+<section class="m-b-50" id="userdata" style="display: inherit;">
+    <div class="container">
+        <div class="row">
+            <div class="row" id="userinfo">
+
+                @using (Html.BeginForm("ValidarCuenta", "Account", FormMethod.Post, new { id = "frmValidarCuenta" }))
+                {
+
+                    <button type="submit" id="btnVerificarCuenta" class="btn btn-primary"> Verificar </button>
+
+                }
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="infoFooter" runat="server" class="p-b-20 p-t-20 xs-p-b-20 bg-restaurante">
+</section>

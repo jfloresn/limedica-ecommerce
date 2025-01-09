@@ -1,0 +1,99 @@
+﻿@model  QueryContracts.Xmarket.Cliente.Result.ClienteDireccionListarResult
+
+@{
+    var itemCorrelativoDirecciones = 0;
+}
+<div class="row" id="divContentDireccionEntrega">
+
+    @foreach (var item in Model.direcciones.Where(x => x.tipoDireccion.Equals(Utilitario.Common.ConstanteGeneral.TIPO_DIRECCIONES.ENTREGA)))
+    {
+
+
+        <div class="col-md-6 mb-4">
+            <div class="limedica-checkout-datoentrega-item limedica-activo">
+
+                <a href="javascript:seleccionar(@item.idDireccion,@itemCorrelativoDirecciones)">
+                    @if (item.seleccionado)
+                    {
+                        <img title="habilitado"
+                             id="imgDireccion_@item.idDireccion"
+                             src="~/Content/assets/img/checkout-iconos/check.svg"
+                             class="limedica-checkout-datoentrega-habilitado" />
+                    }
+                    else
+                    {
+                        <img title="habilitado"
+                             id="imgDireccion_@item.idDireccion"
+                             src="~/Content/assets/img/checkout-iconos/check-desactivado.svg"
+                             class="limedica-checkout-datoentrega-habilitado" />
+                    }
+
+
+                </a>
+
+                <h4 class="limedica-checkout-datoentrega-item-titulo">@item.nombreContacto</h4>
+
+                @if (@Model.direcciones.ElementAt(itemCorrelativoDirecciones).seleccionado)
+                {
+                    <input type="hidden" id="ClienteDireccionListarResult_direccion_@itemCorrelativoDirecciones"
+                           name="ClienteDireccionListarResult.direcciones[@itemCorrelativoDirecciones].seleccionado" class="clienteDirecciones"
+                           value="true">
+                }
+                else
+                {
+                    <input type="hidden" id="ClienteDireccionListarResult_direccion_@itemCorrelativoDirecciones"
+                           name="ClienteDireccionListarResult.direcciones[@itemCorrelativoDirecciones].seleccionado" class="clienteDirecciones"
+                           value="false">
+                }
+
+                <input type="hidden" name="ClienteDireccionListarResult.direcciones[@itemCorrelativoDirecciones].idDireccion"
+                       value="@Model.direcciones.ElementAt(itemCorrelativoDirecciones).idDireccion">
+                <input type="hidden" name="ClienteDireccionListarResult.direcciones[@itemCorrelativoDirecciones].idUsuario"
+                       value="@Model.direcciones.ElementAt(itemCorrelativoDirecciones).idUsuario">
+
+                <div class="limedica-checkout-datoentrega-item-body">
+                    <div>@item.direccion</div>
+                    <div>Distrito: @item.distrito</div>
+                    <div>Provincia: @item.provincia</div>
+                    <div>Departamento: @item.departamento</div>
+
+                    <div>@item.celularContacto</div>
+
+                </div>
+
+                <div class="limedica-checkout-datoentrega-item-footer mt-2">
+
+                    <a title="Modificar dirección" href="javascript:modificarDireccion(@item.idDireccion)">Modificar dirección</a>
+
+                    <a title="Modificar dirección" href="javascript:eliminarDireccion(@item.idDireccion)">Eliminar dirección</a>
+
+                </div>
+
+            </div>
+        </div>
+        itemCorrelativoDirecciones++;
+    }
+
+
+</div>
+<div class="row" >
+    <div class="col-md-6 mb-4">
+
+        <div class="limedica-checkout-datoentrega-item limedica-no-activo limedica-checkout-datoentrega-item-nuevo" style="height:100%">
+            <h5 class="limedica-checkout-dataentrega-nuevo">Nueva Dirección</h5>
+
+            <div>
+
+
+            </div>
+
+            <div>
+                <a title="Agregar dirección" href="javascript:agregarDireccion()">
+                    <img src="~/Content/assets/img/responsive-iconos/open.svg" title="agregar dirección" />
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+</div>

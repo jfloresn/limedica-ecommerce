@@ -1,0 +1,272 @@
+﻿@model  Web.Xmarket.Models.Contacto.ContactoModel
+@{
+
+    Layout = "~/Views/Shared/_Layoutv.cshtml";
+}
+
+@section Styles {
+
+    <style>
+        #map {
+            height: 100vh !important;
+        }
+    </style>
+}
+
+
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+        function registrarContacto(oFormElement) {
+            var formData = $("#frmContacto").serialize();
+            var action = $("#frmContacto").prop("action");
+
+            $.ajax(
+                {
+                    url: action,
+                    data: formData,
+                    type: "POST",
+                    processData: false,
+                    cache: false,
+                    beforeSend: function () {
+                        $("#btnRegistrarContacto").prop("disabled", true);
+                    },
+                    success: function (data) {
+                        $("#btnRegistrarContacto").prop("disabled", false);
+                        if (data.OperacionType.estado_operacion == "0") {
+                            limpiarCampos();
+                            swal({ title: "Correcto", text: "Se registró correctamente el contacto", type: "success", confirmButtonText: "Aceptar" });
+
+                        }
+                        else if (data.OperacionType.estado_operacion > "0") {
+
+                            let mensaje = "";
+
+                            for (let i = 0; i < data.errorForms.length; i++) {
+                                mensaje = "" + data.errorForms[i].mensaje + " ";
+                            }
+
+                            swal({ title: "Alerta", text: mensaje, type: "warning", confirmButtonText: "Aceptar" });
+                        } else {
+
+                            swal({ title: "Alerta", text: "Ocurrio un error interno", type: "warning", confirmButtonText: "Aceptar" });
+                        }
+                    },
+                    error: function (request, status, error) {
+                        $("#btnRegistrarContacto").prop("disabled", false);
+                        swal({ title: "Error!", text: "Ocurrió un error al registrar", type: "error", confirmButtonText: "Aceptar" });
+                    }
+                });
+        }
+
+        function limpiarCampos() {
+
+            $("#txtNombre").val("");
+            $("#txtApellidos").val("");
+            $("#txtCorreo").val("");
+            $("#txtTelefono").val("");
+            $("#txtAsunto").val("");
+            $("#txtMensaje").val("");
+
+            $("#ddlDepartamento option[value='']").attr("selected", "selected");
+        }
+
+    </script>
+
+    <script>
+        // Initialize and add the map
+        function initMap() {
+            // The location of Uluru
+            var uluru = { lat: -12.081156282300183, lng: -77.04114076627047 };
+            // The map, centered at Uluru
+            var map = new google.maps.Map(
+                document.getElementById('map'), { zoom: 15, center: uluru });
+            // The marker, positioned at Uluru
+            var marker = new google.maps.Marker({ position: uluru, map: map });
+        }
+    </script>
+
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCasCIpBrrVPFs2wMfyRZXJUsK7HJrsLT4&callback=initMap">
+    </script>
+
+}
+
+<!-- Header-->
+<header class="page-header-ui-dark">
+
+    <div class="row gx-5 align-items-center">
+
+        <div class="header-contacto" style="">
+
+            <div class="contacto-content">
+                <div class="slider-body-path">
+                    <a href="~/" class="text-white">Home</a>                  <i class="fas fa-chevron-right dropdown-arrow"></i> Acerca de Nosotros
+                </div>
+
+                <div class="contacto-body">
+
+
+                    <div class="contacto-item">
+
+                        <h1 class="contacto-titulo mt-3">Hable con un <br /> experto hoy</h1>
+
+                        <p class="contacto-descripcion-2">
+                            Contáctenos a través de las siguientes vías:
+                        </p>
+
+                        <div class="mb-5 mt-5 ">
+
+                            <ul class="list-unstyled mb-0">
+                                <li class="py-2 ">
+
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <img src="~/Content/assets/img/iconos-contactenos/phone-contact-icon.svg"
+                                                 style="float: left; margin-right: 8px;" />
+                                        </div>
+
+                                        <div class="col-10">
+                                            <label class="contacto-descripcion-2">Teléfono.</label>  <label class="contacto-descripcion">999774449 </label> <br />
+                                            <label class="contacto-descripcion-2">Telefax.</label>  <label class="contacto-descripcion">471 5606 </label>
+
+
+                                        </div>
+                                    </div>
+
+                                </li>
+                                <li class="py-2 mt-5">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <img src="~/Content/assets/img/iconos-contactenos/email-contact-icon.svg"
+                                                 style="float: left; margin-right: 8px;" />
+                                        </div>
+
+                                        <div class="col-10">
+                                            <label class="contacto-descripcion-2">Email.</label>  <label class="contacto-descripcion">e.oscco@limedica.pe </label>
+
+
+
+                                        </div>
+                                    </div>
+                                </li>
+
+
+                            </ul>
+
+
+
+                        </div>
+                    </div>
+
+                    <div class="contacto-item">
+                        <div class="contacto-content-formulario px-5 pt-5 pb-5">
+
+                            @using (Html.BeginForm("registrarContacto", "Contactenos", FormMethod.Post, new { @id = "frmContacto", @onsubmit = "registrarContacto(this);return false;" }))
+                            {
+                                <h2 class="pb-3">Déjanos un mensaje</h2>
+
+                                <div class="row gx-5 mb-4">
+                                    <div class="col-md-6">
+                                        <label class="text-dark mb-2" for="inputName">Nombre *</label>
+                                        @Html.TextBoxFor(model => model.contactenosRegistrarCommand.nombre, new { @class = "form-control", @id = "txtNombre", @maxlength = "100", @placeholder = "Ingresa su nombre" })
+                                        @Html.ValidationMessageFor(model => model.contactenosRegistrarCommand.nombre, "", new { @class = "text-danger small" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="text-dark mb-2" for="inputEmail">Apellidos *</label>
+                                        @Html.TextBoxFor(model => model.contactenosRegistrarCommand.apellido, new { @class = "form-control", @id = "txtApellidos", @maxlength = "100", @placeholder = "Ingresa su apellido" })
+                                        @Html.ValidationMessageFor(model => model.contactenosRegistrarCommand.apellido, "", new { @class = "text-danger small" })
+
+                                    </div>
+                                </div>
+                                <div class="row gx-5 mb-4">
+                                    <div class="col-md-6">
+                                        <label class="text-dark mb-2" for="inputName">Email *</label>
+                                        @Html.TextBoxFor(model => model.contactenosRegistrarCommand.correo, new { @class = "form-control", @id = "txtCorreo", @maxlength = "200", @placeholder = "name@example.com" })
+                                        @Html.ValidationMessageFor(model => model.contactenosRegistrarCommand.correo, "", new { @class = "text-danger small" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="text-dark mb-2" for="inputEmail">Número de Teléfono *</label>
+                                        @Html.TextBoxFor(model => model.contactenosRegistrarCommand.numeroTelefono, new { @class = "form-control", @id = "txtTelefono", @maxlength = "200", @placeholder = "Ingrese su numero de teléfono" })
+                                        @Html.ValidationMessageFor(model => model.contactenosRegistrarCommand.numeroTelefono, "", new { @class = "text-danger small" })
+                                    </div>
+                                </div>
+                                <div class="row gx-5 mb-4">
+                                    <div class="col-md-6">
+                                        <label class="text-dark mb-2" for="inputName">Ciudad *</label>
+                                        @Html.DropDownListFor(model => model.contactenosRegistrarCommand.idCiudad, Model.departamentos, "Seleccionar Ciudad", new { id = "ddlDepartamento", @class = "form-select" })
+                                        @Html.ValidationMessageFor(model => model.contactenosRegistrarCommand.idCiudad, "", new { @class = "text-danger small" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="text-dark mb-2" for="inputEmail">Asunto *</label>
+                                        @Html.TextBoxFor(model => model.contactenosRegistrarCommand.asunto, new { @class = "form-control", @id = "txtAsunto", @maxlength = "200", @placeholder = "Ingrese un asunto" })
+                                        @Html.ValidationMessageFor(model => model.contactenosRegistrarCommand.asunto, "", new { @class = "text-danger small" })
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="text-dark mb-2" for="inputMessage">Mensaje *</label>
+                                    @Html.TextBoxFor(model => model.contactenosRegistrarCommand.Mensaje, new { @class = "form-control", @id = "txtMensaje", @maxlength = "200", @placeholder = "Ingrese su mensaje..." })
+                                    @Html.ValidationMessageFor(model => model.contactenosRegistrarCommand.Mensaje, "", new { @class = "text-danger small" })
+                                </div>
+
+                                <div class="text-center"><button class="btn-limedica btn-limedica-secondary mt-4" id="btnRegistrarContacto" type="submit">Enviar</button></div>
+
+                            }
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</header>
+
+<section class="limedica-content-intermedio pt-15 pb-10">
+    <div class="container px-5">
+
+        <div class="row gx-5 align-items-center justify-content-center pt-5">
+
+            <div class="col-lg-6  mb-5">
+                <div class="mb-6 me-15">
+                    <h2 class="limedica-titulo-contacto">Nuestra <br /> Ubicacion</h2>
+
+                </div>
+
+                <div class="mb-6 my-5 me-15">
+
+                    <h3 class="mb-2 limedica-contacto-subtiltulo">Lima</h3>
+                    <div class="row">
+
+                        <div class="col-2"><img src="~/Content/assets/img//iconos-contactenos/location-contact-icon.svg" /></div>
+                        <div class="col-10 "><p class="limedica-contacto-descripcion">Jr. Garcilazo de la Vega 1566, Lince</p></div>
+                    </div>
+
+
+
+                </div>
+
+                <div class="mb-6 my-5 me-15">
+                    <h3 class="">Horario de apertura</h3>
+                    <p>Lunes a Viernes, 8:00am - 8:00pm</p>
+                </div>
+
+            </div>
+
+            <div class="col-lg-6 col-md-9 ">
+
+                <div id="map"></div>
+
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+

@@ -1,0 +1,121 @@
+﻿@{
+
+    Layout = "~/Views/Shared/_Layoutv.cshtml";
+}
+
+<!-- Header-->
+<header class="page-header-ui-dark">
+
+    <div class="slide-contenedor">
+        <div class="row gx-5 align-items-center">
+
+            <div class="miSlider slider-default fade-slider" style="background-image: url(@Url.Content("~/Content/assets/img/faqs-banner.jpg"))">
+
+                <div class="slider-body slider-body-default">
+                    <div class="slider-body-path">
+                        <a href="~/" class="text-white">Home</a>                  <i class="fas fa-chevron-right dropdown-arrow"></i> Preguntas Frecuentes
+                    </div>
+
+                    <div class="slider-default-titulo">
+
+                        <h1 class="mt-3 slider-default-titulo">FAQs</h1>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</header>
+
+<section class="limedica-content-intermedio py-5">
+
+    <div class="container px-5 mt-2">
+
+        <div class="row gx-5">
+            <div class="col-lg-3">
+                <ul class="list-group list-group-flush list-group-careers">
+                    <li class="list-group-item py-2 px-2 mt-2 limedica-pregunta-frecuente-activo">
+                        <a class="small text-limedica-preguntas" href="#" title="">
+
+                            Preguntas Frecuentes
+
+                        </a>
+                        <i class="fas fa-arrow-right text-primary me-1"></i>
+                    </li>
+                 
+                </ul>
+            </div>
+
+            <div class="col-lg-9">
+
+
+
+                <div class="accordion" id="accordionFaq">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+
+                            <button class="accordion-button py-4 collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                ¿Cuáles son los gastos de envío?
+
+
+
+
+                            </button>
+                            <hr class="limedica-pregunta-frecuente-linea" />
+                        </h2>
+
+                        <div class="accordion-collapse collapse" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionFaq">
+                            <div class="accordion-body">
+                                Los gastos de envío son gratuitos para cualquier envío a Perú. Para el resto de países, dependerá del destino del pedido y del peso de los productos incluidos en él, esta información la podrá comprobar al añadir el pedido en la página de compra.
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button py-4 collapsed" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                ¿Cual es la cobertura de atención?
+                            </button>
+                        <hr class="limedica-pregunta-frecuente-linea" />
+                        </h2>
+                        <div class="accordion-collapse collapse" id="collapseTwo" aria-labelledby="headingTwo" data-bs-parent="#accordionFaq">
+                            <div class="accordion-body">
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button py-4 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false"
+                                    aria-controls="collapseThree">
+                                ¿Cuales son los métodos de pago?
+                            </button>
+                        <hr class="limedica-pregunta-frecuente-linea" />
+                        </h2>
+                        <div class="accordion-collapse collapse" id="collapseThree" aria-labelledby="headingThree" data-bs-parent="#accordionFaq">
+                        <div class="accordion-body">
+                         
+                            </div></div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+@Html.Partial("_CatalogoLimedica")

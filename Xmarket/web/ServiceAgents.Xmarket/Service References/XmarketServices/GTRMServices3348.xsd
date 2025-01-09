@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CommandContracts.Xmarket.General.Output" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CommandContracts.Xmarket.General.Output" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CommandContracts.Common" />
+  <xs:complexType name="ValidarUsuarioOutput">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/CommandContracts.Common" base="q1:CommandResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Usr_dat_fecvctopwd" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Usr_dat_ultfeclogin" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Usr_int_aprobado" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="Usr_int_bloqueado" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="Usr_int_id" type="xs:int" />
+          <xs:element minOccurs="0" name="Usr_int_numintentos" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="Usr_int_pwdvalido" type="xs:int" />
+          <xs:element minOccurs="0" name="Usr_int_rolinvalido" type="xs:int" />
+          <xs:element minOccurs="0" name="Usr_str_recordarpwd" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Usr_str_red" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ValidarUsuarioOutput" nillable="true" type="tns:ValidarUsuarioOutput" />
+  <xs:complexType name="CuentaCrearModificarOutput">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/CommandContracts.Common" base="q2:CommandResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CodigoCliente" type="xs:int" />
+          <xs:element minOccurs="0" name="Estado" type="xs:int" />
+          <xs:element minOccurs="0" name="Mensaje" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CuentaCrearModificarOutput" nillable="true" type="tns:CuentaCrearModificarOutput" />
+</xs:schema>

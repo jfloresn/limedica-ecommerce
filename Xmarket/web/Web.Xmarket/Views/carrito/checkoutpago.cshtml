@@ -1,0 +1,442 @@
+﻿@model Web.Xmarket.Models.Carrito.CheckOutPagoModel
+@{
+
+    Layout = "~/Views/Shared/_LayoutCarrito.cshtml";
+
+}
+
+@section Styles {
+    <meta name="robots" content="noindex, nofollow">
+    <link href="@Url.Content("~/Content/css/style_limedica_input.css")" rel="stylesheet">
+    <style>
+
+
+        .limedica-checkoutpago-list {
+            list-style: none;
+            PADDING-LEFT: 0PX;
+        }
+
+        .form-check-label {
+            font-family: Jost-SemiBold;
+            font-size: 16px;
+            color: #1E1E1F;
+            letter-spacing: 0;
+            line-height: 19px;
+            font-weight: bold
+        }
+    </style>
+
+
+}
+
+
+@section scripts
+{
+
+
+    @if (ViewBag.EstadoError != null)
+    {
+        if (ViewBag.EstadoError != 0)
+        {
+            <script type="text/javascript">
+        $(document).ready(function () {
+            var mensajeError = '@ViewBag.MensajeError';
+            mensajeError = CorregirTildesEnMensaje(mensajeError);
+            swal({ title: "Alerta", text: mensajeError, type: "warning", confirmButtonText: "Aceptar" });
+        });
+            </script>
+        }
+    }
+
+
+
+}
+
+<!-- Header-->
+<header class="bg-header">
+    <div class="container">
+        <div class="row gx-5 align-items-center pb-5">
+
+            <div class="header-producto" style="">
+
+                <div class="limedica-carrito">
+
+                    <div class="slider-body-path-checkout mt-5">
+
+                        <div>
+                            <a href="@Url.Content("~/carrito")" class="limedica-path activo-path-checkout">1. Carrito</a>
+                        </div>
+
+
+                        <div class="mx-2 limedica-checkout-linea">
+                            <div class="limedica-checkout-linea-item"></div>
+
+                        </div>
+
+                        <div>
+                            <a href="@Url.Content("~/carrito/checkout")" class="limedica-path activo-path-checkout">2. Entrega </a>
+
+                        </div>
+                        <div class="mx-2 limedica-checkout-linea">
+                            <div class="limedica-checkout-linea-item"></div>
+
+                        </div>
+                        <div>
+                            <span class="limedica-path activo-path-checkout">3. Pago </span>
+
+                        </div>
+                        <div class="mx-2 limedica-checkout-linea">
+                            <div class="limedica-checkout-linea-item"></div>
+
+                        </div>
+                        <div>
+                            <span class="limedica-path no-activo-path-checkout">4. Pedido Completado  </span>
+
+                        </div>
+                    </div>
+
+
+                    <div class="row limedica-carrito-body mt-4">
+                        <div class="col-md-8 limedica-carrito-item limedica-carrito-productos">
+                            @using (Html.BeginForm("checkoutpago", "Carrito", FormMethod.Post, new { @id = "frmRegistrarPago" }))
+                            {
+
+                                <h1 class="my-5 limedica-checkout-titulo">Método de Pago </h1>
+                                <label class="mb-5 limedica-checkout-infocontact-detalle">Todas las transacciones se realizan de manera segura </label>
+
+                                <ul class="limedica-checkoutpago-list">
+
+                                    <li style="display:none">
+
+                                        <div class="form-check">
+
+                                            @Html.RadioButtonFor(x => x.registrarPedidoCommand.metodoPago, "TC", new { @class = "form-check-input", @id = "rbtnTarjetaCredito", @checked = true })
+
+                                            <label class="form-check-label" for="rbtnTarjetaCredito">
+                                                TARJETA DE CRÉDITO/DÉBITO
+                                            </label>
+                                        </div>
+
+                                        <ul>
+
+                                            <div class="row my-4">
+                                                <div class="col-md-12">
+                                                    Es posible que se abra la ventana del sistema 3D Secure de tu banco para verificar tus datos
+                                                </div>
+                                            </div>
+
+                                            <div class="row  mb-4">
+
+
+                                                <div class="col-md-6">
+
+                                                </div>
+                                                <div class="col-md-6">
+
+                                                    <input class="form-control" id="inputName" type="text" placeholder="Número *" />
+                                                </div>
+                                            </div>
+
+                                            <div class="row  mb-4">
+
+
+                                                <div class="col-md-6">
+
+                                                    <input class="form-control" id="inputName" type="text" placeholder="Titular de la tarjeta *" />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="row">
+                                                        <div class="col-6">
+
+                                                            <input class="form-control" id="inputName" type="text" placeholder="MM / AA *" />
+                                                            <label class="limedica-checkoutpago-tarjeta-fecha-caducidad">Fecha de caducidad de la tarjeta</label>
+
+                                                        </div>
+
+                                                        <div class="col-6">
+
+                                                            <input class="form-control" id="inputName" type="text" placeholder="CVV *" />
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </ul>
+
+                                        <hr />
+
+                                    </li>
+
+                                    <li>
+
+                                        <div class="row">
+
+
+                                            <div class="col-6 limedica-checkoutpago-metodo-pago-item">
+                                                <div class="form-check">
+
+                                                    @Html.RadioButtonFor(x => x.registrarPedidoCommand.metodoPago, Utilitario.Common.ParametroDatos.Pedido.MetodoPago.BANCA_INTERNET,
+                                                   new { @class = "form-check-input", @id = "rbtnBancaInternet", @checked = true })
+
+                                                    @Html.AntiForgeryToken()
+
+                                                    <label class="form-check-label" for="rbtnTarjetaCredito">
+
+                                                        BANCA POR INTERNET
+
+
+
+                                                    </label>
+                                                </div>
+
+                                            </div>
+
+                                            <div class=col-6>
+                                                <div class="row">
+
+                                                    <div class="col-12 limedica-checkoutpago-banco-internet" style="display:flex">
+                                                        <img src="~/Content/assets/img/banco/bcp.svg" class="limedica-checkoutpago-banco-internet-item" title="bcp" />
+                                                        <img src="~/Content/assets/img/banco/bbva.svg" class="limedica-checkoutpago-banco-internet-item" title="bbva" />
+                                                    </div>
+
+                                                </div>
+
+                                                @*<div class="row">
+                                                        <div class="col-12 limedica-checkoutpago-banco-internet"> <img src="~/Content/assets/img/banco/safetypay.svg" class="limedica-checkoutpago-banco-internet-item" title="safetypay" /></div>
+
+                                                    </div>*@
+
+
+
+                                            </div>
+
+
+                                        </div>
+
+                                        <ul>
+
+                                            <div class="row my-4">
+                                                <div class="col-md-12">
+                                                    Pago realizado por trasferencia o deposito.
+                                                </div>
+                                            </div>
+
+                                            <div class="row  mb-4">
+
+
+                                                <div class="col-md-6">
+                                                    @Html.DropDownListFor(model => model.registrarPedidoCommand.idBanco, Model.banco, "Seleccionar Banco", new { id = "ddlBanco", @class = "form-select" })
+                                                    @Html.ValidationMessageFor(model => model.registrarPedidoCommand.idBanco, "", new { @class = "text-danger small" })
+                                                    @Html.HiddenFor(model => model.registrarPedidoCommand.idBanco, new { @id = "hidenDepartamento" })
+
+
+                                                </div>
+                                                <div class="col-md-6">
+
+
+                                                    @Html.TextBoxFor(model => model.registrarPedidoCommand.transferenciaMontoDeposito, new { @class = "form-control", @type = "number", @placeholder = "Monto Deposito *" })
+                                                    @Html.ValidationMessageFor(model => model.registrarPedidoCommand.transferenciaMontoDeposito, "", new { @class = "text-danger small" })
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row  mb-4">
+
+
+                                                <div class="col-md-6">
+
+                                                    @Html.TextBoxFor(model => model.registrarPedidoCommand.transferenciaFechaDeposito, new { @class = "form-control", @type = "date", @placeholder = "Fecha de Deposito *" })
+                                                    @Html.ValidationMessageFor(model => model.registrarPedidoCommand.transferenciaFechaDeposito, "", new { @class = "text-danger small" })
+
+
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="row">
+
+
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row  mb-4">
+
+
+                                                <div class="col-md-6">
+
+                                                    BBVA CONTINENTAL<br />
+                                                    CUENTA DOLARES<br />
+                                                    0011-0353-0100035502<br />
+                                                    CCI:0011-353-000100035502-02<br />
+                                                    LITERATURA MEDICA E.I.R.L.<br />
+                                                </div>
+                                                <div class="col-md-6">
+
+                                                    BBVA CONTINENTAL<br />
+                                                    CUENTA SOLES<br />
+                                                    0011-0353-0200599030<br />
+                                                    CCI:0011-353-000200599039-01<br />
+                                                    LITERATURA MEDICA E.I.R.L.<br />
+
+
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row  mb-4">
+
+
+                                                <div class="col-md-6">
+                                                    BCP <br />
+                                                    CUENTA SOLES<br />
+                                                    193-9921200-0-40<br />
+                                                    CCI:00219300992120004012<br />
+                                                    LITERATURA MEDICA E.I.R.L.<br />
+
+                                                </div>
+
+
+                                                <div class="col-md-6">
+                                                    <div class="row">
+                                                        <div class="col-6">
+
+
+
+
+
+                                                        </div>
+
+                                                        <div class="col-6">
+
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </ul>
+
+                                        <hr />
+                                    </li>
+
+                                    <li style="display:none">
+
+                                        <div class="row">
+
+
+                                            <div class="col-6 limedica-checkoutpago-metodo-pago-item">
+
+                                                <div class="form-check">
+                                                    @Html.RadioButtonFor(x => x.registrarPedidoCommand.metodoPago, "COEN", new { @class = "form-check-input", @id = "rbtnPagoEfectio" })
+
+                                                    <label class="form-check-label" for="rbtnTarjetaCredito">
+                                                        PAGO EN EFECTIVO
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="row">
+
+                                                    <div class="col-12 limedica-checkoutpago-banco-internet" style="display:flex">
+                                                        <img src="~/Content/assets/img/banco/bcp.svg" class="limedica-checkoutpago-banco-internet-item" title="bcp" />
+                                                        <img src="~/Content/assets/img/banco/bbva.svg" class="limedica-checkoutpago-banco-internet-item" title="bbva" />
+                                                        <img src="~/Content/assets/img/banco/interbank.svg" class="limedica-checkoutpago-banco-internet-item" title="interbank" />
+                                                        <img src="~/Content/assets/img/banco/scotiabank.svg" class="limedica-checkoutpago-banco-internet-item" title="scotiabank" />
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="row">
+
+
+                                                    <div class="col-12 limedica-checkoutpago-banco-internet"> <img src="~/Content/assets/img/banco/safetypay.svg" class="limedica-checkoutpago-banco-internet-item" title="safetypay" /></div>
+
+                                                </div>
+
+
+
+                                            </div>
+
+                                        </div>
+                                    </li>
+                                    <li>
+
+                                        <div class="row">
+
+
+                                            <div class="col-6 limedica-checkoutpago-metodo-pago-item">
+
+                                                <div class="form-check">
+                                                    @Html.RadioButtonFor(x => x.registrarPedidoCommand.metodoPago, Utilitario.Common.ParametroDatos.Pedido.MetodoPago.CONTRA_ENTREGA,
+                                                   new { @class = "form-check-input", @id = "rbtnContraEntrega" })
+
+                                                    <label class="form-check-label" for="rbtnContraEntrega">
+                                                        PAGO CONTRAENTREGA
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="row">
+
+
+
+                                                </div>
+
+
+
+
+                                            </div>
+
+                                        </div>
+                                    </li>
+                                </ul>
+
+                                @Html.ValidationMessageFor(model => model.registrarPedidoCommand.metodoPago, "", new { @class = "text-danger small" })
+                                <div class="row my-2">
+                                    <div class="col-md-12">
+                                        Al hacer clic en Hacer pedido aceptas los <a title="terminos y condiciones" href="#">Términos y condiciones.</a>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn-limedica btn-limedica-secondary mt-4">Hacer pedido</button>
+                            }
+
+                        </div>
+
+                        <div class="col-md-4 limedica-carrito-item limedica-carrito-resumen">
+
+                            <br />
+                            <br />
+
+                            @Html.Partial("_ResumenPedidoCarrito", Model.carrito)
+
+
+                            @Html.Partial("_CuponAplicar")
+
+                            <h2 class="limedica-carrito-resumen-titulo mt-5">Datos del Pedido</h2>
+
+                            @Html.Partial("_ProductoCheckout", Model.carrito)
+
+                            @Html.Partial("_DatosEntrega", Model.direccionCarrito)
+
+
+                            <h5 class="limedica-carrito-checkout-opcion-pago mt-5">Opciones de pago</h5>
+
+                            <div class="col-md-12 mt-2 small">
+                                @Html.Partial("_OpcionesPago")
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</header>
+

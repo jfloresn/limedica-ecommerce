@@ -1,0 +1,53 @@
+﻿@model  QueryContracts.Xmarket.Banner.BannerDTO
+
+@if (Model != null)
+{
+    if (Model.tipoBanner.Equals(Utilitario.Common.ConstanteGeneral.TIPO_BANNER.NORMAL))
+    {
+
+    }
+    if (Model.tipoBanner.Equals(Utilitario.Common.ConstanteGeneral.TIPO_BANNER.FOTO_LINK))
+    {
+        <div class="miSlider fade-slider">
+
+            <a href="@Model.enlaceBanner" title="Acceso al libro o colección - Libros de medicina en lima, Peru y a nivel nacional">
+
+                <img src="@Url.Content(Model.imagenRutaBanner)" alt="Libros de medicina en lima, Peru y anivel nacional - banner"  class="lazyloaded" />
+            </a>
+        </div>
+    }
+    else if (Model.tipoBanner.Equals(Utilitario.Common.ConstanteGeneral.TIPO_BANNER.FOTO))
+    {
+        <div class="miSlider fade-slider">
+
+                <img src="@Url.Content(Model.imagenRutaBanner)" alt="Libros de medicina en lima, Peru y anivel nacional - banner" class="lazyloaded" />
+          
+        </div>
+    }
+
+    if (Model.tipoBanner.Equals(Utilitario.Common.ConstanteGeneral.TIPO_BANNER.VIDEO_YOUTUBE))
+    {
+        <div class="miSlider fade-slider" style="">
+            <img src="@Url.Content(Model.imagenRutaBanner)" />
+            <div class="slider-body">
+                <p class="slider-body-autor">@Model.autoresBanner</p>
+                <h2 class="slider-body-titulo">@Model.tituloBanner</h2>
+                <p class="slider-body-descripcion">
+                    @Model.descripcionBanner
+                </p>
+
+                @if (Model.linkBook)
+                {
+                    <div class="display-4 mb-3">
+                        <a class="btn-limedica btn-limedica-secondary btn-slider"
+                           href="@Url.Action("Index", "Producto", new { @isbn = Model.isbnBook })">Comprar ahora</a>
+                    </div>
+                }
+            </div>
+        </div>
+
+    }
+
+
+
+}

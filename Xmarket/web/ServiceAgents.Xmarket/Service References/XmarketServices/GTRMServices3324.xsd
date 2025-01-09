@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Carrito" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Carrito" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="CarritoDetalleDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bookISBN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="bookTitleUrl" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cantidadProducto" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="estado" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="formatoProducto" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="formatoProductoNombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="idCarrito" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="idEspecialidad" type="xs:int" />
+      <xs:element minOccurs="0" name="idEspecialidadRelacionado" type="xs:int" />
+      <xs:element minOccurs="0" name="idProducto" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="imagen" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="nombreProducto" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="pecioProducto" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="subtotal" nillable="true" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CarritoDetalleDTO" nillable="true" type="tns:CarritoDetalleDTO" />
+  <xs:complexType name="CarritoDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cantidad" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="carritoDetalle" nillable="true" type="tns:ArrayOfCarritoDetalleDTO" />
+      <xs:element minOccurs="0" name="esUsuarioAnonimo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="estado" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="idCarrito" type="xs:long" />
+      <xs:element minOccurs="0" name="idSesion" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="idSesionPublic" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="montoDelivery" type="xs:decimal" />
+      <xs:element minOccurs="0" name="montoDescuento" type="xs:decimal" />
+      <xs:element minOccurs="0" name="montoIGV" type="xs:decimal" />
+      <xs:element minOccurs="0" name="montoSubTotal" type="xs:decimal" />
+      <xs:element minOccurs="0" name="totalDetalleCarrito" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="totalPagar" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CarritoDTO" nillable="true" type="tns:CarritoDTO" />
+  <xs:complexType name="ArrayOfCarritoDetalleDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CarritoDetalleDTO" nillable="true" type="tns:CarritoDetalleDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCarritoDetalleDTO" nillable="true" type="tns:ArrayOfCarritoDetalleDTO" />
+</xs:schema>

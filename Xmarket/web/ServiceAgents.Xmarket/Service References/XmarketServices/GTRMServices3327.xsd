@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CommandContracts.Xmarket.Cliente.Output" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CommandContracts.Xmarket.Cliente.Output" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CommandContracts.Common" />
+  <xs:complexType name="RegistrarDireccionOutput">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/CommandContracts.Common" base="q1:CommandResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Estado" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="IdUsuarioDireccion" type="xs:int" />
+          <xs:element minOccurs="0" name="Mensaje" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RegistrarDireccionOutput" nillable="true" type="tns:RegistrarDireccionOutput" />
+</xs:schema>

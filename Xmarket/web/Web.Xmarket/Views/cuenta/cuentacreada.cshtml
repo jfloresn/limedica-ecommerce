@@ -1,0 +1,56 @@
+﻿@model Web.Xmarket.Models.Cuenta.CuentaCreadaModel
+@{
+
+    Layout = "~/Views/Shared/_Layoutv.cshtml";
+}
+
+@section Styles {
+
+    <meta name="robots" content="noindex, nofollow">
+
+    <link href="@Url.Content("~/Content/css/style_limedica_input.css")" rel="stylesheet">
+
+}
+
+
+<header class="bg-header">
+    <div class="container">
+        <div class="row gx-5 align-items-center ">
+
+            <div class="header-cuenta" style="">
+
+                <div class="limedica-cuenta">
+
+                    <div class="slider-body-path">
+                        <a href="~/" class="limedica-path">Home</a>
+                        <i class="fas fa-chevron-right dropdown-arrow text-path"></i>
+                        <span class="limedica-path">Cuenta Creada</span>
+
+
+
+                    </div>
+
+                    <div class="limedica-cuenta-body">
+                        <div class="limedica-cuenta-content">
+
+                            <h2> Hola,  @Model.nombreCompleto su cuenta fue creado con exito </h2>
+
+                            <br />
+                            <div class="row text-center">
+
+                                <a class="btn-limedica btn-limedica-primary mt-4" href="@Url.Action("Index")">Iniciar Sesión</a>
+
+                            </div>
+
+                            <br />
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</header>
+

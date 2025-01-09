@@ -1,0 +1,138 @@
+﻿@model Web.Xmarket.Models.Cuenta.DetalleCuentaModel
+@{
+
+    Layout = "~/Views/Shared/_Layoutv.cshtml";
+}
+
+
+@section Styles {
+
+    <meta name="robots" content="noindex, nofollow">
+
+    <style>
+        .limedica-catalogo-virtual-text-1-1 {
+            font-size: 20px !important;
+            text-align: left !important;
+        }
+
+        .limedica-catalogo-virtual-text-2-2 {
+            font-size: 34px !important;
+            text-align: left !important;
+        }
+
+        #limedica-catalogo-button {
+            text-align: left !important;
+        }
+    </style>
+}
+
+<header class="bg-header">
+    <div class="container">
+        <div class="row gx-5 align-items-center ">
+
+            <div class="header-cuenta" style="">
+
+                <div class="limedica-cuenta">
+
+                    <div class="slider-body-path">
+                        <a href="~/" class="limedica-path">Home</a>
+                        <i class="fas fa-chevron-right dropdown-arrow text-path"></i>
+                        <a href="@Url.Content("~/cuenta/micuenta")" class="limedica-path">Mi Cuenta</a>
+                        <i class="fas fa-chevron-right dropdown-arrow text-path"></i>
+                        <span class="limedica-path">Detalle de Cuenta</span>
+
+
+
+                    </div>
+
+
+
+                    <div class="limedica-micuenta-body">
+
+                        <h1 class="my-5"> Edite los detalles de su cuenta</h1>
+
+                        <div class="row limedica-micuenta-content mb-10">
+
+
+
+                            <div class="col-8 limedica-micuenta-item ">
+
+                                <form>
+
+                                    <div class="row  mb-4">
+                                        <div class="col-md-6">
+                                            <label class="text-dark mb-2" for="inputName">Nombres *</label>
+                                            <input class="form-control" id="inputName" type="text" placeholder="" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="text-dark mb-2" for="inputEmail">Apellidos *</label>
+                                            <input class="form-control" id="inputEmail" type="text" placeholder="" />
+                                        </div>
+                                    </div>
+                                    <div class="row  mb-4">
+                                        <div class="col-md-6">
+                                            <label class="text-dark mb-2" for="inputName">Nombre de Usuario *</label>
+                                            <input class="form-control" id="inputName" type="text" placeholder="" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="text-dark mb-2" for="inputName">Email address *</label>
+                                            <input class="form-control" id="inputName" type="email" />
+                                        </div>
+
+                                    </div>
+
+                                    <button class="btn-limedica btn-limedica-secondary mt-4" type="submit">Guardar cambios</button>
+
+
+                                </form>
+
+
+                                <h2 class="my-5 text-primary">Cambia la contraseña </h2>
+                                <form>
+                                    <div class="limedica-detallecuenta-cambiarclave p-4">
+                                        <div class="row  mb-4">
+                                            <div class="col-md-6">
+                                                <label class="text-dark mb-2" for="inputName">Contraseña actual</label>
+                                                <input class="form-control" id="inputName" type="password" />
+                                            </div>
+                                        </div>
+                                        <div class="row gx-5 mb-4">
+                                            <div class="col-md-6">
+                                                <label class="text-dark mb-2" for="inputName">Nueva contraseña *</label>
+                                                <input class="form-control" id="inputName" type="password" placeholder="" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="text-dark mb-2" for="inputName">Confirmar nueva contraseña *</label>
+                                                <input class="form-control" id="inputName" type="password" />
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <button class="btn-limedica btn-limedica-secondary mt-4" type="submit">Guardar cambios</button>
+
+
+                                </form>
+
+
+
+                            </div>
+
+                            <div class="col-4 limedica-micuenta-item">
+
+                                @Html.Partial("_CuentaMenu", Model)
+
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</header>
+

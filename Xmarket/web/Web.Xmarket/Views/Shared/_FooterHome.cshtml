@@ -1,0 +1,112 @@
+﻿<div id="layoutDefault_footer">
+    <footer class="footer mt-auto bg-white footer-dark text-dark lm-mov-footer">
+        <hr class="" style="background-color: #E9711C;  opacity:0.8; height: 1.5px; " />
+        <div class="container py-5">
+            <div class="row gx-5">
+                <div class="col-lg-2">
+                    <img src="@Url.Content("~/Content/assets/img/limedica-medica-eirl.svg")" alt="Logo de Limedica | Literatura Médica" />
+                </div>
+                <div class="col-lg-3">
+                    <div class="mb-5 mb-lg-0">
+                        <ul class="list-unstyled mb-0">
+                            <li class="py-2 limedica-footer-contacto">
+                                <img src="@Url.Content("~/Content/assets/img/footer/phone-footer.svg")" alt="Número de celular de Limedica EIRL"
+                                     style="float: left; margin-right: 8px;" />999774449
+                            </li>
+                            <li class="py-2 limedica-footer-contacto">
+                                <img src="@Url.Content("~/Content/assets/img/footer/email-footer.svg")" alt="El correo de Limedica EIRL"
+                                     style="float: left; margin-right: 8px;" /> e.oscco@limedica.pe
+                            </li>
+                            <li class="py-2 limedica-footer-contacto">
+                                <img src="@Url.Content("~/Content/assets/img/footer/location-footer.svg")" alt="Dirección de Limedica EIRL"
+                                     style="float: left; margin-right: 8px;" />Jr. Garcilazo de la Vega 1566,
+                                Lince
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="mb-5 mb-lg-0">
+                        <ul class="list-unstyled mb-0">
+                            <li class="py-2 limedica-footer-contacto-link"><a href="@Url.RouteUrl("Nosotros")" >Nosotros</a></li>
+                            <li class="py-2 limedica-footer-contacto-link">
+                                <a href="@Url.RouteUrl("PreguntasFrecuentes")" >Preguntas Frecuentes</a>
+                            </li>
+                            <li class="py-2 limedica-footer-contacto-link"><a href="@Url.RouteUrl("Contactenos")">Contáctenos</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="mb-5 mb-lg-0">
+                        <ul class="list-unstyled mb-0">
+                            <li class="py-3 limedica-footer-contacto">
+                                ¡Entérate de nuestros nuevos lanzamientos,
+                                promociones y novedades!
+                            </li>
+                        </ul>
+                        <form id="frmSuscripcion" onsubmit="registrarSuscripcion(this);return false;">
+                            <div class="row nav-boton-buscar" id="divSucripcion">
+                                <div class="col-8">
+                                    <input name="suscriptionCorreo" id="suscriptionCorreo"
+                                           class="input-buscar .limedica-footer-enviar_input" required
+                                           onkeypress="validarCampoSucripcion(this)"
+                                           onkeyup="validarCampoSucripcion(this)"
+                                           style="background: #F5F5F5;
+
+                                                border-radius: 30px;
+                                                border-radius: 30px;" type="text" placeholder="Correo electronico" />
+                                </div>
+                                <div class="col-4 " style=" text-align: end; padding-right: 0px; ">
+                                    <button class="btn-footer-suscripcion-enviar">
+                                        Enviar
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr style="margin-bottom: 0px!important; opacity:0.2; height: 1px;" />
+        <div style="background-color: #F5F5F5;">
+            <div class="container py-2">
+                <div class="row align-items-center">
+                    <div class="col-md-4  icon-list-social mb-5text-md-end">
+
+                        <a class="icon-list-social-link" href="https://www.facebook.com/profile.php?id=100063626603553"
+                           target="_blank" >
+                            <img src="@Url.Content("~/Content/assets/img/footer/facebook.svg")" alt="Facebook" />
+                        </a>
+                        <a class="icon-list-social-link" href="">
+                            <img src="@Url.Content("~/Content/assets/img/footer/twitter.svg")" alt="Twitter" />
+                        </a>
+                        <a class="icon-list-social-link" href="">
+                            <img src="@Url.Content("~/Content/assets/img/footer/instagram.svg")" alt="Instagram" />
+                        </a>
+                        <a class="icon-list-social-link" href="">
+                            <img src="@Url.Content("~/Content/assets/img/footer/youtube.svg")" alt="Youtube" />
+                        </a>
+                        <a class="icon-list-social-link" href="">
+                            <img src="@Url.Content("~/Content/assets/img/footer/linkedin.svg")" alt="Linkeding"/>
+                        </a>
+                        <a class="icon-list-social-link" href="https://www.facebook.com/messages/t/100010333150848"
+                           target="_blank">
+                            <img src="@Url.Content("~/Content/assets/img/footer/messenger.svg")" alt="Messeger" />
+                        </a>
+                    </div>
+                    <div class="col-md-5 text-center limedica-footer-termino-condi-empesa">
+                        <a href="">Politicas de Privacidad</a>
+                        &middot;
+                        <a href="">Terminos &amp; Condiciones</a> &middot;
+                        © Limedica 2022
+                    </div>
+                    <div class="col-md-3  text-md-end small">
+                        @Html.Partial("_OpcionesPago")
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Producto.Result" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Producto.Result" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd34" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Producto" />
+  <xs:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd15" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Common" />
+  <xs:complexType name="ListarProductoPorMarcaResult">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/QueryContracts.Common" base="q1:QueryResult">
+        <xs:sequence>
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Producto" minOccurs="0" name="Hits" nillable="true" type="q2:ArrayOfProductoDTO" />
+          <xs:element minOccurs="0" name="TotalRegistro" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ListarProductoPorMarcaResult" nillable="true" type="tns:ListarProductoPorMarcaResult" />
+  <xs:complexType name="ListarProductoPorCategoriaResult">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/QueryContracts.Common" base="q3:QueryResult">
+        <xs:sequence>
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Producto" minOccurs="0" name="Hits" nillable="true" type="q4:ArrayOfProductoDTO" />
+          <xs:element minOccurs="0" name="TotalRegistro" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ListarProductoPorCategoriaResult" nillable="true" type="tns:ListarProductoPorCategoriaResult" />
+</xs:schema>

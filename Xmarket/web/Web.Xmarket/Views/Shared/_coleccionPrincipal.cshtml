@@ -1,0 +1,27 @@
+﻿@model  QueryContracts.Xmarket.Coleccion.ColeccionDTO
+
+@if (Model != null)
+{
+    <div class="col-lg-4 mb-5">
+        <div class="card lift h-70">
+            <img class="card-img-top-coleccion"  src="@Model.imagenUrlColeccion" alt="Colección" style="max-height:193px!important"/>
+            <div class="card-body">
+                <h4 class="card-title mb-2">@Model.nombreColeccion</h4>
+                <p class="card-text">@Model.EditorialNombre</p>
+
+                <div class="row text-xs">
+                </div>
+            </div>
+            <div class="card-footer bg-transparent border-top" style="padding:0px">
+                <div class="limedica-footer-action">
+                    <div class="col-6 limedica-card-footer limedica-card-footer-libro">
+                    <a href="@Url.RouteUrl("ColeccionPorId", new { nombre=Model.nombreColeccion.Replace(" ","-")
+                                                                                                     .ToLower(), 
+                                                                                                     id=Model.idColeccion })">Ver Libros</a></div>
+                    <div class="col-6 limedica-card-footer limedica-card-footer-comprar"><a href="#">Comprar Colecciones</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

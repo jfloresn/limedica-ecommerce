@@ -1,0 +1,83 @@
+﻿@model  Web.Xmarket.Models.Cliente.ClienteDireccionModel
+
+<script src="@Url.Content("~/Content/js/page/cliente/clientedireccion.js")?version=1" type="text/javascript"></script>
+
+
+<input type="hidden" id="hidenUrlProvincia" data-url="@Url.Action("obtenerProvincias","Carrito")" />
+<input type="hidden" id="hidenUrlDistrito" data-url="@Url.Action("obtenerDistrito","Carrito")" />
+<input type="hidden" id="hidenUrlRegistrarDireccion" data-url="@Url.Action("registraClienteDireccion","cuenta")" />
+
+
+<div class="modal fade" id="modalNuevaDireccion" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Nueva Dirección</h5>
+            </div>
+            <div class="modal-body bg-header">
+
+                @using (Html.BeginForm("registraClienteDireccion", "cuenta", FormMethod.Post, new { @id = "frmRegistrarDireccion", @onsubmit = "submitRegistrarDireccion(this);return false;" }))
+                {
+                    <div class="row gx-5 mb-4">
+                        <div class="col-md-6">
+                            <label class="limedica-cuenta-form-label mb-2" for="direccionCommand.nombreContacto">Nombre Contacto<span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(model => model.direccionCommand.nombreContacto, new { @class = "form-control", @maxlength = "200", @placeholder = "" })
+                            <span id="span_direccionCommand_nombreContacto" class="text-danger small validate-imput">  </span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="limedica-cuenta-form-label mb-2" for="direccionCommand.celularContacto">Celular Contacto<span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(model => model.direccionCommand.celularContacto, new { @class = "form-control", @maxlength = "20", @placeholder = "" })
+                            <span id="span_direccionCommand_celularContacto" class="text-danger small validate-imput">  </span>
+                        </div>
+                    </div>
+
+                    <div class="row gx-5 mb-4">
+                        <div class="col-md-6">
+                            <label class="limedica-cuenta-form-label mb-2" for="direccionCommand.direccion">Dirección <span class="text-danger">*</span></label>
+                            @Html.TextBoxFor(model => model.direccionCommand.direccion, new { @class = "form-control", @maxlength = "1000", @placeholder = "" })
+                            <span id="span_direccionCommand_direccion" class="text-danger small validate-imput">  </span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="limedica-cuenta-form-label mb-2" for="direccionCommand.ubigeoDepartamento">Departamento <span class="text-danger">*</span></label>
+                            @Html.DropDownListFor(model => model.direccionCommand.ubigeoDepartamento, Model.departamentos, "Seleccionar Departamento", new { id = "ddlDepartamento", @class = "form-select" })
+                            @Html.ValidationMessageFor(model => model.direccionCommand.ubigeoDepartamento, "", new { @class = "text-danger small" })
+                            <span id="span_direccionCommand_ubigeoDepartamento" class="text-danger small validate-imput">  </span>
+                        </div>
+
+                    </div>
+
+                    <div class="row gx-5 mb-4">
+                        <div class="col-md-6">
+                            <label class="limedica-cuenta-form-label mb-2" for="direccionCommand.ubigeoProvincia">Provincia <span class="text-danger">*</span></label>
+                            @Html.DropDownListFor(model => model.direccionCommand.ubigeoProvincia, Model.provincias, "Seleccionar Provincia", new { id = "ddlProvincia", @class = "form-select" })
+                            @Html.ValidationMessageFor(model => model.direccionCommand.ubigeoProvincia, "", new { @class = "text-danger small" })
+                            <span id="span_direccionCommand_ubigeoProvincia" class="text-danger small validate-imput">  </span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="limedica-cuenta-form-label mb-2" for="direccionCommand.ubigeoDistrito">Distrito <span class="text-danger">*</span></label>
+                            @Html.DropDownListFor(model => model.direccionCommand.ubigeoDistrito, Model.provincias, "Seleccionar Distrito", new { id = "ddlDistrito", @class = "form-select" })
+                            @Html.ValidationMessageFor(model => model.direccionCommand.ubigeoDistrito, "", new { @class = "text-danger small" })
+                            
+                            <span id="span_direccionCommand_ubigeoDistrito" class="text-danger small validate-imput">  </span>
+                        </div>
+                    </div>
+
+                    <div class="row gx-5 mb-4">
+                        <div class="col-md-6">
+                            <label class="limedica-cuenta-form-label mb-2" for="direccionCommand.tipoDireccion">Tipo de Dirección <span class="text-danger">*</span></label>
+                            @Html.DropDownListFor(model => model.direccionCommand.tipoDireccion, Model.tipoDireccion, "Seleccionar Tipo de Direccion", new { id = "ddlTipoDireccion",@Disabled=true, @class = "form-select" })
+                            @Html.ValidationMessageFor(model => model.direccionCommand.tipoDireccion, "", new { @class = "text-danger small" })
+                            @Html.HiddenFor(model => model.direccionCommand.tipoDireccion, new { @id = "hidenTipoDireccion" })
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnRegistrarDireccion" class="btn btn-primary" onclick="registrarDireccion()">Registrar</button>
+                <button type="button" class="btn btn-secondary" onclick="cerrarAgregarSesion()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

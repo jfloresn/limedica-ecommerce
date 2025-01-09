@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.General.Result" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.General.Result" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd15" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Common" />
+  <xs:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd42" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.General" />
+  <xs:complexType name="DashboardUltimoResult">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/QueryContracts.Common" base="q1:QueryResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Hit" nillable="true" type="tns:DashboardUltimoDTO" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DashboardUltimoResult" nillable="true" type="tns:DashboardUltimoResult" />
+  <xs:complexType name="DashboardUltimoDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CodigoDashboard" type="xs:int" />
+      <xs:element minOccurs="0" name="CodigoDashboardUltimo" type="xs:int" />
+      <xs:element minOccurs="0" name="CodigoUsuario" type="xs:int" />
+      <xs:element minOccurs="0" name="Dashboard" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DashboardUltimoDTO" nillable="true" type="tns:DashboardUltimoDTO" />
+  <xs:complexType name="AreaGeneralResult">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/QueryContracts.Common" base="q2:QueryResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Hits" nillable="true" type="tns:ArrayOfAreaGeneralDTO" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AreaGeneralResult" nillable="true" type="tns:AreaGeneralResult" />
+  <xs:complexType name="ArrayOfAreaGeneralDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AreaGeneralDTO" nillable="true" type="tns:AreaGeneralDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAreaGeneralDTO" nillable="true" type="tns:ArrayOfAreaGeneralDTO" />
+  <xs:complexType name="AreaGeneralDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CO_AREA" type="xs:int" />
+      <xs:element minOccurs="0" name="NO_AREA" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="nodes" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AreaGeneralDTO" nillable="true" type="tns:AreaGeneralDTO" />
+  <xs:complexType name="ListarDistritoResult">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/QueryContracts.Common" base="q3:QueryResult">
+        <xs:sequence>
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.General" minOccurs="0" name="Hits" nillable="true" type="q4:ArrayOfDistritoDTO" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ListarDistritoResult" nillable="true" type="tns:ListarDistritoResult" />
+  <xs:complexType name="ListarProvinciaResult">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="http://schemas.datacontract.org/2004/07/QueryContracts.Common" base="q5:QueryResult">
+        <xs:sequence>
+          <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.General" minOccurs="0" name="Hits" nillable="true" type="q6:ArrayOfProvinciaDTO" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ListarProvinciaResult" nillable="true" type="tns:ListarProvinciaResult" />
+  <xs:complexType name="ObtenerCorrelativoNotifResult">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="http://schemas.datacontract.org/2004/07/QueryContracts.Common" base="q7:QueryResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="numero_correlativo" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ObtenerCorrelativoNotifResult" nillable="true" type="tns:ObtenerCorrelativoNotifResult" />
+  <xs:complexType name="BuscarTodoResult">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q8="http://schemas.datacontract.org/2004/07/QueryContracts.Common" base="q8:QueryResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Hits" nillable="true" type="tns:ArrayOfBuscarTodoDTO" />
+          <xs:element minOccurs="0" name="TotalRegistros" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BuscarTodoResult" nillable="true" type="tns:BuscarTodoResult" />
+  <xs:complexType name="ArrayOfBuscarTodoDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BuscarTodoDTO" nillable="true" type="tns:BuscarTodoDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBuscarTodoDTO" nillable="true" type="tns:ArrayOfBuscarTodoDTO" />
+  <xs:complexType name="BuscarTodoDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Actions" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Atributo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Controller" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="codigo" type="xs:int" />
+      <xs:element minOccurs="0" name="descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="id" type="xs:int" />
+      <xs:element minOccurs="0" name="numero" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ruta" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tipo" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BuscarTodoDTO" nillable="true" type="tns:BuscarTodoDTO" />
+  <xs:complexType name="ListarDepartamentosResult">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q9="http://schemas.datacontract.org/2004/07/QueryContracts.Common" base="q9:QueryResult">
+        <xs:sequence>
+          <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.General" minOccurs="0" name="Hits" nillable="true" type="q10:ArrayOfDepartamentoDTO" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ListarDepartamentosResult" nillable="true" type="tns:ListarDepartamentosResult" />
+  <xs:complexType name="ObtenerCorrelativoResult">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q11="http://schemas.datacontract.org/2004/07/QueryContracts.Common" base="q11:QueryResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="numero_correlativo" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ObtenerCorrelativoResult" nillable="true" type="tns:ObtenerCorrelativoResult" />
+</xs:schema>

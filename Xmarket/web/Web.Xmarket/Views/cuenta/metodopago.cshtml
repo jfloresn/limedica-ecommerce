@@ -1,0 +1,71 @@
+﻿@model Web.Xmarket.Models.Cuenta.MetodoPagoModel
+@{
+
+    Layout = "~/Views/Shared/_Layoutv.cshtml";
+}
+
+
+@section Styles {
+    <meta name="robots" content="noindex, nofollow">
+}
+
+<header class="bg-header">
+    <div class="container">
+        <div class="row gx-5 align-items-center ">
+
+            <div class="header-cuenta" style="">
+
+                <div class="limedica-cuenta">
+
+                    <div class="slider-body-path"
+                        <a href="~/" class="limedica-path">Home</a>
+                        <i class="fas fa-chevron-right dropdown-arrow text-path"></i>
+                        <a href="@Url.Content("~/cuenta/micuenta")" class="limedica-path">Mi Cuenta</a>
+                        <i class="fas fa-chevron-right dropdown-arrow text-path"></i>
+                        <span class="limedica-path">Métodos de Pago </span>
+                    </div>
+
+                    <div class="limedica-micuenta-body">
+
+                        <h1 class="my-5"> Métodos de Pago </h1>
+
+                        <div class="row limedica-micuenta-content mb-10">
+                            <div class="col-8 limedica-micuenta-item ">
+                                <table class="table table-striped">
+                                    <tbody>
+                                        <tr>
+                                            <td>Metodo</td>
+                                            <th></th>
+                                            <th>Expira</th>
+                                            <th></th>
+                                        </tr>
+                                        <tr>
+                                            <th>Visa</th>
+                                            <th>• • • 8180</th>
+                                            <td>07/21</td>
+
+                                            <td>
+                                                <button class="btn-limedica btn-limedica-secondary" type="submit">Editar</button>
+                                                <button class="btn-limedica btn-limedica-secondary" type="submit">Borrar</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <button class="btn-limedica btn-limedica-secondary" type="submit">Añadir método de pago</button>
+
+                            </div>
+
+                            <div class="col-4 limedica-micuenta-item">
+
+                                @Html.Partial("_CuentaMenu", Model)
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</header>
+

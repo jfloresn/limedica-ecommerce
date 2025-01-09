@@ -1,0 +1,21 @@
+﻿@model  IEnumerable<Web.Xmarket.Models.Coleccion.ColeccionSlide>
+
+@if (Model != null)
+{
+    foreach (var itemSlide in Model)
+    {
+        string esVisible = "style='Display:none'";
+        if (itemSlide.esVisible)
+        {
+            esVisible = "";
+        }
+        <div class="slider-item slider-coleccion fade-slider" @esVisible >
+            <div class="row gx-5">
+                @foreach(var itemColecion in itemSlide.colecciones){
+                @Html.Partial("_coleccion", itemColecion)
+                }
+            </div>
+        </div>
+    }
+}
+

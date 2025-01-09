@@ -1,0 +1,300 @@
+﻿@using Seguridad.Common;
+@using Web.Xmarket.DataAccess
+@using Seguridad.Common;
+@using System.Linq;
+
+@{
+
+
+    var menus = CatalagoManager.Instance.obtenerMenus();
+
+    var editoriales = menus.todoEditorial.Hits;
+    var especialidades = menus.especialidad;
+    var sesionCarrito = SessionManager.Instance.getsesionCarritoCantidad();
+
+}
+
+<header class="Header-top-customer">
+    <div class="nav-top">
+        <div class="container  nav-top-content">
+            <div class="nav-top-item nav-top-item-hiden">
+                <ul class="" style=" padding-left: 0px !important;">
+                    <li class="me-4"><a href="@Url.RouteUrl("PreguntasFrecuentes")"> Preguntas Frecuentes </a> </li>
+                    <li> <a href="@Url.RouteUrl("Contactenos")"> Contactenos </a></li>
+                </ul>
+            </div>
+            <div class="nav-top-item nav-top-item-centro ">
+                <div class="content-envio-gratis">
+                    <div>
+                        <img src="@Url.Content("~/Content/assets/img/envio-gratis-top-icon.svg")" alt="Envio gratis en todo Perú" />
+                    </div>
+                    &nbsp;
+                    <div>
+                        ENVIO GRATIS A NIVEL NACIONAL
+                    </div>
+                    <div>
+                        <div class="content-bandera-peru">
+                            <div class="top"></div>
+                            <div class="middle"></div>
+                            <div class="bottom"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-top-item nav-top-item-hiden">
+                <img src="@Url.Content("~/Content/assets/img/llamanos-icon.svg")" alt="Llamanos al 4715606 ó 999774449" />
+                &nbsp; Llamanos al
+                <span class="nav-top-item-span">4715606</span> ó
+                <span class="nav-top-item-span">999774449</span>&nbsp;&nbsp;
+                <img src="@Url.Content("~/Content/assets/img/mi-cuenta-icon.svg")" alt="Mi cuenta" />&nbsp;
+                <a class="nav-top-micuenta" href="@Url.RouteUrl("Cuenta")">
+                    Mi
+                    Cuenta
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-marketing navbar-expand-lg bg-white navbar-light">
+        <div class="container">
+            <a class="" href="~/" style="padding: 0px !important">
+
+                <picture>
+                    <!-- Versión de la imagen para pantallas grandes (laptops y desktops) -->
+                    <source media="(min-width: 1024px)" srcset="@Url.Content("~/Content/assets/img/limedica-medica-eirl.svg")">
+                    <!-- Versión de la imagen para pantallas pequeñas (móviles) -->
+                    <source media="(max-width: 1023px)" srcset="@Url.Content("~/Content/assets/img/limedica-medica-eirl-movil.svg")">
+                    <!-- Imagen de fallback (se mostrará si las otras no son compatibles) -->
+                    <img src="@Url.Content("~/Content/assets/img/limedica-medica-eirl.svg")" alt="Logo de Limedica - Literatura Médica" loading="lazy">
+                </picture>
+
+
+            </a>
+
+            <div style="display:flex">
+
+                <a class="lm-navbar-carrito-show" style="padding: 0.5rem;"
+                   href="~/cuenta"><img src="@Url.Content("~/Content/assets/img/mi-cuenta-icon.svg")" alt="Mi cuenta" /></a>
+
+                <a href="~/carrito" class="lm-navbar-carrito-show" style="padding: 0.5rem;">
+
+                    <span class="limedica-nav-carrito-contador" id="limedicaSpanCantidadCarrito">
+                        @if (sesionCarrito != null)
+                        {
+                            if (!@sesionCarrito.cantidadCarrito.Equals("0"))
+                            {
+                                <strong> @sesionCarrito.cantidadCarrito</strong>
+                            }
+                        }
+                    </span>
+                    <img src="@Url.Content("~/Content/assets/img/carrito-icon.svg")" alt="Carrito de compras de limedica" width="20px" />
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                </button>
+            </div>
+
+            <div class="lm-mov-navbar-content-search my-2" style=" flex-basis: 100%; flex-grow: 1;">
+                @using (Html.BeginForm("Index", "Tienda", FormMethod.Get, new { @id = "frmBuscarLibro", @class = "lm-mov-navbar-search" }))
+                {
+                    <div class="row nav-boton-buscar">
+                        <div class="col-10">
+                            <input class="input-buscar" id="search" name="search" type="text"
+                                   placeholder="Título, Autor o ISBN" />
+                            <input type="hidden" name="typesearch" value="sa">
+                        </div>
+                        <div class="col-2" style="margin-right: 0;padding-right: 0;">
+                            <button onclick="javascript:buscarLibros('@Url.Action("buscar","Tienda")','movil')"
+                                    aria-label="Buscar"
+                                    style="cursor: pointer; border-radius: 27.5px; border: none !important; margin: none !important; padding: 0 !important ">
+                                <div class="icon-stack icon-stack text-white" style="float: right;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <nav>
+                    <ul>
+                        <li><a href="~/">Home</a></li>
+                        <li class="menu">
+                            <a href="#">Especialidades</a>
+                            <ul class="menu-content">
+                                <div class="row">
+                                    @{
+                                        double cantidadPorTresSecciones = (especialidades.Hits.Count() * 1.00) / 4;
+                                        double cantidadSeccionesMenus = Math.Ceiling(cantidadPorTresSecciones);
+
+                                        int contadorMenuPorSeccion = 1;
+                                        int contadorMenuCategoria = 0;
+                                        int contadorCorrelativo = 0;
+
+                                    }
+
+                                    @for (int iSecionMenu = 0; iSecionMenu < 4; iSecionMenu++)
+                                    {
+                                        <div class="col-lg-3 p-lg-2">
+                                            @for (int iContadorCategorias = contadorMenuCategoria; iContadorCategorias < especialidades.Hits.Count(); iContadorCategorias++)
+                                            {
+                                                <a class="dropdown-item" href="@Url.RouteUrl("TiendaEspecialidadOpcion2", new { especialidad=especialidades.Hits.ElementAt(iContadorCategorias).nombreUrl ,
+                                                                                                               id=especialidades.Hits.ElementAt(iContadorCategorias).id })">
+                                                    @especialidades.Hits.ElementAt(iContadorCategorias).nombre
+                                                </a>
+                                                if (contadorMenuPorSeccion == cantidadSeccionesMenus)
+                                                {
+                                                    contadorMenuPorSeccion = 1;
+                                                    contadorMenuCategoria = contadorCorrelativo + 1;
+
+                                                    contadorCorrelativo++;
+
+                                                    break;
+                                                }
+                                                contadorMenuPorSeccion++;
+                                                contadorCorrelativo++;
+                                            }
+                                            <div class="dropdown-divider border-0 d-lg-none"></div>
+                                        </div>
+                                    }
+
+                                </div>
+                            </ul>
+                        </li>
+                        <li class="menu">
+                            <a href="#">Editoriales</a>
+                            <ul class="menu-content">
+                                <div class="row">
+                                    @foreach (var item in editoriales)
+                                    {
+                                        <a class="dropdown-item" href="@Url.RouteUrl("TiendaEditorialOpcion2", new
+                                                              {
+                                                                  editorial = item.nombreUrl,
+                                                                  id = item.id
+                                                              })">@item.nombre</a>
+                                                        }
+                                    <div class="dropdown-divider border-0 d-lg-none"></div>
+                                </div>
+                            </ul>
+                        </li>
+                        <li><a href="@Url.RouteUrl("TiendaEBook")">eBooks</a></li>
+                        <li><a href="@Url.RouteUrl("TiendaNovedades")">Novedades</a></li>
+                        <li><a href="@Url.RouteUrl("Catalogo")">Catalogo</a></li>
+                        <li><a href="@Url.RouteUrl("Contactenos")">Contactenos</a></li>
+                        <li><a href="@Url.RouteUrl("Coleccion")">Colección</a></li>
+
+                    </ul>
+                </nav>
+
+                <div class="row lm-navbar-carrito lm-mov-nabvar-hide">
+                    <div class="col-8">
+                        @using (Html.BeginForm("buscar", "Tienda", FormMethod.Get, new { @id = "frmBuscarLibro" }))
+                        {
+
+                            <div class="row nav-boton-buscar">
+                                <div class="col-10">
+                                    <input class="input-buscar" id="consulta" name="consulta" type="text"
+                                           placeholder="Título, Autor o ISBN" />
+                                </div>
+                                <div class="col-2" style="display:flex">
+                                    <button onclick="javascript:buscarLibros('@Url.Action("buscar","Tienda")','Notebook')" aria-label="Buscar"
+                                            style="cursor: pointer; border-radius: 27.5px; border: none !important; margin: none !important; padding: 0 !important">
+                                        <div class="icon-stack icon-stack text-white" style="float: right;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="col-2">
+                        <a href="@Url.RouteUrl("Carrito")" style="padding:0px!important">
+
+                            <span class="limedica-nav-carrito-contador" id="limedicaSpanCantidadCarritoMovil">
+                                @if (sesionCarrito != null)
+                                {
+                                    if (!@sesionCarrito.cantidadCarrito.Equals("0"))
+                                    {
+                                        <strong> @sesionCarrito.cantidadCarrito</strong>
+                                    }
+                                }
+                            </span>
+                            <img src="@Url.Content("~/Content/assets/img/carrito-icon.svg")" alt="Carrito de compras de Limedica" width="35px" />
+                        </a>
+                    </div>
+                    <div class="col-2">
+
+                        <div class="notification-icon" onclick="toggleNotificationDetails()">
+                            @*<span class="notification-count"></span>*@
+                        </div>
+
+                        <div class="notification-details" id="notificationDetails">
+
+                            <div class="notification-item unread">
+                                <img src="https://via.placeholder.com/50" alt="Imagen de Notificación">
+                                <div class="notification-text">
+                                    <h4>Título de la Notificación 1</h4>
+                                    <p>Detalle de la primera notificación.</p>
+                                    <a href="https://example.com/notificacion1" class="notification-link">Ver más</a>
+                                </div>
+                            </div>
+
+                            <div class="notification-item read">
+                                <img src="https://via.placeholder.com/50" alt="Imagen de Notificación">
+                                <div class="notification-text">
+                                    <h4>Título de la Notificación 2</h4>
+                                    <p>Detalle de la segunda notificación.</p>
+
+                                </div>
+                            </div>
+                            <div class="notification-item unread">
+                                <img src="https://via.placeholder.com/50" alt="Imagen de Notificación">
+                                <div class="notification-text">
+                                    <h4>Título de la Notificación 3</h4>
+                                    <p>Detalle de la tercera notificación.</p>
+                                    <a href="https://example.com/notificacion3" class="notification-link">Ver más</a>
+                                </div>
+                            </div>
+
+                            <div class="notification-item unread">
+                                <img src="https://via.placeholder.com/50" alt="Imagen de Notificación">
+                                <div class="notification-text">
+                                    <h4>Título de la Notificación 1</h4>
+                                    <p>Detalle de la primera notificación.</p>
+                                    <a href="https://example.com/notificacion1" class="notification-link">Ver más</a>
+                                </div>
+                            </div>
+
+                            <div class="notification-item read">
+                                <img src="https://via.placeholder.com/50" alt="Imagen de Notificación">
+                                <div class="notification-text">
+                                    <h4>Título de la Notificación 2</h4>
+                                    <p>Detalle de la segunda notificación.</p>
+
+                                </div>
+                            </div>
+                            <div class="notification-item unread">
+                                <img src="https://via.placeholder.com/50" alt="Imagen de Notificación">
+                                <div class="notification-text">
+                                    <h4>Título de la Notificación 3</h4>
+                                    <p>Detalle de la tercera notificación.</p>
+                                    <a href="https://example.com/notificacion3" class="notification-link">Ver más</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </nav>
+
+</header>

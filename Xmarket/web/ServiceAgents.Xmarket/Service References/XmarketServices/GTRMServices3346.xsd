@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Cliente" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Cliente" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ClienteDireccionDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="celularContacto" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="departamento" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="direccion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="distrito" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="estado" type="xs:boolean" />
+      <xs:element minOccurs="0" name="idDireccion" type="xs:int" />
+      <xs:element minOccurs="0" name="idPais" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="idUsuario" type="xs:int" />
+      <xs:element minOccurs="0" name="nombreContacto" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="pais" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="provincia" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="seleccionado" type="xs:boolean" />
+      <xs:element minOccurs="0" name="tipoDireccion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ubigeoDepartamento" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ubigeoDistrito" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ubigeoProvincia" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ClienteDireccionDTO" nillable="true" type="tns:ClienteDireccionDTO" />
+  <xs:complexType name="ArrayOfClienteDireccionDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ClienteDireccionDTO" nillable="true" type="tns:ClienteDireccionDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfClienteDireccionDTO" nillable="true" type="tns:ArrayOfClienteDireccionDTO" />
+  <xs:complexType name="ClienteDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClienteDirecciones" nillable="true" type="tns:ArrayOfClienteDireccionDTO" />
+      <xs:element minOccurs="0" name="IdUsuario" type="xs:int" />
+      <xs:element minOccurs="0" name="apellidoMaterno" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="apellidoPaterno" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="bloqueado" type="xs:boolean" />
+      <xs:element minOccurs="0" name="cambiarPassword" type="xs:boolean" />
+      <xs:element minOccurs="0" name="celular" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="correo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="fechaNacimiento" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fechaVencimientoPassword" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="numeroIntentos" type="xs:int" />
+      <xs:element minOccurs="0" name="sexo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ultimaFechaBloqueo" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ultimaFechaLogin" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ClienteDTO" nillable="true" type="tns:ClienteDTO" />
+  <xs:complexType name="ArrayOfRolDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RolDTO" nillable="true" type="tns:RolDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRolDTO" nillable="true" type="tns:ArrayOfRolDTO" />
+  <xs:complexType name="RolDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Rol_int_id" type="xs:int" />
+      <xs:element minOccurs="0" name="Rol_str_alias" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Rol_str_descrip" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="rol_str_dashboard" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RolDTO" nillable="true" type="tns:RolDTO" />
+  <xs:complexType name="ArrayOfClienteDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ClienteDTO" nillable="true" type="tns:ClienteDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfClienteDTO" nillable="true" type="tns:ArrayOfClienteDTO" />
+</xs:schema>

@@ -1,0 +1,19 @@
+﻿@model   QueryContracts.Xmarket.Coleccion.ColeccionDTO
+
+
+
+@if (Model != null)
+{
+
+    <div class="col-md-6 col-xl-4 mb-5">
+        <a class="card card-portfolio h-100" href="@Url.RouteUrl("ColeccionPorId", new { nombre=Model.nombreColeccion.Replace(" ","-")
+                                                                                                     .ToLower(), 
+                                                                                                     id=Model.idColeccion })">
+            <img class="lazyload card-img-top-coleccion" src="@Model.imagenUrlColeccion" alt="@Model.nombreColeccion.Replace(" ","-").ToLower()" style="max-height:193px!important" />
+            <div class="card-body">
+                <div class="card-title">@Model.nombreColeccion</div>
+            </div>
+        </a>
+    </div>
+
+}

@@ -1,0 +1,14 @@
+﻿@model  IEnumerable<Web.Xmarket.Models.Home.ProductoSlide>
+<div class="slider-content-titulo">
+    <h2 class="mb-4 home-titulo">Nuevas Recomendaciones</h2>
+    <div class="slider-direccion">
+        <a href="" class="slider-atras" onclick="avanzaSlideEBook(-1)"><img src="@Url.Content("~/Content/assets/img/iconos/back-product-slide.svg")" alt="Ir atras slide"></a>
+        <a href="" class="slider-adelante" onclick="avanzaSlideEBook(1)"><img src="@Url.Content("~/Content/assets/img/iconos/next-product-slide.svg")" alt="Ir adelante slide"></a>
+    </div>
+</div>
+<div class="slide-contenedor">
+
+
+    @Html.Partial("_libro_relacionado_slide", Model)
+
+</div>

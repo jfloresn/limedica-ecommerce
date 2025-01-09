@@ -1,0 +1,108 @@
+﻿@model Web.Xmarket.Models.Nosotros.NosotrosModel
+@{
+
+    Layout = "~/Views/Shared/_Layoutv.cshtml";
+}
+
+
+<!-- Header-->
+<header class="page-header-ui-dark">
+
+    <div class="slide-contenedor">
+        <div class="row gx-5 align-items-center">
+
+            <div class="miSlider slider-default fade-slider" style="background-image: url(@Url.Content("~/Content/assets/img/nosotros-banner.jpg"))">
+
+                <div class="slider-body slider-body-default">
+                    <div class="slider-body-path">
+                        <a href="~/" class="text-white">Home</a>                  <i class="fas fa-chevron-right dropdown-arrow"></i> Acerca de Nosotros
+                    </div>
+
+                    <div class="slider-default-titulo">
+
+                        <h1 class="mt-3 slider-default-titulo">Acerca de Nosotros</h1>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="direcciones-default">
+            <a href="" class="atras" onclick="avanzaSlideDefault(-1)"><img src="~/Content/assets/img/iconos/left-arrow-alt.svg" alt="Ir atras en slide"></a>
+            <a href="" class="adelante" onclick="avanzaSlideDefault(1)"><img src="~/Content/assets/img/iconos/right-arrow-alt.svg" alt="Ir adelante en slide"></a>
+        </div>
+
+        <div class="barras">
+            <span class="barra active" onclick="posicionSlide(1)"></span>
+            <span class="barra" onclick="posicionSlide(2)"></span>
+            <span class="barra" onclick="posicionSlide(3)"></span>
+        </div>
+    </div>
+
+</header>
+
+
+
+<section class="limedica-content-intermedio py-10 ">
+    <div class="container px-5">
+
+        <div class="row gx-5 align-items-center justify-content-center">
+
+            <div class="col-lg-6  mb-5">
+
+                <div class="mb-6 my-5 me-15">
+                    <h2 class="limedica-titulo">Misión</h2>
+                    <p class="limedica-detalle">
+                        Nuestra visión es proporcionar a los profesionales medicos de ciencas de la salud, las herramientas
+                        y recursos necesarios para promoveer el aprendisaje continuo y el desarrollo académico.
+                        Nos comprometemos en ofrecer una amplia gama de libros de medicina que abarca todas las especialidade, con el fin de contribuir
+                        al progreso y la excenlencia.
+                    </p>
+                </div>
+                <div class="mb-6 my-5 me-15">
+                    <h2 class="limedica-titulo">Visión</h2>
+                    <p class="limedica-detalle">Nuestra visión aspira ser la empresa de ser reconocido a nivel nacional como una fuente líder de 
+                    que provee conocimiento en el campo de la medicina. Además, destaca el compromiso de ser un líder confiable para los profesionales
+                    de la medicina.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-9 ">
+                <div class="content-skewed content-skewed-right"><img class="content-skewed-item img-fluid shadow-lg rounded-3" src="~/Content/assets/img/nosotros-intro-img.jpg" alt="..." /></div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+
+<section class="py-10">
+    <div class="container px-5">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-6">
+                <div class="text-center">
+
+                    <h2 class="home-titulo mb-5">Nuestras Editoriales</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row gx-5">
+            @foreach (var item in Model.editoriales)
+            {
+                <div class="col-lg-3 col-md-6 mb-5" data-aos="fade-up">
+                    <img src="~/Content/assets/img/editoriales/@item.imagen" alt="@item.nombre" />
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+
+@Html.Partial("_CatalogoLimedica")

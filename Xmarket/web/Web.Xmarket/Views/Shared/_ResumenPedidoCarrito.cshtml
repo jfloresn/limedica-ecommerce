@@ -1,0 +1,40 @@
+﻿@model QueryContracts.Xmarket.Carrito.CarritoDTO
+
+<div class="card z-1">
+    <div class="card-body ">
+        <div class="">
+
+
+            <h2 class="limedica-carrito-resumen-titulo">Resumen del pedido</h2>
+
+            <div class="limedica-carrito-resumen-item my-4">
+
+                <div class="limedica-carrito-resumen-label">   Subtotal </div>
+                <div class="limedica-carrito-resumen-valor">   S/. @Model.montoSubTotal </div>
+
+            </div>
+
+            <div class="limedica-carrito-resumen-item my-4">
+                <div class="limedica-carrito-resumen-label">   Descuento </div>
+                <div class="limedica-carrito-resumen-valor">  -S/. @Model.montoDescuento</div>
+            </div>
+
+            <div class="limedica-carrito-resumen-item my-4">
+                <div class="limedica-carrito-resumen-label">   Entrega </div>
+                <div class="limedica-carrito-resumen-valor">  Gratis </div>
+            </div>
+
+            <div class="limedica-carrito-resumen-item my4">
+                <div class="limedica-carrito-resumen-label">   Total </div>
+                <div class="limedica-carrito-resumen-valor" style="font-weight:bold">  S/. @Model.totalPagar </div>
+
+
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>

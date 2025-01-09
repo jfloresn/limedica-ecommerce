@@ -1,0 +1,39 @@
+:root {
+    --bs-primary: #E9711C;
+    --bs-secondary: #0090B2;
+    --bs-primary-rgba: 233,113, 28, 0.7;
+    --bs-secondary-rgba: 1,132, 163, 1;
+}
+
+input {
+    border: none !important;
+    border-radius: 0px !important;
+}
+
+input[type="checkbox"] {
+        border-radius: 0px !important;
+}
+
+input[type="checkbox"]:checked {
+            border: solid 1px #000000;
+            background-color: #000000
+}
+
+input[type="radio"] {
+        border-radius: 100% !important;
+    }
+
+input[type="radio"]:checked {
+            border: solid 1px #000000;
+            background-color: #000000
+}
+
+select {
+    border: none !important;
+    font-family: Jost-Medium;
+    font-size: 16px;
+    color: #1E1E1F;
+    letter-spacing: 0;
+    line-height: 19px;
+    border-radius: 0px !important;
+}

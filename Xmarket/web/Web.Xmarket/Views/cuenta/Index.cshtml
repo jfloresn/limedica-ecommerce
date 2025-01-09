@@ -1,0 +1,88 @@
+﻿@model  Web.Xmarket.Models.Account.SignInModel
+@{
+    Layout = "~/Views/Shared/_Layoutv.cshtml";
+}
+
+@section Styles {
+    <link href="@Url.Content("~/Content/css/style_limedica_input.css")" rel="stylesheet">
+}
+
+
+@section scripts
+{
+
+
+
+}
+<header class="bg-header">
+    <div class="container">
+        <div class="row gx-5 align-items-center ">
+            <div class="header-cuenta" style="">
+                <div class="limedica-cuenta">
+                    <div class="slider-body-path">
+                        <a href="~/" class="limedica-path">Home</a>
+                        <i class="fas fa-chevron-right dropdown-arrow text-path"></i>
+                        <span class="limedica-path"> Ingresar</span>
+                    </div>
+
+                    <div class="limedica-cuenta-body">
+                        <div class="limedica-cuenta-content">
+                            <h1> Ingresar</h1>
+                            @using (Html.BeginForm("Index", "Cuenta", FormMethod.Post, new { @id = "frmIniciarSesion", @Class = "limedica-cuenta-form my-5" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+
+
+                                <div class="row gx-5 mb-4">
+                                    <div class="col-md-12">
+                                        <label class="limedica-cuenta-form-label mb-2" for="inputName">Correo electrónico <span class="text-danger">*</span></label>
+
+                                        @Html.TextBoxFor(model => model.ValidarUsuario.Usuario, new { @class = "form-control", @type = "email", @maxlength = "200", @placeholder = "name@example.com" })
+                                        @Html.ValidationMessageFor(model => model.ValidarUsuario.Usuario, "", new { @class = "text-danger small" })
+
+                                    </div>
+                                </div>
+
+                                <div class="row gx-5 mb-2">
+                                    <div class="col-md-12">
+                                        <div class="limedica-cuenta-contrasenia-label">
+                                            <div>
+                                                <label class="limedica-cuenta-form-label mb-2">Contraseña <span class="text-danger">*</span></label>
+                                            </div>
+                                            <div><a href="#" class="limedica-cuenta-form-olvido-contrasenia" title="Olvido contrasena">  ¿Olvidó su contraseña?</a></div>
+                                        </div>
+
+                                        @Html.PasswordFor(model => model.ValidarUsuario.Password, new { @class = "form-control", @maxlength = "200", @placeholder = "contraseña" })
+                                        @Html.ValidationMessageFor(model => model.ValidarUsuario.Password, "", new { @class = "text-danger small" })
+                                        @Html.HiddenFor(model => model.ReturnUrl)
+                                    </div>
+
+                                </div>
+                                <div class="row text-center">
+                                    <div class="col-md-12">
+                                        <label class="text-danger small">  @ViewBag.Mensaje </label>
+                                    </div>
+                                </div>
+
+                                <div class="row text-center">
+
+                                    <button type="submit" class="btn-limedica btn-limedica-primary mt-2">Iniciar Sesión</button>
+
+                                </div>
+
+                                <div class="text-center my-2">
+                                    <a href="@Url.Action("CrearCuenta")" class="limedica-cuenta-form-crear-cuenta" title="Crear Cuenta"> Crear Cuenta</a>
+                                </div>
+
+                            }
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</header>
+

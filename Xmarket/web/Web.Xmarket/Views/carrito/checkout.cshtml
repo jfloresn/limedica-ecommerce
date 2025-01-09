@@ -1,0 +1,338 @@
+﻿@model Web.Xmarket.Models.Carrito.CheckOutModel
+@{
+
+    Layout = "~/Views/Shared/_LayoutCarrito.cshtml";
+}
+
+@section Styles {
+    <meta name="robots" content="noindex, nofollow">
+    <link href="@Url.Content("~/Content/css/style_limedica_input.css")" rel="stylesheet">
+
+}
+@section scripts
+{
+
+    <script type="text/javascript">
+
+
+
+        $(document).ready(function () {
+
+
+            $.post("@Url.Action("clienteDireccionRegistrar", "Cuenta")", null, function (data) {
+
+                $("#divContentClienteDireccion").html(data);
+
+            });
+
+        });
+
+
+        function seleccionar(idDireccion, position) {
+
+            $("#chkDireccionSeleccionado").prop("checked",true);
+
+            $(".clienteDirecciones").prop("checked", false);
+
+            $("#ClienteDireccionListarResult_direccion_" + position).val(true);
+
+            $(".limedica-checkout-datoentrega-habilitado").prop("src", "@Url.Content("~/Content/assets/img/checkout-iconos/check-desactivado.svg")");
+
+            $("#imgDireccion_" + idDireccion).prop("src", "@Url.Content("~/Content/assets/img/checkout-iconos/check.svg")")
+
+
+        }
+
+
+
+        function eliminarDireccion(idDireccion) {
+
+            swal({
+                title: "Eliminar Dirección",
+                text: "¿Está seguro que desea eliminar?",
+                type: "warning",
+                showCancelButton: true,
+                cancelButtonText: "Cancelar",
+                confirmButtonColor: '#DD6B55',
+                confirmButtonText: 'Eliminar',
+                closeOnConfirm: true,
+                closeOnCancel: true
+            },
+                function (isConfirm) {
+
+                    swal({ title: "Información", text: "Eliminado con exito", type: "success", confirmButtonText: "Aceptar" });
+
+
+
+
+                });
+        }
+
+        function agregarDireccion(idDireccion) {
+            $("#modalNuevaDireccion").modal("show");
+        }
+
+
+        function modificarDireccion(idDireccion) {
+
+        }
+
+        function cerrarAgregarSesion() {
+
+            $("#modalNuevaDireccion").modal("hide");
+        }
+
+        function registrarCheckout() {
+
+
+            if ($("#chkDireccionSeleccionado").is(':checked')==false) {
+
+                swal({ title: "Alerta!", text: "Debe seleccionar una dirección de entrega", type: "warning", confirmButtonText: "Aceptar" });
+                return false;
+            }
+
+
+
+            $("#frmCheckout").submit();
+
+        }
+
+        function direccionRegistrado(direcciom) {
+
+            $.get("@Url.Action("obtenerDireccion", "Carrito")" + "/"+ direcciom.idUsuarioDireccion, function (data) {
+
+                $("#divContentDireccionEntrega").append(data);
+
+            });
+
+
+        }
+
+
+    </script>
+
+}
+<!-- Header-->
+<header class="bg-header">
+    <div class="container">
+        <div class="row gx-5 align-items-center pb-5">
+
+            <div class="header-producto" style="">
+
+                <div class="limedica-carrito">
+
+                    <div class="slider-body-path-checkout mt-5">
+
+                        <div>
+                            <a href="@Url.Content("~/carrito")" class="limedica-path activo-path-checkout">1. Carrito</a>
+                        </div>
+
+
+                        <div class="mx-2 limedica-checkout-linea">
+                            <div class="limedica-checkout-linea-item"></div>
+
+                        </div>
+
+                        <div>
+                            <span class="limedica-path activo-path-checkout">2. Entrega </span>
+
+                        </div>
+                        <div class="mx-2 limedica-checkout-linea">
+                            <div class="limedica-checkout-linea-item"></div>
+
+                        </div>
+                        <div>
+                            <span class="limedica-path no-activo-path-checkout">3. Pago </span>
+
+                        </div>
+                        <div class="mx-2 limedica-checkout-linea">
+                            <div class="limedica-checkout-linea-item"></div>
+
+                        </div>
+                        <div>
+                            <span class="limedica-path no-activo-path-checkout">4. Pedido Completado  </span>
+
+                        </div>
+                    </div>
+
+
+                    <div class="row limedica-carrito-body mt-5">
+
+                        <div class="col-12 col-sm-8 col-xl-8 col-lg-8 limedica-carrito-item limedica-carrito-productos">
+
+                            @using (Html.BeginForm("Checkout", "Carrito", FormMethod.Post, new { @id = "frmCheckout" }))
+                            {
+
+                                <div class="limedica-checkout-mensaje">
+
+                                    <label class="limedica-checkout-mensaje-titulo">¡TE DAMOS LA BIENVENIDA DE NUEVO! </label>
+                                    <label class="limedica-checkout-mensaje-detalle">Nos alegra saber de ti. Veamos la entrega de tu pedido… </label>
+
+
+                                </div>
+
+                                <h1 class="my-5 limedica-checkout-titulo">Datos de Entrega</h1>
+
+
+                                @Html.Partial("_clienteDireccion", Model.ClienteDireccionListarResult)
+
+
+                                <h1 class="my-5 limedica-checkout-titulo">Llegada</h1>
+
+                                <div class="card z-1">
+                                    <div class="card-body ">
+                                        <div class="">
+
+                                            <div class="limedica-carrito-resumen-item">
+
+                                                <div class="limedica-carrito-resumen-label">   ENTREGA STANDARD </div>
+                                                <div class="limedica-carrito-resumen-valor">   GRATIS </div>
+
+                                            </div>
+
+
+                                            <div class="limedica-carrito-resumen-item">
+
+                                                <div class="limedica-carrito-resumen-label">
+                                                    <img src="~/Content/assets/img/envio-gratis-icon.svg" width="30px" />
+                                                    <span>Lima</span>
+
+                                                </div>
+
+
+                                            </div>
+
+
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <label class="mt-5">Correo electrónico: @Model.correo</label>
+
+                                <div class="row gx-5 mb-4 mt-5">
+                                    <div class="col-md-12">
+
+
+                                        @Html.DropDownListFor(model => model.registrarClienteContactoCommand.contactoTipoDocumentoPedido, Model.tipoDocumentosPedido, "Tipo Documento Pedido", new { id = "ddlTipoDocumentosPedido", @class = "form-select" })
+                                        @Html.ValidationMessageFor(model => model.registrarClienteContactoCommand.contactoTipoDocumentoPedido, "", new { @class = "text-danger small" })
+                                        @Html.HiddenFor(model => model.registrarClienteContactoCommand.contactoTipoDocumentoPedido, new { })
+
+                                    </div>
+
+                                </div>
+
+                                <div class="row gx-5 mb-4">
+                                    <div class="col-md-12">
+
+
+                                        @Html.DropDownListFor(model => model.registrarClienteContactoCommand.contactoTipoDocumento, Model.tipoDocumentos, "Tipo Documento Contacto", new { id = "ddlTipoDocumentos", @class = "form-select" })
+                                        @Html.ValidationMessageFor(model => model.registrarClienteContactoCommand.contactoTipoDocumento, "", new { @class = "text-danger small" })
+                                        @Html.HiddenFor(model => model.registrarClienteContactoCommand.contactoTipoDocumento, new { })
+
+                                    </div>
+
+                                </div>
+
+                                <div class="row  mb-4">
+
+                                    <div class="col-md-12">
+
+                                        @Html.TextBoxFor(model => model.registrarClienteContactoCommand.contactoNumeroDocumento, new { @class = "form-control", @maxlength = "200", @placeholder = "Número DNI o C.E. / RUC *" })
+                                        @Html.ValidationMessageFor(model => model.registrarClienteContactoCommand.contactoNumeroDocumento, "", new { @class = "text-danger small" })
+                                    </div>
+
+                                </div>
+
+                                <div class="row gx-5 mb-4">
+                                    <div class="col-md-12">
+
+                                        <div class="form-check">
+                                            @Html.CheckBoxFor(m => Model.registrarClienteContactoCommand.facturacionInfomoIgualEntrega, new { @class = "form-check-input" })
+                                            <label class="form-check-label" for="chkInfoFactIgualDireccEntrega">
+                                                La información de facturación y de entrega es la misma.
+                                            </label>
+                                            <br />
+                                            @Html.ValidationMessageFor(model => model.registrarClienteContactoCommand.facturacionInfomoIgualEntrega, "", new { @class = "text-danger small" })
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+                                @Html.CheckBoxFor(model => model.isSeleccionadoDireccion, new { @id = "chkDireccionSeleccionado", @style = "display:none" })
+
+                                <div class="row gx-5 mb-2">
+                                    <div class="col-md-12">
+
+                                        <span class="text-danger small">@ViewBag.MensajeError</span>
+
+                                    </div>
+
+                                </div>
+
+
+
+                            }
+                        </div>
+
+                        <div class="col-12 col-sm-4 col-xl-4 col-lg-4 limedica-carrito-item limedica-carrito-resumen">
+
+                            @Html.Partial("_ResumenPedidoCarrito", Model.carrito)
+
+                            @Html.Partial("_CuponAplicar")
+
+                            <h2 class="limedica-carrito-resumen-titulo mt-5">Datos del Pedido</h2>
+
+                            @Html.Partial("_ProductoCheckout", Model.carrito)
+
+                            @Html.Partial("_DatosEntrega", Model.direccionCarrito)
+
+
+
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="limedica-carrito-cupon">
+                            <div class="col-4 limedica-carrito-cupon-item">
+                                <button class="btn-limedica btn-limedica-secondary" type="button" onclick="registrarCheckout()">
+                                    Continuar
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-12 col-sm-8 col-xl-8 col-lg-8"></div>
+                        <div class="col-12 col-sm-4 col-xl-4 col-lg-4">
+
+                            <div class="col-md-12 mt-2 small">
+                                <h5 class="limedica-carrito-checkout-opcion-pago mt-5">Opciones de pago</h5>
+                                @Html.Partial("_OpcionesPago")
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</header>
+
+
+<div id="divContentClienteDireccion"></div>

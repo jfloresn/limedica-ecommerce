@@ -1,0 +1,59 @@
+﻿@model    Web.Xmarket.Models.Carrito.DireccionCarritoModel
+
+
+<div class="limedica-checkoutpago-direcciones">
+
+
+    @if (Model != null)
+    {
+
+        foreach (var itemDireccion in Model.direcciones)
+        {
+
+        <div class="limedica-checkoutpago-direcciones-item my-4">
+
+        <div class="limedica-checkoutpago-direcciones-header">
+
+            @if (itemDireccion.tipoDireccion.Equals(Utilitario.Common.ConstanteGeneral.TIPO_DIRECCIONES.ENTREGA))
+            {
+                <h3 class="limedica-checkfoutpago-direcciones-titulo">DATOS DE ENTREGA</h3>
+            }
+            else
+            {
+                <h3 class="limedica-checkfoutpago-direcciones-titulo">DATOS DE FACTURACION</h3>
+            }
+
+            <a href="#" title="editar">
+                <img src="~/Content/assets/img/edit-1.svg" title="editar" />
+            </a>
+        </div>
+
+            <div class="limedica-checkfoutpago-direcciones-body">
+                <div class="limedica-checkfoutpago-direcciones-body-item">@itemDireccion.nombreContacto</div>
+                <div class="limedica-checkfoutpago-direcciones-body-item">@itemDireccion.direccion</div>
+                <div class="limedica-checkfoutpago-direcciones-body-item">@itemDireccion.departamento</div>
+                <div class="limedica-checkfoutpago-direcciones-body-item">@itemDireccion.provincia</div>
+                <div class="limedica-checkfoutpago-direcciones-body-item">@itemDireccion.distrito</div>
+                <div class="limedica-checkfoutpago-direcciones-body-item">@itemDireccion.celularContacto</div>
+            </div>
+        </div>
+
+
+        }
+    }
+
+    <div class="limedica-checkoutpago-direcciones-item my-4">
+
+        <div class="limedica-checkoutpago-direcciones-header">
+            <h3 class="limedica-checkfoutpago-direcciones-titulo">OPCIÓN DE ENVÍO</h3>
+        </div>
+
+        <div class="limedica-checkfoutpago-direcciones-body">
+            <div class="limedica-checkfoutpago-direcciones-body-item">Entrega Standard</div>
+            <div class="limedica-checkfoutpago-direcciones-body-item">Lima</div>
+            <div class="limedica-checkfoutpago-direcciones-body-item">GRATIS</div>
+        </div>
+
+    </div>
+
+</div>

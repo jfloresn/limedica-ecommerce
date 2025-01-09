@@ -1,0 +1,35 @@
+﻿@model  QueryContracts.Xmarket.Book.BookFiltroDTO
+
+@if (Model != null)
+{
+    <div class="card-body lift-limedica p-3">
+        <div class="row limedica-card-body-ebook">
+            <div class="col-6">
+                <div class="limedica-card-home-body-ebook">
+                    <div class="limedica-card-home-body-ebook-content">
+                        <div class="limedica-home-ebook-libro-idioma">
+                            @Model.idiomaNombre
+                        </div>
+                        <div class="card-title mb-0 limedica-home-ebook-libro-titulo">
+                            @Model.bookTitulo
+                        </div>
+                        <div class="limedica-home-ebook-libro-edicion">
+                            Autores: @Model.bookAutores <br />
+                            Edición: @Model.bookEdicion &nbsp;Año:<strong> @Model.bookAnio </strong>
+                        </div>
+                    </div>
+                    <footer style="margin-top: 15px;">
+                        <a class="limedica-home-libro-ebook-acceso" href="@Url.RouteUrl("BookDetail", new { title=Model.bookTitleUrl ,isbn = Model.bookISBN })"> Ver más </a>
+                    </footer>
+                </div>
+            </div>
+            <div class="col-3">
+                <img class="lazyload limedica-card-img-ebook" loading="lazy"
+                     src="@Model.bookImagen"
+                     alt="e-Book" />
+            </div>
+        </div>
+    </div>
+
+}
+

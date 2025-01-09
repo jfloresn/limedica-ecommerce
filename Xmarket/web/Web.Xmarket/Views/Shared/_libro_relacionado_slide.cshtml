@@ -1,0 +1,44 @@
+﻿@model  IEnumerable<Web.Xmarket.Models.Home.ProductoSlide>
+
+@if (Model != null)
+{
+    if (Model.Any())
+    {
+        foreach (var itemSilde in Model)
+        {
+            if (itemSilde.esVisible)
+            {
+                <div class="slider-item slider-ebook fade-slider" >
+
+                    <div class="row">
+                        @if (itemSilde.books != null)
+                        {
+                            foreach (var itemProducto in itemSilde.books)
+                            {
+                                
+                                    @Html.Partial("_libros", itemProducto)
+                            }
+                        }
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="slider-item slider-ebook fade-slider" style="display:none">
+
+                    <div class="row">
+                        @if (itemSilde.books != null)
+                        {
+                            foreach (var itemProducto in itemSilde.books)
+                            {
+                             
+                                    @Html.Partial("_libros", itemProducto)                
+                            }
+                        }
+                    </div>
+                </div>
+            }
+        }
+    }
+}
+

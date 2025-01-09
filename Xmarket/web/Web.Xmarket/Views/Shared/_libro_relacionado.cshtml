@@ -1,0 +1,44 @@
+﻿@model  IEnumerable<Web.Xmarket.Models.Home.ProductoSlide>
+<div class="slider-content-titulo">
+    <h3 class="mb-4 home-titulo">Productos Relacionados</h3>
+    <div class="slider-direccion">
+        <a href="javascript:avanzaSlideEBook(-1)" class="slider-atras" > <img src="@Url.Content("~/Content/assets/img/iconos/back-product-slide.svg")" alt="Ir atras slide"></a>
+        <a href="javascript:avanzaSlideEBook(1)" class="slider-adelante"> <img src="@Url.Content("~/Content/assets/img/iconos/next-product-slide.svg")" alt="Ir adelante slide"></a>
+    </div>
+</div>
+<div class="slide-contenedor">
+    @Html.Partial("_libro_relacionado_slide", Model)
+</div>
+
+<script>
+    let indice_slider_ebook = 1;
+    muestraSlideEBook(indice_slider_ebook);
+
+    function avanzaSlideEBook(n) {
+        muestraSlideEBook(indice_slider_ebook += n);
+    }
+
+    setInterval(function tiempo() {
+        muestraSlideEBook(indice_slider_ebook += 1)
+    }, 10000);
+    function muestraSlideEBook(n) {
+
+        let i;
+        let slidesEBook = document.getElementsByClassName('slider-ebook');
+
+        if (n > slidesEBook.length) {
+            indice_slider_ebook = 1;
+        }
+        if (n < 1) {
+            indice_slider_ebook = slidesEBook.length;
+        }
+        for (i = 0; i < slidesEBook.length; i++) {
+            slidesEBook[i].style.display = 'none';
+        }
+
+        if (slidesEBook.length > 0) {
+            slidesEBook[indice_slider_ebook - 1].style.display = 'block';
+        }
+    }
+
+</script>

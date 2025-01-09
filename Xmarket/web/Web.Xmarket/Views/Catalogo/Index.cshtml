@@ -1,0 +1,95 @@
+﻿@model Web.Xmarket.Models.Catalogo.CatalogoModel
+@{
+
+    Layout = "~/Views/Shared/_Layoutv.cshtml";
+}
+
+
+
+<!-- Header-->
+<header class="page-header-ui-dark">
+
+    <div class="slide-contenedor">
+        <div class="row gx-5 align-items-center">
+
+            <div class="miSlider slider-default fade-slider" style="background-image: url(@Url.Content("~/Content/assets/img/nosotros-banner.jpg"))">
+
+                <div class="slider-body slider-body-default">
+                    <div class="slider-body-path">
+                        <a href="~/" class="text-white">Home</a>                  <i class="fas fa-chevron-right dropdown-arrow"></i> Catalogo
+                    </div>
+
+                    <div class="slider-default-titulo">
+
+                        <h1 class="mt-3 slider-default-titulo">Catalogos</h1>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="direcciones-default">
+            <a href="" class="atras" onclick="avanzaSlideDefault(-1)"><img src="~/Content/assets/img/iconos/left-arrow-alt.svg" alt="Ir atras en slide"></a>
+            <a href="" class="adelante" onclick="avanzaSlideDefault(1)"><img src="~/Content/assets/img/iconos/right-arrow-alt.svg" alt="Ir adelante en slide"></a>
+        </div>
+
+        <div class="barras">
+            <span class="barra active" onclick="posicionSlide(1)"></span>
+            <span class="barra" onclick="posicionSlide(2)"></span>
+            <span class="barra" onclick="posicionSlide(3)"></span>
+        </div>
+    </div>
+
+</header>
+
+
+
+<section class="limedica-content-intermedio py-10 ">
+    <div class="container px-5">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-10">
+                <h2 class="mb-4">Catalogo por Editorial</h2>
+                <p>En esta sección podras visualizar catalogos por editorial.</p>
+
+                <hr class="my-5" />
+
+                <h4 class="mb-4">
+                    <div class="icon-stack bg-primary text-white me-2"><i data-feather="arrow-right"></i></div>
+                    ElSevier
+                </h4>
+
+                <p>Enlace de catalago <a target="_blank" href="https://www.youtube.com/playlist?list=PLC4-AZFlDYevIsaYX1nxlqTgh4mq09sU-">https://www.youtube.com/playlist?list=PLC4-AZFlDYevIsaYX1nxlqTgh4mq09sU-</a>.</p>
+
+                <hr class="my-5" />
+                <h4 class="mb-4">
+                    <div class="icon-stack bg-primary text-white me-2"><i data-feather="arrow-right"></i></div>
+                    Aula Médica
+                </h4>
+                <p>Enlace de catalago <a href="https://aulamedica.es/en/tienda/" target="_blank">Tienda – aulamedica.es</a>.</p>
+                <hr class="my-5" />
+                <h4 class="mb-4">
+                    <div class="icon-stack bg-primary text-white me-2"><i data-feather="arrow-right"></i></div>
+                    Wolters Kluwer
+                </h4>
+                <p>Enlace de catalago <a target="_blank" href="https://user-biackli.cld.bz/Catalogo-de-publicaciones-medicas-2023">https://user-biackli.cld.bz/Catalogo-de-publicaciones-medicas-2023</a>.</p>
+
+                <hr class="my-5" />
+                <h4 class="mb-4">
+                    <div class="icon-stack bg-primary text-white me-2"><i data-feather="arrow-right"></i></div>
+                    Ediciones Journal
+                </h4>
+                <p>Enlace de catalago <a target="_blank" href=" https://www.edicionesjournal.com/catalogo/catalogo.pdf"> https://www.edicionesjournal.com/catalogo/catalogo.pdf</a>.</p>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+</section>

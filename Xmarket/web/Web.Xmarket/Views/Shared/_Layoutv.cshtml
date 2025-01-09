@@ -1,0 +1,184 @@
+﻿@using Web.Common.HtmlHelpers
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=2, width=device-width">
+
+    <meta name="author" content="By Limedica" />
+    <title>@ViewData["Title"]</title>
+
+    <link rel="canonical" href="@ViewData["Canonical"]">
+    <meta property="og:locale" content="es_LA">
+    <meta property="og:type" content="@ViewData["OgType"]">
+    <meta property="og:title" content="@ViewData["OgTitle"]">
+    <meta property="og:description" content="@ViewData["OgDescripcion"]">
+    <meta property="og:url" content="@ViewData["OgUrl"]">
+    <meta property="og:site_name" content="@ViewData["OgSiteName"]">
+    <meta property="og:image" content="@ViewData["OgUrlImagen"]">
+
+    <meta name="description" content="@ViewData["Descripcion"]" />
+    
+
+    <link rel="icon" href="@Url.Content("~/Content/assets/img/favicon.ico")" type="image/x-icon">
+
+    <link rel="icon" href="@Url.Content("~/Content/assets/img/favicon-16x16.png")" sizes="16x16" type="image/png">
+    <link rel="icon" href="@Url.Content("~/Content/assets/img/favicon-32x32.png")" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="@Url.Content("~/Content/assets/img/limedcia-192x192.png")" sizes="192x192" type="image/png">
+    <link rel="apple-touch-icon" href="@Url.Content("~/Content/assets/img/limedica-512x512.png")" sizes="512x512" type="image/png">
+
+    <link async rel="preconnect" href="https://fonts.googleapis.com">
+    <link async rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link async href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+
+
+
+
+
+
+    @Styles.Render("~/Content/limedica")
+    @Styles.Render("~/Content/style")
+    @Styles.Render("~/Content/sweetalert")
+
+
+    @if (IsSectionDefined("Styles"))
+    {@RenderSection("Styles", required: false)}
+
+</head>
+
+<body>
+    <div id="layoutDefault">
+        <div id="layoutDefault_content">
+
+
+            @Html.Partial("_TopNavbarHome")
+            <main class="main-layout">
+
+                @RenderBody()
+
+            </main>
+        </div>
+
+        @Html.Partial("_FooterHome")
+    </div>
+
+    <div class="modal fade" id="dialogPrincipalOk" tabindex="-1" data-bs-backdrop="static" role="dialog" aria-labelledby="myExtraLargeModalLabel" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-info">Información</h5>
+                </div>
+                <div class="modal-body">
+                    <output id="outputMensajePrincipalOk"></output>
+                </div>
+                <div class="modal-footer"><button class="btn btn-secondary" type="button" data-bs-dismiss="modal" onclick="ActualizarForm()">Cerrar y actualizar</button></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="dialogPrincipalAlerta" tabindex="-1" data-bs-backdrop="static" role="dialog" aria-labelledby="myExtraLargeModalLabel" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-warning">Alerta</h5>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <output id="outputMensajePrincipal"></output>
+                </div>
+                <div class="modal-footer"><button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cerrar</button></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="dialogPrincipalError" tabindex="-1" data-bs-backdrop="static" role="dialog" aria-labelledby="myExtraLargeModalLabel" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger">Error</h5>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <output id="outputMensajePrincipalError"></output>
+                </div>
+                <div class="modal-footer"><button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cerrar</button></div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <img class="btn-whatsapp" src="https://clientes.dongee.com/whatsapp.png" width="64" height="64" alt="Whatsapp"
+         loading="lazy"
+         onclick="window.location.href='https://wa.me/51999774449?text=Hola!%20Estoy%20interesado%20en%20tu%20servicio'">
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.0/jquery.min.js"
+            integrity="sha512-0nVWK03Ud0k6o8wDkri8jxX9zQIn00ZHVud3iqBTwd2bGFwJDQShGVb3+vX1adCRxQckKQrIQMFmIA3tfWe+Mg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/signalr.js/2.4.2/jquery.signalR.min.js"></script>
+
+    @Scripts.Render("~/bundles/scripts/sweetalert")
+
+    @Scripts.Render("~/bundles/scripts")
+
+    @Html.Partial("_SesionScripts")
+
+    @RenderSection("Scripts", required: false)
+
+
+    <script>
+        $(function () {
+            // Cambia esta URL a la URL del Hub de SignalR en tu proyecto de backoffice
+            var connection = $.hubConnection("https://backoffice.limedica.pe/signalr");
+            var hub = connection.createHubProxy("notificationHub");
+
+            hub.on("receiveMessage", function (message) {
+
+                var msg = $('<div />').text(message);
+
+                $('#notificationDetails').append(msg);
+
+            });
+
+            connection.start().done(function () {
+                console.log("Conexión establecida con SignalR.");
+            }).fail(function (error) {
+                console.error("Error al conectar con SignalR: " + error);
+            });
+        });
+
+        function toggleNotificationDetails() {
+            var details = document.getElementById('notificationDetails');
+            if (details.style.display === 'none' || details.style.display === '') {
+                details.style.display = 'block';
+            } else {
+                details.style.display = 'none';
+            }
+        }
+
+        // Ocultar notificaciones si se hace clic fuera de ellas
+        window.onclick = function (event) {
+            if (!event.target.matches('.notification-icon')) {
+                var details = document.getElementById('notificationDetails');
+                if (details.style.display === 'block') {
+                    details.style.display = 'none';
+                }
+            }
+        }
+
+    </script>
+
+
+
+
+</body>
+</html>

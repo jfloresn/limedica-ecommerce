@@ -1,0 +1,520 @@
+﻿@model Web.Xmarket.Models.Home.HomeModel
+@{
+    Layout = "~/Views/Shared/_Layoutv.cshtml";
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/js-home")
+    <script type="text/javascript">
+        var homeEspecialidadCodigo = 0;
+        var homeEspecialidadNombreUrl = "";
+        var homeEditorialCodigo = 0;
+        var homeEditorialNombreUrl = "";
+        let cargoEbook = false;
+        let cargaAll = false;
+        let cargaNovedades = false;
+        let cargaEditoriales = false;
+
+        function getProductByEspecialidad(idEspecialidad, nombreEspecialidadUrl) {
+            homeEspecialidadCodigo = idEspecialidad;
+            homeEspecialidadNombreUrl = nombreEspecialidadUrl;
+
+            let sender = $("#tab_home_especialidad_" + idEspecialidad);
+            $(".limedica-tab-especialidad").find("div").removeClass("limedica-home-editorial-title-activo");
+            $(".limedica-tab-especialidad").find("div").addClass("limedica-home-editorial-title-inactivo");
+            $(".limedica-tab-especialidad").find("hr").removeClass("tab-activo");
+            $(".limedica-tab-especialidad").find("hr").removeClass("tab-inactivo");
+            $(".limedica-tab-especialidad").find("hr").addClass("tab-inactivo");
+            sender.find(".limedica-card-home-tabs-content").removeClass("limedica-home-editorial-title-inactivo");
+            sender.find(".limedica-card-home-tabs-content").addClass("limedica-home-editorial-title-activo");
+            sender.find("hr").removeClass("tab-inactivo");
+            sender.find("hr").addClass("tab-activo");
+            obtenerProductosPorEspecialidad(idEspecialidad);
+        }
+
+        function obtenerProductosPorEspecialidad(idEspecialidad) {
+
+            $.ajax({
+                url: "@Url.Action("obtenerProductoPorEspecialidad", "Home")",
+                type: "POST",
+                data: { id: idEspecialidad, tipo: 'ES' },
+                beforeSend: function (data) {
+                    $("#loaderLibroEspecialidad").show();
+                    $("#limedica-content-especialidad").hide();
+                    $("#limedica-content-especialidad").html("");
+                },
+                success: function (data) {
+                    $("#loaderLibroEspecialidad").hide();
+                    $("#limedica-content-especialidad").show();
+                    if (data != "") {
+                        $("#btnLibrosPorEspecialidad").show();
+                        $("#limedica-content-especialidad").html(data);
+                    } else {
+                        $("#btnLibrosPorEspecialidad").hide();
+                        $("#limedica-content-especialidad").html("Estimado cliente, no se encontro libros para la especialidad seleccionado.");
+                    }
+                },
+                error: function (data) {
+                    $("#limedica-content-especialidad").html("Ocurrio un error interno, intente nuevamente por favor.");
+                }
+            });
+        }
+
+      function getNovedades() {
+
+            $.ajax({
+                url: "@Url.Action("obtenerNovedades", "Home")",
+                type: "POST",
+                data: { id: 0},
+                beforeSend: function (data) {
+                    $("#loadNovedades").show();
+                    $("#btnHomeNovedad").hide();
+                    $("#contentHomeNovedades").html("");
+                },
+                success: function (data) {
+                    $("#loadNovedades").hide();
+                    $("#contentHomeNovedades").show();
+                    if (data != "") {
+                        $("#btnHomeNovedad").show();
+                        $("#contentHomeNovedades").html(data);
+                    } else {
+                        $("#btnHomeNovedad").hide();
+                        $("#contentHomeNovedades").html("Estimado cliente, no se encontro novedades.");
+                    }
+                },
+                error: function (data) {
+                    $("#loadNovedades").hide();
+                    $("#btnHomeNovedad").hide();
+                    $("#contentHomeNovedades").html("Ocurrio un error interno, intente nuevamente por favor.");
+                }
+            });
+        }
+
+        function getColeccion() {
+
+            $.ajax({
+                url: "@Url.Action("obtenerColeccionSlide", "Home")",
+                type: "POST",
+                data: { id: 0 },
+                beforeSend: function (data) {
+                    $("#loadContentColeccion").show();
+                    $("#linkMasColeccion").hide();
+                    $("#contentColeccion").html("");
+                },
+                success: function (data) {
+                    $("#loadContentColeccion").hide();
+                    $("#contentColeccion").show();
+                    if (data != "") {
+                        $("#linkMasColeccion").show();
+                        $("#contentColeccion").html(data);
+                    } else {
+                        $("#linkMasColeccion").hide();
+                        $("#contentColeccion").html("Estimado cliente, no se encontro las colecciones.");
+                    }
+                },
+                error: function (data) {
+                    $("#loadContentColeccion").hide();
+                    $("#linkMasColeccion").hide();
+                    $("#contentColeccion").html("Ocurrio un error interno, intente nuevamente por favor.");
+                }
+            });
+
+        }
+        function getEditoriales() {
+
+            $.ajax({
+                url: "@Url.Action("obtenerEditorialesTodo", "Home")",
+                type: "POST",
+                data: { id: 0 },
+                beforeSend: function (data) {
+                    $("#loadEditoriales").show();
+
+                    $("#editorialesContent").html("");
+                },
+                success: function (data) {
+                    $("#loadEditoriales").hide();
+                    $("#editorialesContent").show();
+                    if (data != "") {
+
+                        $("#editorialesContent").html(data);
+                    } else {
+
+                        $("#editorialesContent").html("Estimado cliente, no se encontro las colecciones.");
+                    }
+                },
+                error: function (data) {
+                    $("#loadEditoriales").hide();
+
+                    $("#editorialesContent").html("Ocurrio un error interno, intente nuevamente por favor.");
+                }
+            });
+        }
+
+      function getEBook() {
+            $.ajax({
+                url: "@Url.Action("obtenerProductSlide", "Home")",
+                type: "POST",
+                data: { id: 0},
+                beforeSend: function (data) {
+                    $("#loadContentEBook").show();
+
+                    $("#contentEBook").html("");
+                },
+                success: function (data) {
+                    $("#loadContentEBook").hide();
+                    $("#contentEBook").show();
+                    if (data != "") {
+                        $("#contentEBook").html(data);
+                    } else {
+                        $("#contentEBook").html("Estimado cliente, no se encontro ebooks.");
+                    }
+                },
+                error: function (data) {
+                    $("#loadContentEBook").hide();
+                    $("#contentEBook").html("Ocurrio un error interno, intente nuevamente por favor.");
+                }
+            });
+        }
+
+        function getProductByEditorial(idEditorial, nombreEditorialUrl) {
+             homeEditorialCodigo = idEditorial;
+             homeEditorialNombreUrl = nombreEditorialUrl;
+            let sender = $("#tab_home_editoriales_" + idEditorial);
+            $(".limedica-tab-editorial").find("div").removeClass("limedica-home-editorial-title-activo");
+            $(".limedica-tab-editorial").find("div").addClass("limedica-home-editorial-title-inactivo");
+            $(".limedica-tab-editorial").find("hr").removeClass("tab-activo");
+            $(".limedica-tab-editorial").find("hr").removeClass("tab-inactivo");
+            $(".limedica-tab-editorial").find("hr").addClass("tab-inactivo");
+            sender.find(".limedica-card-home-tabs-content").removeClass("limedica-home-editorial-title-inactivo");
+            sender.find(".limedica-card-home-tabs-content").addClass("limedica-home-editorial-title-activo");
+            sender.find("hr").removeClass("tab-inactivo");
+            sender.find("hr").addClass("tab-activo");
+            obtenerProductosPorEditorial(idEditorial);
+        }
+
+        function obtenerProductosPorEditorial(idEditorial) {
+            $.ajax({
+                url: "@Url.Action("obtenerProductoPorEditorial", "Home")",
+                type: "POST",
+                data: { id: idEditorial, tipo: 'ED' },
+                beforeSend: function (data) {
+                    $("#loaderLibroEditoria").show();
+                    $("#limedica-content-editorial").hide("");
+                    $("#limedica-content-editorial").html("");
+                },
+                success: function (data) {
+                    $("#loaderLibroEditoria").hide();
+                    $("#limedica-content-editorial").show("");
+                    if (data != "") {
+                        $("#btnLibrosPorEditorial").show();
+                        $("#limedica-content-editorial").html(data);
+                    }
+                    else {
+                        $("#btnLibrosPorEditorial").hide();
+                        $("#limedica-content-editorial").html("Estimado cliente, no se encontro libros para la editorial seleccionado.");
+                    }
+                },
+                error: function (data) {
+                    $("#limedica-content-editorial").html("Ocurrio un error interno, intente nuevamente por favor.");
+                }
+            });
+        }
+
+        function irTiendaLibrosPorEditorial() {
+            location.href = "@Url.Action("Index","Tienda")" + "?typesearch=@Utilitario.Common.ConstanteGeneral.BOOK_TYPE_SEARCH_URL.EDITORIAL&codedit=" + homeEditorialCodigo + "&edit=" + homeEditorialNombreUrl;
+        }
+
+        function irTiendaLibrosPorEspecialidad() {
+            alert("@Url.RouteUrl("TiendaEspecialidad")");
+            location.href = "@Url.Action("Index","Tienda")" + "?typesearch=@Utilitario.Common.ConstanteGeneral.BOOK_TYPE_SEARCH_URL.ESPECIALIDAD&codespe=" + homeEspecialidadCodigo + "&espe=" + homeEspecialidadNombreUrl;
+        }
+
+        $(document).ready(function () {
+            // Función para manejar el evento de scroll
+
+            $(window).scroll(function () {
+
+                const scrollPosition = window.scrollY + window.innerHeight;
+                const threshold20 = document.documentElement.scrollHeight * 0.20; // 60% de la altura total de la página
+                const threshold40 = document.documentElement.scrollHeight * 0.40; // 60% de la altura total de la página
+                const threshold50 = document.documentElement.scrollHeight * 0.50; // 60% de la altura total de la página
+                const threshold80 = document.documentElement.scrollHeight * 0.80; // 60% de la altura total de la página
+
+                //console.log('scrollPosition:' + scrollPosition);
+                //console.log('threshold:' + threshold);
+
+                if (scrollPosition >= threshold20) {
+                    if (cargaEditoriales == false) {
+                        cargaEditoriales = true;
+                        getEditoriales();
+                    }
+                }
+                if (scrollPosition >= threshold40) {
+                    if (cargaNovedades == false) {
+                        cargaNovedades = true;
+                        getNovedades();
+                    }
+                }
+
+                if (scrollPosition >= threshold50) {
+                    if (cargaAll == false) {
+                        cargaAll = true;
+                        let idEditorialPorDefecto = $("#hidenEditorialDefecto").val();
+                        let idEspecialidadPorDefecto = $("#hidenEspecialidadDefecto").val();
+
+                        obtenerProductosPorEditorial(idEditorialPorDefecto);
+                        obtenerProductosPorEspecialidad(idEspecialidadPorDefecto);
+                        getColeccion();
+                    }
+                }
+                if (scrollPosition >= threshold80) {
+                    //console.log('Estás cerca del final del scroll');
+                    if (cargoEbook == false) {
+                        cargoEbook = true;
+                        getEBook();
+                    }
+                }
+            });
+        });
+    </script>
+}
+<!-- Header-->
+<header class="page-header-ui-dark">
+    <div class="slide-contenedor-banner">
+        @if (Model.banners != null)
+        {
+            <div class="row gx-5 align-items-center">
+
+                @foreach (var itemBanner in Model.banners)
+                {
+                    @Html.Partial("_banner", itemBanner)
+                }
+            </div>
+            <div class="direcciones">
+                <div class="atras" onclick="avanzaSlide(-1)"><img src="@Url.Content("~/Content/assets/img/iconos/left-arrow-alt.svg")" alt="Ir atras en slide"></div>
+                <div class="adelante" onclick="avanzaSlide(1)"><img src="@Url.Content("~/Content/assets/img/iconos/right-arrow-alt.svg")" alt="Ir adelante en slide"></div>
+            </div>
+            <div class="barras">
+                <span class="barra limedica-active" onclick="posicionSlide(1)"></span>
+                @for (int i = 1; i < Model.banners.Count(); i++)
+                {
+                    <span class="barra" onclick="posicionSlide(@i+1)"></span>
+                }
+            </div>
+        }
+    </div>
+</header>
+<!-- Editoriales-->
+<section class="" style="background-color:  #F5F5F5;">
+    <div class="container">
+        <div class="slide-contenedor">
+            <div class="slider-item slider-editorial fade-slider">
+                <div id="loadEditoriales" class="display-4 mt-5 text-center mb-3" style="display:none">
+                    <div class='lds-ripple'><div></div><div></div></div>
+                </div>
+                <div class="row gx-5 brands align-items-center" id="editorialesContent">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="bg-light py-10">
+    <div class="container">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-6 text-center mb-5">
+                <h1>Libros de Medicina en Peru</h1>
+                <p class="lead mb-0">
+                    Literatura Médica EIRL es una destacada empresa especializada en la venta de libros de medicina, brindando un servicio exclusivo
+                    a los profesionales de la salud en todo el territorio de Perú. Con un enfoque dedicado en satisfacer las necesidades de los profesionales de la salud, nuestra empresa se ha
+                    consolidado como la elección preferida para aquellos
+                    que buscan recursos de alta calidad y actualizados para complementar su formación y práctica médica.
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <div class="svg-border-rounded text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144.54 17.34" preserveAspectRatio="none" fill="currentColor">
+            <path d="M144.54,17.34H0V0H144.54ZM0,0S32.36,17.34,72.27,17.34,144.54,0,144.54,0"></path>
+        </svg>
+    </div>
+</section>
+<!-- Novedades-->
+<section class="py-5">
+    <div class="container">
+        <h2 class="mb-4 home-titulo">Novedades</h2>
+        <div id="loadNovedades" class="display-4 mt-5 text-center mb-3" style="display:none">
+            <div class='lds-ripple'><div></div><div></div></div>
+        </div>
+        <div class="row" id="contentHomeNovedades">
+        </div>
+        <div class="display-4 text-center mb-3" id="btnHomeNovedad">
+            <a class="btn-limedica btn-limedica-secondary "
+               href="@Url.RouteUrl("TiendaNovedades")">
+                Ver
+                más
+            </a>
+        </div>
+    </div>
+</section>
+<!-- Editoriales-->
+<section class="py-5 limedica-content-intermedio">
+    <div class="container">
+        <div class="row ">
+            <div class="col-3">
+                <h2 class="mb-4 home-titulo">Editoriales</h2>
+            </div>
+            <div class="col-12 col-xl-9 col-sm-9 col-lg-9">
+                <div class="row">
+                    @for (int i = 0; i < Model.editoriales.Count(); i++)
+                    {
+                        if (i == 0)
+                        {
+                            <a class="col-12 col-sm-2 col-xl-2 col-lg-2 limedica-tab-editorial limedica-card-home-tabs"
+                               id="tab_home_editoriales_@Model.editoriales.ElementAt(i).id"
+                               href="javascript:getProductByEditorial(@Model.editoriales.ElementAt(i).id,'@Model.editoriales.ElementAt(i).nombreUrl')">
+                                <div class="limedica-card-home-tabs-content limedica-home-editorial-title-activo">
+                                    @Model.editoriales.ElementAt(i).nombre
+                                </div>
+                                <hr class="tab-activo">
+                            </a>
+                            <input type="hidden" id="hidenEditorialDefecto" value="@Model.editoriales.ElementAt(i).id">
+                        }
+                        else
+                        {
+                            <a class="col-12 col-sm-2 col-xl-2 col-lg-2 limedica-tab-editorial limedica-card-home-tabs"
+                               id="tab_home_editoriales_@Model.editoriales.ElementAt(i).id"
+                               href="javascript:getProductByEditorial(@Model.editoriales.ElementAt(i).id,'@Model.editoriales.ElementAt(i).nombreUrl')">
+                                <div class="limedica-card-home-tabs-content limedica-home-editorial-title-inactivo">
+                                    @Model.editoriales.ElementAt(i).nombre
+                                </div>
+                                <hr class="tab-inactivo">
+                            </a>
+                        }
+                        if (i == 5)
+                        { break; }
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div id="loaderLibroEditoria" class="display-4 mt-5 text-center mb-3" style="display:none">
+                <div class='lds-ripple'><div></div><div></div></div>
+            </div>
+            <div id="limedica-content-editorial">
+            </div>
+        </div>
+        <div class="row  mt-2">
+            <div class="col-3">
+                <h2 class="mb-4 home-titulo">Especialidades</h2>
+            </div>
+            <div class="col-12 col-sm-9">
+                <div class="row">
+                    @for (int i = 0; i < Model.especialidades.Count(); i++)
+                    {
+                        if (i == 0)
+                        {
+                            <a class="col-12 col-sm-2 limedica-tab-especialidad limedica-card-home-tabs"
+                               id="tab_home_especialidad_@Model.especialidades.ElementAt(i).id"
+                               href="javascript:getProductByEspecialidad(@Model.especialidades.ElementAt(i).id,'@Model.especialidades.ElementAt(i).nombreUrl')">
+                                <div class="limedica-card-home-tabs-content limedica-home-editorial-title-activo">
+                                    @Model.especialidades.ElementAt(i).nombre
+                                </div>
+                                <hr class="tab-activo">
+                            </a>
+                            <input type="hidden" id="hidenEspecialidadDefecto" value="@Model.especialidades.ElementAt(i).id">
+                        }
+                        else
+                        {
+                            <a class="col-12 col-sm-2 limedica-tab-especialidad limedica-card-home-tabs"
+                               id="tab_home_especialidad_@Model.especialidades.ElementAt(i).id"
+                               href="javascript:getProductByEspecialidad(@Model.especialidades.ElementAt(i).id,'@Model.especialidades.ElementAt(i).nombreUrl')">
+                                <div class="limedica-card-home-tabs-content limedica-home-editorial-title-inactivo">
+                                    @Model.especialidades.ElementAt(i).nombre
+                                </div>
+                                <hr class="tab-inactivo">
+                            </a>
+                        }
+                        if (i == 5)
+                        { break; }
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div id="loaderLibroEspecialidad" class="display-4 mt-5 text-center mb-3" style="display:none">
+                <div class='lds-ripple'><div></div><div></div></div>
+            </div>
+            <div id="limedica-content-especialidad">
+            </div>
+        </div>
+    </div>
+</section>
+<section class="py-2 pb-5">
+    <div id="loadContentColeccion" class="display-4 mt-5 text-center mb-3" style="display:none">
+        <div class='lds-ripple'><div></div><div></div></div>
+    </div>
+    <div class="container" id="contentColeccion">
+    </div>
+</section>
+
+@Html.Partial("_CatalogoLimedica")
+
+<section class="py-5">
+    <div id="loadContentEBook" class="display-4 mt-5 text-center mb-3" style="display:none">
+        <div class='lds-ripple'><div></div><div></div></div>
+    </div>
+    <div class="container" id="contentEBook">
+    </div>
+</section>
+<section class="pb-5">
+    <div class="container">
+        <div class="row gx-5 mb-5">
+            <div class="col-lg-4 z-1 pt-5">
+                <div class="card text-decoration-none h-100">
+                    <div class="card-body ">
+                        <div class="d-flex align-items-center">
+                            <div class=""><img src="@Url.Content("~/Content/assets/img/envio-gratis-icon.svg")" alt="Envio gratis a nivel nacional en Perú" /></div>
+                            <div class="ms-4">
+                                <h3 class="limedica-info-titulo">Envío gratis</h3>
+                                <p class="card-text limedica-info-mensaje">¡A todo nivel nacional!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4  z-1 pt-5">
+                <div class="card text-decoration-none h-100">
+                    <div class="card-body ">
+                        <div class="d-flex align-items-center">
+                            <div class=""><img src="@Url.Content("~/Content/assets/img/alta-calidad-icon.svg")" alt="Alta calidad" /></div>
+                            <div class="ms-4">
+                                <h3 class="limedica-info-titulo">Alta Calidad</h3>
+                                <p class="card-text limedica-info-mensaje">
+                                    Librería de la mejor calidad.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 z-1 pt-5">
+                <div class="card text-decoration-none h-100">
+                    <div class="card-body ">
+                        <div class="d-flex align-items-center">
+                            <div class=""><img src="@Url.Content("~/Content/assets/img/soporte-icon.svg")" alt="Soporte" /></div>
+                            <div class="ms-4">
+                                <h3 class="limedica-info-titulo">Soporte 24/7</h3>
+                                <p class="card-text limedica-info-mensaje">
+                                    Llámanos al 471 5606 ó
+                                    999774449
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

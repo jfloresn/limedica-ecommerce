@@ -1,0 +1,7 @@
+﻿@model  QueryContracts.Xmarket.Book.Result.BookListarResult
+
+
+
+@Html.Partial("_libros_list", Model.Hit)
+
+<input type="hidden" id="hidenTotal" value="@Model.cantidadRegistro" />

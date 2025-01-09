@@ -1,0 +1,19 @@
+﻿@model  IEnumerable<Web.Xmarket.Models.Home.ProductoSlide>
+
+@if (Model.Any())
+{
+        <div class="slider-content-titulo">
+            <h2 class="mb-4 home-titulo">EBook</h2>
+            <div class="slider-direccion">
+                <div class="slider-atras" onclick="avanzaSlideEBook(-1)"><img src="@Url.Content("~/Content/assets/img/iconos/back-product-slide.svg")" alt="Ir atras en slide"></div>
+                <div class="slider-adelante" onclick="avanzaSlideEBook(+1)"><img src="@Url.Content("~/Content/assets/img/iconos/next-product-slide.svg")" alt="Ir adelante en slide"></div>
+            </div>
+        </div>
+        <div class="slide-contenedor">
+            @Html.Partial("_libro_ebook_slide", Model)
+        </div>
+        <div class="display-4 text-center mb-3 mt-5">
+            <a class="btn-limedica btn-limedica-secondary "
+               href="@Url.RouteUrl("TiendaEBook")">Ver más</a>
+        </div>
+}

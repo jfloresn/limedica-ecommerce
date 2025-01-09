@@ -1,0 +1,97 @@
+﻿@model Web.Xmarket.Models.Cuenta.CuentaModel
+
+<div class="card z-1">
+    <div class="card-body ">
+        <div class="">
+            @if (Model.tipoCuenta == Utilitario.Common.ConstanteGeneral.CUENTA_VISTA.MI_CUENTA)
+            {
+
+
+                <div class="my-4 text-limedica-cuenta-link">
+
+                    Dashboard
+                </div>
+            }
+            else
+            {
+                <div class="my-4 text-limedica-cuenta-link">
+                    <a href="@Url.Content("~/cuenta/micuenta")">Dashboard</a>
+
+                </div>
+            }
+
+            @if (Model.tipoCuenta == Utilitario.Common.ConstanteGeneral.CUENTA_VISTA.ORDENES)
+            {
+                <div class="my-4 text-limedica-cuenta-link">
+
+                    Órdenes
+
+
+                </div>
+            }
+            else
+            {
+                <div class="my-4">
+
+                    <a href="@Url.Content("~/cuenta/ordenes")">Órdenes</a>
+
+
+                </div>
+            }
+
+            @if (Model.tipoCuenta == Utilitario.Common.ConstanteGeneral.CUENTA_VISTA.DIRECCIONES)
+            {
+                <div class="my-4 text-limedica-cuenta-link">
+
+                    Direcciones
+
+
+                </div>
+            }
+            else
+            {
+                <div class="my-4">
+
+                    <a href="@Url.Content("~/cuenta/direcciones")">Direcciones</a>
+
+
+                </div>
+
+            }
+
+
+            @if (Model.tipoCuenta == Utilitario.Common.ConstanteGeneral.CUENTA_VISTA.DETALLE_CUENTA)
+            {
+
+                <div class="my-4 text-limedica-cuenta-link">
+
+
+                    Detalles de la Cuenta
+
+                </div>
+            }
+            else
+            {
+
+                <div class="my-4">
+
+
+                    <a href="@Url.Content("~/cuenta/detallecuenta")">Detalles de la Cuenta</a>
+
+                </div>
+
+            }
+
+
+
+
+
+
+            <div class="row text-center"><a class="btn-limedica btn-limedica-primary mt-4" href="@Url.Action("SignOut")">Cerrar sesión</a></div>
+
+
+
+
+        </div>
+    </div>
+</div>

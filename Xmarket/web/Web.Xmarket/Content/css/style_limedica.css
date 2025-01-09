@@ -1,0 +1,2049 @@
+﻿:root {
+    --bs-primary: #E9711C;
+    --bs-secondary: #0090B2;
+    --bs-primary-rgba: 233,113, 28, 0.7;
+    --bs-secondary-rgba: 1,132, 163, 1;
+}
+
+.nav-top {
+    height: 35px;
+    font-family: Jost-Regular;
+    font-size: 15px;
+    color: #53565A;
+    letter-spacing: 0;
+    background-color: #F5F5F5;
+}
+
+.nav-top-content {
+    display: flex;
+    justify-content: space-between;
+    height: 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.limedica-detallecuenta-cambiarclave {
+    border: 1px solid #DCDCDC;
+    border-radius: 8px;
+    border-radius: 8px;
+}
+
+.nav-top-item > ul {
+    list-style: none;
+    display: inline;
+}
+
+    .nav-top-item > ul > li {
+        display: inline;
+    }
+
+        .nav-top-item > ul > li > a, .nav-top-micuenta {
+            font-family: Jost-Regular;
+            font-size: 15px;
+            color: #53565A;
+            letter-spacing: 0;
+        }
+
+            .nav-top-micuenta:hover {
+                text-decoration: underline;
+                color: #53565A;
+            }
+
+.nav-top-item-centro {
+    font-family: Jost-Medium;
+    font-size: 15px;
+    color: #53565A;
+    letter-spacing: 1.5px;
+    text-align: center;
+}
+
+.nav-top-item-span {
+    font-family: Jost-Medium !important;
+    font-size: 15px !important;
+    color: #53565A !important;
+    letter-spacing: 0 !important;
+}
+
+@media only screen and (max-width : 900px) {
+    .nav-top-item-hiden {
+        display: none
+    }
+}
+
+.top {
+    width: 33.33%;
+    background-color: red;
+    border-color: red;
+    border: solid 1px red;
+    border-radius: 2px 0px 0px 2px;
+}
+
+.middle {
+    width: 33.33%;
+    background-color: white
+}
+
+.bottom {
+    width: 33.33%;
+    background-color: red;
+    border: solid 1px red;
+    border-radius: 0px 2px 2px 0px;
+}
+
+.limedica-producto-cantidad-top {
+    width: 33.33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 1px red;
+    border-radius: 10px 0px 0px 10px;
+    background: #FFFFFF;
+    border: 1px solid #C2C2C2;
+    font-family: Jost-Medium;
+    font-size: 25px;
+    color: #53565A;
+    text-align: center;
+    top: 50%;
+    bottom: 50%;
+}
+
+.text-limedica-cuenta-link {
+    font-family: Jost-Medium;
+    font-size: 18px;
+    color: #000000;
+    letter-spacing: 0;
+    line-height: 26px;
+}
+
+.limedica-producto-cantidad-middle {
+    width: 33.33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #FFFFFF;
+    border: 1px solid #C2C2C2;
+    font-family: Jost-Medium;
+    font-size: 18px;
+    color: #53565A;
+    text-align: center;
+    top: 50%;
+    bottom: 50%;
+}
+
+.limedica-producto-cantidad-bottom {
+    width: 33.33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0px 10px 10px 0px;
+    background: #DDDDDD;
+    border: 1px solid #C2C2C2;
+    font-family: Jost-Medium;
+    font-size: 25px;
+    color: #53565A;
+    text-align: center;
+    top: 50%;
+    bottom: 50%;
+}
+
+.content-envio-gratis {
+    display: flex;
+    justify-content: space-between;
+    height: 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content-bandera-peru {
+    margin-left: 3px;
+    width: 20px;
+    height: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.limedica-producto-comprar {
+    display: flex;
+}
+
+.limedica-producto-cantidad {
+    width: 179px;
+    height: 61px;
+    display: flex;
+    font-weight: bold;
+}
+
+.nav-boton-buscar {
+    background: #F5F5F5;
+    border-radius: 27.5px;
+    border-radius: 27.5px;
+}
+
+.main-layout {
+    padding-top: 117px;
+}
+
+@media only screen and (max-width : 900px) {
+    .nav-boton-buscar {
+        background: #F5F5F5;
+        border-radius: 27.5px;
+        border-radius: 27.5px;
+        margin-right: 0px;
+    }
+
+    .lm-mov-navbar-search {
+        margin-right: 1.5rem !important;
+        margin-left: 0.5rem !important;
+    }
+
+    .main-layout {
+        padding-top: 139px;
+    }
+}
+
+.input-buscar {
+    border-style: none;
+    font-family: Jost-Medium;
+    font-size: 16px;
+    background: #F5F5F5;
+    color: #53565A;
+    height: 100%;
+    padding: 2px;
+    width: 100%;
+    border: none;
+    outline: #ccc;
+}
+
+.limedica-nav-carrito-contador {
+    position: absolute;
+    color: var(--bs-primary);
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.menu-item-coleccion-content {
+    border: none;
+}
+
+.menu-item-coleccion-header {
+    background-color: var(--bs-primary);
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 6 6px 0 0;
+    border-radius: 6px 6px 0px 0px;
+    margin-bottom: 0px !important;
+    font-family: Lora-Bold;
+    font-size: 18px;
+    color: #F5F4ED;
+    letter-spacing: 0;
+    text-align: center;
+}
+
+.menu-item-coleccion-body {
+    background-image: linear-gradient(0deg, #DADADA 0%, #EEEEEE 100%);
+    border-radius: 0 0 6px 6px;
+    border-radius: 0px 0px 6px 6px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.home-titulo {
+    font-family: Lora-SemiBold;
+    font-size: 27px;
+    color: var(--bs-primary);
+    letter-spacing: 0;
+    line-height: 40px;
+}
+
+.limedica-content-intermedio {
+    background: #F5F5F5;
+}
+
+.limedica-editorial-label {
+    font-size: 8px !important;
+    text-align: center;
+    font-weight: 600;
+}
+
+.limedica-editorial-home-item {
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #F5F5F5;
+    border-radius: 0.6rem;
+}
+
+    .limedica-editorial-home-item > p {
+        color: #F5F5F5;
+    }
+
+    .limedica-editorial-home-item:hover {
+        background-color: white;
+    }
+
+        .limedica-editorial-home-item:hover > p {
+            color: var(--bs-primary);
+        }
+
+.limedica-catalogo-virtual-text-1 {
+    font-family: Jost-Regular;
+    font-size: 30px;
+    color: #FFFFFF;
+    letter-spacing: 2px;
+    text-align: center;
+    line-height: 32px;
+}
+
+.limedica-catalogo-virtual-text-2 {
+    font-family: Lora-Bold;
+    font-size: 60px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    text-align: center;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.10);
+}
+
+.limedica-home-editorial-title-activo {
+    font-family: Jost-Medium;
+    font-size: 18px;
+    color: #53565A;
+    letter-spacing: 0;
+}
+
+.limedica-home-editorial-title-inactivo {
+    font-family: Jost-Medium;
+    font-size: 18px;
+    color: #717171;
+    letter-spacing: 0;
+}
+
+.limedica-producto-title-activo {
+    font-family: Jost-Medium;
+    font-size: 18px;
+    color: var(--bs-body-color) !important;
+    letter-spacing: 0;
+}
+
+.limedica-producto-title-inactivo {
+    font-family: Jost-Medium;
+    font-size: 18px;
+    color: #252525 !important;
+    letter-spacing: 0;
+}
+
+.tab-activo {
+    background: #E9711C;
+    border-radius: 2.5px;
+    border-radius: 2.5px;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    opacity: 1 !important;
+    padding: 0.15rem 1.125rem;
+}
+
+.Card-Limedica {
+    display: block;
+    flex-direction: column;
+}
+
+    .Card-Limedica > img, .Card-Limedica > div > div > div > img {
+        box-shadow: 0 0.15rem 1.75rem 0 rgba(33, 40, 50, 0.15);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid rgba(33, 40, 50, 0.125);
+        border-radius: 0.35rem;
+    }
+
+.lift-limedica {
+    transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+    .lift-limedica:hover {
+        transform: translateY(-0.3333333333rem);
+    }
+
+    .lift-limedica:active {
+        transform: none;
+    }
+
+.lift-limedica-sm {
+}
+
+    .lift-limedica-sm:hover {
+        transform: translateY(-0.1666666667rem);
+    }
+
+    .lift-limedica-sm:active {
+        transform: none;
+    }
+
+.Card-Limedica.lift-limedica {
+    text-decoration: none;
+    color: inherit;
+}
+
+.limedica-home-libro-idioma {
+    font-family: Jost-Regular;
+}
+
+.limedica-home-libro-titulo {
+    font-family: Lora-Bold;
+    font-size: 16px;
+    color: #006282;
+    letter-spacing: 0;
+    line-height: 22px;
+}
+
+.limedica-home-libro-edicion {
+    font-family: Jost-Medium;
+    color: #53565A;
+    letter-spacing: 0;
+    line-height: 20px;
+}
+
+.limedica-home-libro-precioant {
+    font-family: Lora-Bold;
+    font-size: 17px;
+    color: #959599;
+    letter-spacing: 0;
+}
+
+.limedica-home-libro-precio {
+    font-family: Lora-Bold;
+    font-size: 17px;
+    color: #E9711C;
+    letter-spacing: 0;
+}
+
+.limedica-card-home-tabs {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none !important;
+}
+
+    .limedica-card-home-tabs:hover > .tab-inactivo {
+        background: #E9711C;
+        border-radius: 2.5px;
+        border-radius: 2.5px;
+        text-align: center;
+        vertical-align: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        opacity: 1 !important;
+        padding: 0.15rem 1.125rem;
+    }
+
+.limedica-card-home-tabs-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.limedica-card-home-body-ebook {
+    height: 100%;
+}
+
+.limedica-card-home-body-ebook-content {
+}
+
+.tab-inactivo {
+    border-radius: 2.5px;
+    border-radius: 2.5px;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    opacity: 1 !important;
+    padding: 0.15rem 1.125rem;
+    background: #F5F5F5;
+}
+
+.limedica-card-body-ebook {
+    background: #E6E7E7;
+    border-radius: 6px;
+    border-radius: 6px;
+    padding-top: 18px !important;
+    padding-bottom: 0px !important;
+    padding-left: 8px;
+    padding-right: 2px;
+    height: 175px;
+}
+
+.limedica-home-libro-ebook-acceso {
+    border: 2px solid #0090B2;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 22.5px;
+    border-radius: 22.5px;
+    text-decoration: none !important;
+    color: var(--bs-secondary);
+    font-family: Jost-Medium;
+    font-size: 16px;
+    color: #0090B2;
+    letter-spacing: 0;
+    text-align: center;
+    cursor: pointer;
+}
+
+    .limedica-home-libro-ebook-acceso:hover {
+        text-decoration: underline !important;
+        color: #0090B2;
+    }
+
+.limedica-card-img-ebook {
+    position: absolute !important;
+    max-width: 130px;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(33, 40, 50, 0.15);
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(33, 40, 50, 0.125);
+    border-radius: 0.35rem;
+    margin-top: 16px;
+}
+
+.limedica-home-ebook-libro-idioma {
+    font-family: Jost-Regular;
+    font-size: 15px;
+    color: #53565A;
+    letter-spacing: 0;
+}
+
+.limedica-home-ebook-libro-titulo {
+    font-family: Lora-Bold;
+    font-size: 17px;
+    color: #E9711C;
+    letter-spacing: 0;
+    line-height: 22px;
+}
+
+.limedica-home-ebook-libro-edicion {
+    font-family: Jost-Medium;
+    font-size: 15px;
+    color: #53565A;
+    letter-spacing: 0;
+    line-height: 20px;
+}
+
+.limedica-info-titulo {
+    font-family: Lora-SemiBold;
+    font-size: 22px;
+    color: #1E1E1F;
+    line-height: 20px;
+}
+
+.limedica-info-mensaje {
+    font-family: Jost-Regular;
+    color: #53565A;
+    line-height: 20px;
+}
+
+.btn-limedica {
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1;
+    color: #69707a;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.8rem 3rem;
+    font-size: 0.875rem;
+    border-radius: 30px;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.limedica-footer-termino-condi-empesa {
+    font-family: Jost-Regular;
+    font-size: 15px;
+    color: #53565A;
+    letter-spacing: 0;
+}
+
+.limedica-footer-contacto {
+    font-family: Jost-Regular;
+    font-size: 16px;
+    color: #53565A;
+    letter-spacing: 0;
+    line-height: 21px;
+}
+
+.limedica-footer-enviar_input {
+    font-family: Jost-Medium;
+    font-size: 16px;
+    color: #959599;
+    letter-spacing: 0;
+    line-height: 21px;
+}
+
+.btn-footer-suscripcion-enviar {
+    background-color: var(--bs-secondary);
+    border: 1px solid transparent;
+    padding: 0.5rem 2rem;
+    border-radius: 30px;
+    color: white !important;
+    cursor: pointer
+}
+
+    .btn-footer-suscripcion-enviar:hover {
+        background-color: rgba(var(--bs-secondary-rgba));
+        text-decoration: underline;
+    }
+
+.limedica-footer-contacto-link {
+    font-family: Lora-SemiBold;
+    font-size: 18px;
+    color: #53565A;
+    letter-spacing: 0;
+}
+
+    .limedica-footer-contacto-link:hover {
+        color: var(--bs-primary);
+    }
+
+.slide-contenedor-default {
+    max-width: 100%;
+    max-height: 100vh;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.slide-contenedor-banner {
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: 83vh;
+}
+
+.slide-contenedor {
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+}
+
+.miSlider {
+    display: block;
+    background-size: cover;
+}
+
+    .miSlider img {
+        width: 100vw; /* max-height: 87vh; */
+        height: 100vh;
+        object-fit: fill;
+        vertical-align: top;
+        transition: 2s;
+    }
+
+.direcciones {
+    width: 100%;
+    position: absolute;
+    top: 60%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 0px;
+}
+
+    .direcciones div {
+        color: #fff;
+        display: inline-block;
+        padding: 5px;
+        text-decoration: none;
+        border: solid 3px;
+        border-radius: 100%;
+        background: var(--bs-primary);
+        cursor: pointer
+    }
+
+    .direcciones img {
+        fill: #fff;
+    }
+
+    .direcciones a:hover {
+        background: rgba(0, 0, 0, .5);
+        transition: .5s;
+    }
+
+.barras {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.barra {
+    cursor: pointer;
+    height: 5px;
+    width: 20px;
+    margin: 0 2px;
+    background: #dcdde1;
+    display: inline-block;
+    margin-left: 3px;
+}
+
+.limedica-active {
+    background-color: #e74c3c;
+}
+
+.fade-slider {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {
+        opacity: .4;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.slider-body {
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    padding-right: 50%;
+    padding-left: 20%;
+}
+
+.slider-video {
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    padding-top: 0 !important;
+}
+
+.contacto-body {
+    display: flex;
+}
+
+.producto-body {
+    margin-top: 2%;
+    display: flex;
+}
+
+.contacto-item {
+    flex: 1 1 auto;
+}
+
+.producto-item {
+    flex: 1 1 auto;
+}
+
+.limedica-producto-galeria {
+    display: flex
+}
+
+.limedica-producto-galeria-item {
+    flex: 1 1 auto;
+}
+
+.limedica-producto-titulo {
+    font-family: Lora-Bold;
+    font-size: 35px;
+    color: #006282;
+    letter-spacing: 0;
+    line-height: 35px;
+}
+
+.limedica-producto-sub-titulo {
+    font-family: Lora-Bold;
+    font-size: 2rem;
+    color: #84898b;
+    letter-spacing: 0;
+    line-height: 35px;
+}
+
+.limedica-path {
+    font-family: Jost-Regular;
+    font-size: 16px;
+    color: #53565A;
+    letter-spacing: 0;
+    line-height: 16px;
+}
+
+.contacto-content {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding-left: 15%;
+    padding-top: 2%;
+    padding-right: 2%;
+}
+
+.contacto-producto {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1%;
+}
+
+.contacto-content-formulario {
+    border-bottom: solid 2px #E9711C;
+    z-index: 50;
+    background-color: white;
+    position: relative;
+}
+
+    .contacto-content-formulario h2 {
+        font-family: Lora-Bold;
+        font-size: 30px;
+        color: #1E1E1F;
+        letter-spacing: 0;
+        line-height: 30px;
+    }
+
+    .contacto-content-formulario label {
+        font-family: Jost-SemiBold;
+        font-size: 16px;
+        color: #53565A;
+        letter-spacing: 0;
+    }
+
+    .contacto-content-formulario input, .contacto-content-formulario textarea {
+        background: #FFFFFF;
+        border: 2px solid #1E1E1F;
+        border-radius: 2px;
+        border-radius: 2px;
+    }
+
+    .contacto-content-formulario select {
+        background: #FFFFFF;
+        border: 2px solid #1E1E1F;
+        border-radius: 2px;
+        border-radius: 2px;
+        background-image: url(../assets/img/iconos/dowarrow.svg); /*aqu? deber?s escribir la ruta de la imagen que utilizar?s como flecha del desplegable*/
+        background-repeat: no-repeat;
+        background-position: right center;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -o-appearance: none;
+        appearance: none;
+    }
+
+.slider-body-autor {
+    font-family: Jost-Regular;
+    font-size: 21px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+}
+
+.slider-body-titulo {
+    font-family: Lora-SemiBold;
+    font-size: 36px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+}
+
+.slider-body-descripcion {
+    font-family: Jost-Regular;
+    font-size: 21px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    line-height: 32px;
+}
+
+.atras {
+    margin-left: 8%;
+}
+
+.adelante {
+    margin-right: 8%;
+}
+
+.btn-slider {
+    font-family: Jost-SemiBold;
+    font-size: 18px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    text-align: center;
+}
+
+.slider-content {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding-left: 14%;
+    padding-top: 2%;
+    padding-right: 35%;
+}
+
+.slider-content-titulo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.slider-default-titulo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3%;
+    font-family: Lora-Bold;
+    font-size: 70px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    text-align: center;
+}
+
+.slider-direccion {
+}
+
+    .slider-direccion a {
+    }
+
+.slider-atras {
+    display: inline-block;
+    text-decoration: none;
+    border-radius: 100%;
+    cursor: pointer
+}
+
+.slider-adelante {
+    display: inline-block;
+    text-decoration: none;
+    background-color: var(--bs-secondary);
+    border-radius: 100%;
+    cursor: pointer
+}
+
+.slider-default {
+    height: 41vh !important
+}
+
+.header-contacto {
+    height: 78vh !important;
+}
+
+.header-producto {
+}
+
+.header-cuenta {
+}
+
+.limedica-cuenta {
+    display: flex;
+    flex-direction: column;
+    padding-top: 2%;
+}
+
+.limedica-cuenta-body {
+    display: flex;
+    justify-content: center
+}
+
+.limedica-micuenta-body {
+}
+
+.limedica-micuenta-content {
+}
+
+.limedica-micuenta-item {
+}
+
+.limedica-micuenta-direcciones-admindirec {
+    font-family: Lora-Bold;
+    font-size: 40px;
+    color: #1E1E1F;
+    letter-spacing: 0;
+}
+
+.limedica-micuenta-direcciones {
+    font-family: Lora-Bold;
+    font-size: 30px;
+    color: #1E1E1F;
+    letter-spacing: 0;
+}
+
+.limedica-micuenta-body h1 {
+    font-family: Lora-Bold;
+    font-size: 50px;
+    color: #1E1E1F;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 32px;
+}
+
+.limedica-cuenta-form-label {
+    font-family: Jost-SemiBold;
+    font-size: 16px;
+    color: #53565A;
+    letter-spacing: 0;
+    line-height: 19px;
+}
+
+.limedica-cuenta-form-olvido-contrasenia {
+    font-family: Jost-Medium;
+    font-size: 15px;
+    color: #959599;
+    letter-spacing: 0;
+    text-align: right;
+    line-height: 19px;
+}
+
+.limedica-cuenta-body h1 {
+    font-family: Lora-Bold;
+    font-size: 50px;
+    color: #1E1E1F;
+    font-weight: bold;
+    letter-spacing: 0;
+    text-align: center;
+    line-height: 32px;
+}
+
+.limedica-cuenta-form-crear-cuenta {
+    font-family: Jost-SemiBold;
+    font-size: 18px;
+    color: var(--bs-secondary);
+    letter-spacing: 0;
+    text-align: center;
+    line-height: 19px;
+}
+
+.limedica-cuenta-contrasenia-label {
+    display: flex;
+    justify-content: space-between
+}
+
+.limedica-cuenta-form {
+    width: 400px;
+}
+
+.slider-body-path {
+    font-family: Jost-Regular;
+    font-size: 16px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    line-height: 16px;
+}
+
+.slider-body-path-checkout {
+    font-family: Jost-Regular;
+    font-size: 16px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    line-height: 16px;
+    display: flex;
+    justify-content: flex-start
+}
+
+    .slider-body-path-checkout .activo-path-checkout {
+        font-weight: bold
+    }
+
+    .slider-body-path-checkout .no-activo-path-checkout {
+        font-family: Jost-Medium;
+        font-size: 16px;
+        color: #1E1E1F;
+        letter-spacing: 0;
+        line-height: 19px;
+    }
+
+.limedica-checkout-linea {
+    width: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.limedica-checkout-linea-item {
+    height: 1px;
+    padding: 0;
+    background-color: #4A4A4A;
+    width: 20px;
+    direction: inherit;
+}
+
+.direcciones-default {
+    width: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .direcciones-default a {
+        margin-top: -19%;
+        top: 0;
+    }
+
+.slider-body-default {
+    padding-left: 15%;
+    padding-top: 2%;
+    padding-right: 10%;
+    height: auto;
+}
+
+.limedica-titulo {
+    font-family: Lora-Bold;
+    font-size: 35px;
+    color: #0090B2;
+    letter-spacing: 0;
+    line-height: 35px;
+}
+
+.limedica-detalle {
+    font-family: Jost-Regular;
+    font-size: 21px;
+    color: #53565A;
+    letter-spacing: 0;
+    line-height: 31px;
+}
+
+.limedica-titulo-contacto {
+    font-family: Lora-Bold;
+    font-size: 56px;
+    color: #1E1E1F;
+    letter-spacing: 0;
+}
+
+.contacto-titulo {
+    font-family: Lora-Bold;
+    font-size: 72px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    line-height: 75px;
+}
+
+.contacto-descripcion {
+    font-family: Jost-Regular;
+    font-size: 21px;
+    color: #F5F4EE;
+    letter-spacing: 0;
+    line-height: 33px;
+}
+
+.contacto-descripcion-2 {
+    font-family: Jost-SemiBold;
+    font-size: 18px;
+    color: #ffd0d0;
+    line-height: 32.5px;
+}
+
+.limedica-contacto-subtitulo {
+    font-family: Lora-SemiBold;
+    font-size: 28px;
+    color: #1E1E1F;
+}
+
+.limedica-contacto-descripcion {
+    font-family: Jost-Regular;
+    font-size: 18px;
+    color: #53565A;
+    line-height: 32.5px;
+}
+
+.limedica-idioma {
+    font-family: Jost-Regular;
+    letter-spacing: 0;
+}
+
+.limedica-autor-edicion-editorial {
+    font-family: Jost-Medium;
+    font-size: 16px;
+    color: #53565A;
+    letter-spacing: 0;
+}
+
+.limedica-descripcion {
+    font-family: Jost-Regular;
+    color: #53565A;
+    letter-spacing: 0;
+    line-height: 23px;
+}
+
+.text-limedica-descripcion {
+    color: #53565A;
+}
+
+.text-limedica-preguntas {
+    font-family: Jost-Medium;
+    font-size: 18px;
+    color: #1E1E1F;
+    letter-spacing: 0;
+}
+
+.limedica-producto-compartir {
+    font-family: Jost-Regular;
+    color: #53565A;
+    letter-spacing: 0;
+    line-height: 23px;
+}
+
+.limedica-producto-formato {
+    font-family: Jost-Medium;
+    font-size: 16px;
+    color: #53565A;
+    letter-spacing: 0;
+}
+
+.limedica-producto-precio {
+    font-family: Lora-Medium;
+    font-size: 27px;
+    color: #E9711C;
+    letter-spacing: 0;
+    line-height: 45px;
+}
+
+.limedica-producto-content-mensaje {
+}
+
+.limedica-producto-mensaje-carrito-agreado {
+    color: forestgreen;
+    font-size: 15px;
+}
+
+.limedicaDivProductoMensaje {
+    display: flex
+}
+
+.ec-stars-wrapper {
+    font-size: 0;
+    display: inline-block;
+}
+
+    .ec-stars-wrapper a {
+        text-decoration: none;
+        display: inline-block;
+        font-size: 32px;
+        font-size: 2rem;
+        color: var(--bs-primary);
+    }
+
+.limedica-producto-formato-libro {
+    display: flex;
+}
+
+.limedica-producto-formato-libro-item {
+    font-family: Jost-Regular;
+    font-size: 16px;
+    color: #53565A;
+    letter-spacing: 0;
+    background-color: white;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.limedica-fisico {
+    background: #FFFFFF;
+    box-shadow: 1px 1px 3px 0 rgba(0,0,0,0.10);
+    border-radius: 6px;
+}
+
+.limedica-virtual {
+    background: #FFFFFF;
+    border-radius: 6px;
+    box-shadow: 1px 1px 3px 0 rgba(0,0,0,0.10);
+}
+
+.limedica-hibrido {
+    background: #FFFFFF;
+    border-radius: 6px;
+    box-shadow: 1px 1px 3px 0 rgba(0,0,0,0.10);
+}
+
+.limedica-producto-seleccionado {
+    border: 2px solid #0090B2;
+}
+
+.limedica-producto-resenia {
+    font-family: HelveticaNeue;
+    letter-spacing: 0;
+    line-height: 22px;
+}
+
+.limedica-producto-imagen > img {
+    box-shadow: 1px 1px 3px 0 rgba(0,0,0,0.10);
+}
+
+.limedica-producto-galeria-item > img {
+    box-shadow: 1px 1px 3px 0 rgba(0,0,0,0.10);
+}
+
+.limedica-tienda-item {
+    flex: auto
+}
+
+.limedica-tienda-total {
+}
+
+.limedica-tienda-mas-filtro {
+    display: flex;
+    justify-content: center;
+}
+
+.limedica-tienda-vistas {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.limedica-filtro-content {
+    background-color: rgba(0,0,0,0.5);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.limedica-filtro-filtro {
+    background-color: white;
+    width: 25%;
+    height: 100vh;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    z-index: 1000;
+    margin-right: 13px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between
+}
+
+.limedica-filtro-titulo {
+    display: flex;
+    flex: auto;
+    justify-content: space-between; /*align-items: center;*/
+}
+
+.limedica-filtro-titulo2 {
+    font-family: Lora-SemiBold;
+    font-size: 17px;
+    color: #1E1E1F;
+    letter-spacing: 0;
+    line-height: 32px;
+}
+
+.limedica-filtro-titulo-principal {
+    font-family: Lora-Bold;
+    font-size: 24px;
+    color: #006282;
+}
+
+.limedica-tienda-filtro {
+    display: flex;
+    font-family: Jost-Regular;
+    font-size: 18px;
+    color: #53565A;
+    letter-spacing: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.limedica-filtro-opciones {
+    overflow: auto
+}
+
+.limedica-filtro-titulo-close {
+    font-family: Jost-Regular;
+    font-size: 13px;
+    color: #959599;
+    letter-spacing: 0;
+    text-align: right;
+    line-height: 27px;
+    cursor: pointer;
+}
+
+.limedica-acordion {
+}
+
+.limedica-card-footer {
+    padding: 15px !important;
+}
+
+.limedica-card-footer-libro {
+    background: #C8DDE5;
+    border-radius: 0 0 0 6px;
+    border-radius: 0px 0px 0px 6px;
+}
+
+    .limedica-card-footer-libro a {
+        font-family: Jost-SemiBold;
+        color: #006282;
+        letter-spacing: 0;
+        text-align: center;
+    }
+
+.limedica-card-footer-comprar {
+    background: #0090B2;
+    border-radius: 0 0 6px 0;
+    border-radius: 0px 0px 6px 0px;
+}
+
+    .limedica-card-footer-comprar a {
+        font-family: Jost-SemiBold;
+        color: #FFFFFF;
+        letter-spacing: 0;
+        text-align: center;
+    }
+
+.limedica-footer-action {
+    display: flex;
+}
+
+.limedica-carrito {
+    display: flex;
+    flex-direction: column;
+    padding-top: 2%;
+}
+
+    .limedica-carrito h1 {
+        font-family: Lora-Bold;
+        font-size: 50px;
+        color: #1E1E1F;
+        letter-spacing: 0;
+        line-height: 32px;
+    }
+
+.limedica-table-body {
+    background-color: white;
+    box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
+}
+
+    .limedica-table-body input {
+        background: #FFFFFF !important;
+        border: 2px solid #1E1E1F !important;
+    }
+
+.limedica-carrito-body {
+}
+
+.limedica-carrito-cupon {
+}
+
+.limedica-carrito-resumen-item {
+    display: flex;
+    justify-content: space-between
+}
+
+.limedica-carrito-resumen-label {
+    font-family: Jost-Medium;
+    font-size: 17px;
+    color: #1E1E1F;
+    font-weight: bold;
+}
+
+.limedica-carito-table thead tr td {
+    font-family: Jost-Medium;
+    font-size: 16px;
+    color: #1E1E1F;
+    letter-spacing: 0;
+    font-weight: bold
+}
+
+.limedica-carrito-resumen-valor {
+    font-family: Jost-Regular;
+    font-size: 17px;
+    color: #1E1E1F;
+    text-align: right;
+}
+
+.limedica-checkoutpago-direcciones-header {
+    display: flex;
+    justify-content: space-between
+}
+
+.limedica-checkfoutpago-direcciones-titulo {
+    font-family: Jost-SemiBold;
+    font-size: 16px;
+    color: #000000;
+    letter-spacing: 0;
+    padding: 0px;
+    margin: 0px;
+    font-weight: bold;
+}
+
+.limedica-checkfoutpago-direcciones-body {
+}
+
+.limedica-checkfoutpago-direcciones-body-item {
+    font-family: Jost-Regular;
+    font-size: 16px;
+    color: #1E1E1F;
+    letter-spacing: 0;
+}
+
+.limedica-cupon-aplica {
+    display: flex;
+    justify-content: space-between
+}
+
+.limedica-checkoutpago-metodo-pago-item {
+    display: flex;
+    align-items: center
+}
+
+.limedica-carrito-resumen-titulo {
+    font-family: Lora-Bold;
+    font-size: 24px;
+    color: #1E1E1F;
+    font-weight: bold
+}
+
+.limedica-carrito-producto-titulo {
+    font-family: Lora-Bold;
+    font-size: 17px;
+    color: #006282;
+    letter-spacing: 0;
+    line-height: 28px;
+    font-weight: bold
+}
+
+.limedica-carrito-producto-detalle {
+    font-family: Jost-Medium;
+    font-size: 15px;
+    color: #53565A;
+    letter-spacing: 0;
+    line-height: 23px;
+}
+
+.limedica-carrito-producto-stock {
+    font-family: Jost-Medium;
+    color: #E9711C;
+    letter-spacing: 0;
+}
+
+.limedica-carrito-checkout-opcion-pago {
+    font-family: Jost-Regular;
+    font-size: 16px;
+    color: #959599;
+    letter-spacing: 0;
+    line-height: 22px;
+}
+
+.limedica-checkout-titulo {
+    font-family: Lora-Bold;
+    font-size: 35px;
+    color: #1E1E1F;
+    letter-spacing: 0;
+}
+
+.linea {
+    border-top: 1px solid black;
+    height: 2px;
+    max-width: 200px;
+    padding: 0;
+    margin: 50px auto 0 auto;
+}
+
+.limedica-checkout-infocontact-detalle {
+    font-family: Jost-Regular;
+    font-size: 18px;
+    color: #000000;
+    letter-spacing: 0;
+    line-height: 19px;
+}
+
+.limedica-checkout-infoentrega-label {
+    font-family: Jost-Regular;
+    font-size: 16px;
+    color: #000000;
+    letter-spacing: 0;
+    line-height: 19px;
+    font-weight: bold
+}
+
+.limedica-checkout-infoentrega-valor {
+    font-family: Jost-Medium;
+    font-size: 16px;
+    color: #000000;
+    letter-spacing: 0;
+    line-height: 19px;
+}
+
+.chkInfoFactIgualDireccEntrega {
+    font-family: Jost-Regular;
+    font-size: 16px;
+    color: #1E1E1F;
+    letter-spacing: 0;
+    line-height: 19px;
+}
+
+.limedica-checkout-producto {
+    display: flex;
+    justify-content: flex-start
+}
+
+.limedica-checkoutpago-banco-internet {
+    display: flex;
+    justify-content: end;
+}
+
+.limedica-checkoutpago-banco-internet-item {
+    padding: 5px
+}
+
+.limedica-checkoutpago-tarjeta-fecha-caducidad {
+    font-family: Jost-Regular;
+    color: #959599;
+    letter-spacing: 0;
+    line-height: 19px;
+}
+
+.limedica-checkout-mensaje {
+    background: var(--bs-primary);
+    border-radius: 6px;
+    border-radius: 6px;
+    font-family: Jost-Medium;
+    font-size: 21px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    padding: 20px
+}
+
+.limedica-checkout-mensaje-completado {
+    border-radius: 6px;
+    border-radius: 6px;
+    font-family: Jost-Medium;
+    font-size: 21px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    padding: 20px;
+    background-color: #149b09
+}
+
+.limedica-checkout-datoentrega-item {
+    background: #FFFFFF;
+    padding: 20px;
+    border-radius: 6px;
+    border-radius: 6px;
+    position: relative
+}
+
+.limedica-activo {
+    border: 1px solid #53565A;
+}
+
+.limedica-no-activo {
+    border: none;
+}
+
+.limedica-checkout-datoentrega-item-body {
+    font-family: Jost-Regular;
+    font-size: 16px;
+    color: #1E1E1F;
+    letter-spacing: 0;
+}
+
+.limedica-checkout-datoentrega-item-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+    .limedica-checkout-datoentrega-item-footer a {
+        font-family: Jost-Regular;
+        font-size: 16px;
+        color: #1E1E1F;
+        letter-spacing: 0;
+    }
+
+.limedica-checkout-datoentrega-item-titulo {
+    font-family: Jost-SemiBold;
+    font-size: 16px;
+    color: #1E1E1F;
+    letter-spacing: 0;
+    font-weight: bold;
+}
+
+.limedica-checkout-datoentrega-item-nuevo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between
+}
+
+.limedica-checkout-datoentrega-habilitado {
+    position: absolute;
+    right: -5px;
+    top: -3%;
+}
+
+.limedica-checkout-dataentrega-nuevo {
+    font-family: Jost-Regular;
+    color: #1E1E1F;
+    letter-spacing: 0;
+}
+
+.limedica-checkout-mensaje-detalle {
+    font-family: Jost-Regular;
+    font-size: 16px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+}
+
+.limedica-checkout-mensaje-titulo {
+    font-family: Jost-Medium;
+    font-size: 21px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+}
+
+.limedica-pregunta-frecuente-linea {
+    margin-left: 21px;
+    margin-right: 16px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    background-color: black;
+    border-color: black
+}
+
+.limedica-pregunta-frecuente-activo {
+    background: #FFFFFF;
+    border-radius: 10px 10px 10px 10px !important;
+}
+
+.limedica-pregunta-frecuente-noactivo {
+    background: #E6E7E7;
+    border-radius: 10px 10px 10px 10px !important;
+}
+
+.lds-ripple-sm {
+    display: inline-block;
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+
+.lds-ripple {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+    .lds-ripple div {
+        position: absolute;
+        border: 4px solid #0094ff;
+        opacity: 1;
+        border-radius: 50%;
+        animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+    }
+
+        .lds-ripple div:nth-child(2) {
+            animation-delay: -0.5s;
+        }
+
+@keyframes lds-ripple {
+    0% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+
+    100% {
+        top: 0px;
+        left: 0px;
+        width: 72px;
+        height: 72px;
+        opacity: 0;
+    }
+}
+
+.loader {
+    position: fixed;
+    left: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('') 50% 50% no-repeat rgb(249,249,249);
+    opacity: .8;
+}
+
+@media only screen and (max-width : 900px) {
+    .navbar-marketing {
+        transition: background-color 0.15s ease-in-out;
+        padding-top: 1px;
+        padding-bottom: 1px;
+    }
+
+    .lm-navbar-carrito-show {
+        display: block
+    }
+
+    .producto-body {
+        margin-top: 2%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .lm-mov-footer {
+        text-align: center
+    }
+
+    .lm-mov-nabvar-hide {
+        display: none !important
+    }
+
+    .limedica-filtro-filtro {
+        background-color: white;
+        width: 100%;
+        height: 100vh;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        z-index: 1000;
+        margin-right: 13px !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .slide-contenedor-banner {
+        max-width: 100%;
+        max-height: 100%;
+        width: 100%;
+        height: 77vh;
+    }
+
+    .direcciones {
+        width: 100%;
+        position: absolute;
+        top: 61%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 0px;
+    }
+}
+
+@media only screen and (min-width : 900px) {
+    .lm-navbar-carrito-show {
+        display: none
+    }
+
+    .lm-mov-navbar-content-search {
+        display: none;
+    }
+}
+
+.lm-navbar-carrito {
+    display: flex;
+    justify-content: center
+}
+
+.lm-all-input-error {
+    border: solid 1px red;
+}
+
+img.btn-whatsapp {
+    display: block !important;
+    position: fixed;
+    z-index: 9999999;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+    border-radius: 100px !important;
+}
+
+    img.btn-whatsapp:hover {
+        border-radius: 100px !important;
+        -webkit-box-shadow: 0px 0px 15px 0px rgba(7,94,84,1);
+        -moz-box-shadow: 0px 0px 15px 0px rgba(7,94,84,1);
+        box-shadow: 0px 0px 15px 0px rgba(7,94,84,1);
+        transition-duration: 1s;
+    }
+
+@media only screen and (max-width : 900px) {
+    .header-contacto {
+        height: auto !important
+    }
+
+    .contacto-content {
+        height: auto !important;
+        flex-direction: column;
+        padding-left: 15%;
+        padding-top: 2%;
+        padding-right: 2%;
+    }
+
+    .contacto-body {
+        display: block;
+    }
+
+    img.btn-whatsapp {
+        display: block !important;
+        position: fixed;
+        z-index: 9999999;
+        bottom: 38px;
+        right: 22px;
+        cursor: pointer;
+        border-radius: 100px !important;
+    }
+}
+
+
+/*
+    Ini Limedica Notificacion
+*/
+.notification-container {
+    position: relative;
+    margin-right: 20px;
+}
+
+.notification-icon {
+    position: relative;
+    background-color: orange;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
+    .notification-icon:hover {
+        background-color: darkorange;
+    }
+
+    .notification-icon::before {
+        content: '\1F514'; /* Emoji de campana */
+        font-size: 24px;
+        color: white;
+    }
+
+.notification-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.notification-details {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 392px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+    z-index: 10;
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+}
+
+.notification-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+    .notification-item img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 15px;
+    }
+
+.notification-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+    .notification-text h4 {
+        margin: 0;
+        font-size: 16px;
+        color: #333;
+    }
+
+    .notification-text p {
+        margin: 5px 0 0 0;
+        font-size: 14px;
+        color: #666;
+    }
+
+.notification-link {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+    .notification-link:hover {
+        color: #0056b3;
+    }
+
+.notification-item.unread {
+    background-color: #f9f9f9;
+    border-left: 4px solid orange;
+}
+
+.notification-item.read {
+    background-color: #ffffff;
+}
+
+/*
+    Fin Limedica Notificacion
+*/

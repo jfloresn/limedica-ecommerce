@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/QueryContracts.Common.Seguridad.Parameters" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/QueryContracts.Common.Seguridad.Parameters" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd15" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Common" />
+  <xs:complexType name="ListarMenusxRolesAdminParameter">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/QueryContracts.Common" base="q1:QueryParameter">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="rol_int_id" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="sis_str_siglas" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ListarMenusxRolesAdminParameter" nillable="true" type="tns:ListarMenusxRolesAdminParameter" />
+  <xs:complexType name="ListarMenusxRolesParameter">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/QueryContracts.Common" base="q2:QueryParameter">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="rol_int_id" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="sis_str_siglas" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ListarMenusxRolesParameter" nillable="true" type="tns:ListarMenusxRolesParameter" />
+  <xs:complexType name="VerificarOpcionesParameter">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/QueryContracts.Common" base="q3:QueryParameter">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CodigoOpcion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CodigoRol" nillable="true" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="VerificarOpcionesParameter" nillable="true" type="tns:VerificarOpcionesParameter" />
+</xs:schema>

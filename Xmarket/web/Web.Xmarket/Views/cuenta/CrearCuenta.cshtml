@@ -1,0 +1,138 @@
+﻿@model Web.Xmarket.Models.Cuenta.CrearCuentaModel
+@{
+
+    Layout = "~/Views/Shared/_Layoutv.cshtml";
+}
+
+@section Styles {
+
+    <link href="@Url.Content("~/Content/css/style_limedica_input.css")" rel="stylesheet">
+
+
+
+}
+
+
+<header class="bg-header">
+    <div class="container">
+        <div class="row gx-5 align-items-center ">
+
+            <div class="header-cuenta" style="">
+
+                <div class="limedica-cuenta">
+
+                    <div class="slider-body-path">
+                        <a href="~/" class="limedica-path">Home</a>
+                        <i class="fas fa-chevron-right dropdown-arrow text-path"></i>
+                        <span class="limedica-path">Crear Cuenta</span>
+
+
+
+                    </div>
+
+
+
+                    <div class="limedica-cuenta-body">
+
+
+                        <div class="limedica-cuenta-content">
+
+                            <h1> Crear Cuenta</h1>
+
+                            @using (Html.BeginForm("CrearCuenta", "Cuenta", FormMethod.Post, new { @id = "frmCrearCuenta", @Class = "limedica-cuenta-form my-5" }))
+                            {
+
+                                <div class="row gx-5 mb-4">
+                                    <div class="col-md-12">
+                                        <label class="limedica-cuenta-form-label mb-2" for="inputName">Nombres <span class="text-danger">*</span></label>
+                                        @Html.TextBoxFor(model => model.crearCuenta.Nombre, new { @class = "form-control", @type = "text", @maxlength = "20", @placeholder = "" })
+                                        @Html.ValidationMessageFor(model => model.crearCuenta.Nombre, "", new { @class = "text-danger small" })
+
+                                    </div>
+
+                                </div>
+                                <div class="row gx-5 mb-4">
+                                    <div class="col-md-6">
+                                        <label class="limedica-cuenta-form-label mb-2" for="inputName">Apellido Paterno <span class="text-danger">*</span></label>
+                                        @Html.TextBoxFor(model => model.crearCuenta.ApellidoPaterno, new { @class = "form-control", @type = "text", @maxlength = "50", @placeholder = "" })
+                                        @Html.ValidationMessageFor(model => model.crearCuenta.ApellidoPaterno, "", new { @class = "text-danger small" })
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="limedica-cuenta-form-label mb-2" for="inputName">Apellido Materno <span class="text-danger">*</span></label>
+                                        @Html.TextBoxFor(model => model.crearCuenta.ApellidoMaterno, new { @class = "form-control", @type = "text", @maxlength = "50", @placeholder = "" })
+                                        @Html.ValidationMessageFor(model => model.crearCuenta.ApellidoMaterno, "", new { @class = "text-danger small" })
+
+                                    </div>
+                                </div>
+
+                                <div class="row gx-5 mb-4">
+                                    <div class="col-md-12">
+                                        <label class="limedica-cuenta-form-label mb-2" for="inputName">Correo electrónico <span class="text-danger">*</span></label>
+
+                                        @Html.TextBoxFor(model => model.crearCuenta.Correo, new { @class = "form-control", @type = "email", @maxlength = "150", @placeholder = "" })
+                                        @Html.ValidationMessageFor(model => model.crearCuenta.Correo, "", new { @class = "text-danger small" })
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="row gx-5 mb-4">
+                                    <div class="col-md-6">
+
+                                        <label class="limedica-cuenta-form-label mb-2">Contraseña <span class="text-danger">*</span></label>
+
+                                        @Html.PasswordFor(model => model.crearCuenta.Password, new { @class = "form-control", @maxlength = "50", @placeholder = "contraseña" })
+                                        @Html.ValidationMessageFor(model => model.crearCuenta.Password, "", new { @class = "text-danger small" })
+
+
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <label class="limedica-cuenta-form-label mb-2">Confirmar Contraseña <span class="text-danger">*</span></label>
+
+                                        @Html.PasswordFor(model => model.crearCuenta.PasswordConfirmar, new { @class = "form-control", @maxlength = "50", @placeholder = "contraseña" })
+                                        @Html.ValidationMessageFor(model => model.crearCuenta.PasswordConfirmar, "", new { @class = "text-danger small" })
+
+                                    </div>
+                                </div>
+
+
+                                <div class="row gx-5 mb-2">
+                                    <div class="col-md-12">
+
+                                        <span class="text-danger small">@ViewBag.Mensaje</span>
+
+                             
+                                        
+
+                                    </div>
+                              
+                                </div>
+
+                                <div class="row text-center">
+
+                                    <button class="btn-limedica btn-limedica-primary mt-2" type="submit">Crear Cuenta</button>
+
+                                </div>
+
+
+
+                            }
+
+
+                        </div>
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</header>
+

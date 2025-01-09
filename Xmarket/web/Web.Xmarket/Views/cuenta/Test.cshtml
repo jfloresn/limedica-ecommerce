@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Gestión de Notificación";
+    Layout = "~/Views/Shared/_Layoutv.cshtml";
+}
+
+
+
+
+@section Styles{
+
+    <meta name="robots" content="noindex, nofollow">
+}
+@section scripts {
+
+}
+
+@section PageHeader {
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            @ViewBag.Title
+
+        </h1>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Content("~/DashBoard/DashBoard/")">DashBoard</a>
+            </li>
+            <li>
+                <strong>Administración</strong>
+            </li>
+            <li class="active">
+                <strong>@ViewBag.Title</strong>
+            </li>
+        </ol>
+    </section>
+}
+
+

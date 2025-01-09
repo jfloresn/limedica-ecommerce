@@ -1,0 +1,302 @@
+﻿@model Web.Xmarket.Models.Carrito.CarritoModel
+
+@{
+
+    Layout = "~/Views/Shared/_Layoutv.cshtml";
+}
+
+@section Styles {
+
+    <link href="@Url.Content("~/Content/css/style_limedica_input.css")" rel="stylesheet">
+
+}
+
+@section Scripts {
+    <script type="text/javascript">
+
+
+        function actualizarProductoCarrito() {
+            let formProducto = $('#frmCarritoActualizar')[0];
+            var dataModelo = $('#frmCarritoActualizar').serialize();
+
+
+            $.ajax({
+                url: formProducto.action,
+                type: "post",
+                dataType: "json",
+                data: dataModelo,
+                async: true,
+                beforeSend: function (data) {
+
+                    $("#loader_actualizar").show();
+                    $("#limedica_link_actualizar_Carrito").hide();
+
+                },
+                success: function (response) {
+
+                    $("#loader_actualizar").hide();
+                    $("#limedica_link_actualizar_Carrito").show();
+
+                    if (response.OperacionType.estado_operacion == "0") {
+                        location.reload();
+                    }
+                    else {
+                        alert(response.OperacionType.mensaje_operacion);
+                    }
+
+                },
+                error: function (data) {
+
+                    $("#loader_actualizar").hide();
+                    $("#limedica_link_actualizar_Carrito").show();
+
+                    alert("Ocurrio un error interno, intente nuevamente por favor. ");
+                }
+            });
+
+        }
+
+        function eliminarProductoCarrito(bookId) {
+
+
+            $("#limedica_bookid").val(bookId);
+
+            let formProducto = $('#frmCarrito')[0];
+            var dataModelo = $('#frmCarrito').serialize();
+
+
+            $.ajax({
+                url: formProducto.action,
+                type: "post",
+                dataType: "json",
+                data: dataModelo,
+                async: true,
+                beforeSend: function (data) {
+
+                    $("#loader_" + bookId).show();
+                    $("#limedica_eliminar_carrito_" + bookId).hide();
+
+                },
+                success: function (response) {
+
+                    $("#loader_" + bookId).hide();
+                    $("#limedica_eliminar_carrito_" + bookId).show();
+
+                    if (response.OperacionType.estado_operacion == "0") {
+
+                        $("#limedica_carrito_list_" + bookId).remove();
+                        location.reload();
+                    }
+                    else {
+
+                        alert(response.OperacionType.mensaje_operacion);
+                    }
+
+                },
+                error: function (data) {
+
+                    $("#loader_" + bookId).hide();
+                    $("#limedica_eliminar_carrito_" + bookId).show();
+
+
+                    alert("Ocurrio un error interno, intente nuevamente por favor. ");
+                }
+            });
+
+        }
+
+
+    </script>
+}
+
+<header class="bg-header">
+    <div class="container">
+        <div class="row gx-5 align-items-center pb-5">
+
+            <div class="header-producto" style="">
+                <div class="limedica-carrito">
+                    <div class="slider-body-path">
+                        <a href="~/" class="limedica-path">Home</a>
+                        <i class="fas fa-chevron-right dropdown-arrow text-path"></i>
+                        <span class="limedica-path">Carrito </span>
+
+                    </div>
+
+
+                    @using (Html.BeginForm("eliminarProductoCarrito", "Carrito", FormMethod.Post, new { @id = "frmCarrito" }))
+                    {
+
+                        <input type="hidden" name="bookId" id="limedica_bookid" value="">
+
+                    }
+
+                    <h1 class="mt-5"> Tu Carrito</h1>
+
+                    @if (Model.carrito != null && Model.carrito.carritoDetalle.Any())
+                    {
+                        <div class="row limedica-carrito-body">
+
+                            <div class="col-12 col-sm-8 col-xl-8 col-lg-8 limedica-carrito-item limedica-carrito-productos mt-5">
+                                @using (Html.BeginForm("actualizarCarrito", "Carrito", FormMethod.Post, new { @id = "frmCarritoActualizar" , @style="overflow:auto" }))
+                                {
+                                    <table class="table table-responsive limedica-carito-table">
+
+                                        <thead>
+                                            <tr>
+                                                <td></td>
+                                                <td>Producto</td>
+                                                <td>Precio</td>
+                                                <td>Cantidad</td>
+                                                <td>Total</td>
+                                                <td></td>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody class="limedica-table-body">
+
+                                            @{
+                                                int intCorrelativo = 0;
+                                            }
+
+                                            @foreach (var item in Model.carrito.carritoDetalle)
+                                            {
+
+                                                <tr id="limedica_carrito_list_@item.idProducto">
+                                                    <td><img src="@item.imagen" style="max-width:150px" /></td>
+                                                    <td>
+
+                                                        <div class="card-title small  mb-0 limedica-carrito-producto-titulo">
+                                                            <a href="@Url.RouteUrl("BookDetail", new { title=item.bookTitleUrl, isbn = item.bookISBN})" title="Detalle de libro">     @item.nombreProducto</a>
+                                                        </div>
+
+                                                        <div class="limedica-carrito-producto-detalle">9788491138938</div>
+                                                        <div class="limedica-carrito-producto-detalle">@item.formatoProductoNombre</div>
+
+                                                        <div class="limedica-carrito-producto-stock mt-2">&#8730;&nbsp;&nbsp;En Stock</div>
+
+
+                                                    </td>
+                                                    <td>
+                                                        <div class="row text-xs">
+
+                                                            <div class="col-6 limedica-home-libro-precio">S/. @item.pecioProducto</div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" name="productos[@intCorrelativo].bookCantidad" class="form-control" value="@item.cantidadProducto" />
+                                                        <input type="hidden" name="productos[@intCorrelativo].bookId" id="limedica_bookid" value="@item.idProducto">
+                                                    </td>
+                                                    <td>S/. @item.subtotal</td>
+                                                    <td>
+                                                        <a id="limedica_eliminar_carrito_@item.idProducto" href="javascript:eliminarProductoCarrito(@item.idProducto)">
+                                                            <img src="~/Content/assets/img/carrito-iconos/delete-icon.svg" />
+                                                        </a>
+
+                                                        <div id="loader_@item.idProducto" class="display-4 mt-5 text-center mb-3" style="display:none">
+                                                            <div class='lds-ripple'><div></div><div></div></div>
+                                                        </div>
+
+                                                    </td>
+
+                                                </tr>
+
+                                                intCorrelativo = intCorrelativo + 1;
+                                            }
+
+                                        </tbody>
+
+                                    </table>
+
+                                }
+                                <div class="row limedica-carrito-cupon">
+                                    <div class="col-12 col-sm-8 col-xl-8 col-lg-8 limedica-carrito-cupon-item mt-2">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input class="form-control" type="text" placeholder="Codigo del cupón" aria-label="Codigo del cupón" aria-describedby="button-addon2" />
+                                            </div>
+                                            <div class="col-6">
+                                                <a class="btn-limedica btn-limedica-secondary " href="">
+                                                    Aplicar cupón
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4 col-xl-4 col-lg-4 limedica-carrito-cupon-item mt-2">
+                                        <a id="limedica_link_actualizar_Carrito" class="btn-limedica btn-limedica-secondary col-12" href="javascript:actualizarProductoCarrito()">
+                                            Actualizar Carrito
+                                        </a>
+
+                                        <div id="loader_actualizar" class="display-4 mt-5 text-center mb-3" style="display:none">
+                                            <div class='lds-ripple'><div></div><div></div></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-sm-4 col-xl-4 col-lg-4 limedica-carrito-item limedica-carrito-resumen mt-5">
+                                <div class="card z-1">
+                                    <div class="card-body ">
+                                        <div class="">
+                                            <h2 class="limedica-carrito-resumen-titulo">Resumen del pedido</h2>
+                                            <div class="limedica-carrito-resumen-item my-4">
+                                                <div class="limedica-carrito-resumen-label">   Subtotal </div>
+                                                <div class="limedica-carrito-resumen-valor">   S/. @Model.carrito.montoSubTotal </div>
+
+                                            </div>
+
+                                            <div class="limedica-carrito-resumen-item my-4">
+                                                <div class="limedica-carrito-resumen-label">   Descuento </div>
+                                                <div class="limedica-carrito-resumen-valor">  -S/. @Model.carrito.montoDescuento </div>
+                                            </div>
+                                            <div class="limedica-carrito-resumen-item my-4">
+                                                <div class="limedica-carrito-resumen-label">   Entrega </div>
+                                                <div class="limedica-carrito-resumen-valor">  Gratis </div>
+                                            </div>
+
+                                            <div class="limedica-carrito-resumen-item my4">
+                                                <div class="limedica-carrito-resumen-label">   Total </div>
+                                                <div class="limedica-carrito-resumen-valor" style="font-weight:bold">  S/. @Model.carrito.totalPagar </div>
+                                            </div>
+
+                                            <div class="display-4 mt-4 text-center mb-3">
+                                                <a class="btn-limedica btn-limedica-primary " href="@Url.Content("~/carrito/checkout")">
+                                                    Ir a pagar
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 mt-5 small">
+                                    @Html.Partial("_OpcionesPago")
+                                </div>
+
+                            </div>
+
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+@if (Model.productoRelacionSlides != null)
+{
+    if (Model.productoRelacionSlides.Any())
+    {
+        <section class="py-5">
+            <div class="container px-5">
+
+                @Html.Partial("_libro_relacionado", Model.productoRelacionSlides)
+
+            </div>
+        </section>
+    }
+}

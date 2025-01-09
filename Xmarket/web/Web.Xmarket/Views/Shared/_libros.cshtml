@@ -1,0 +1,42 @@
+﻿@model  QueryContracts.Xmarket.Book.BookFiltroDTO
+
+@if (Model != null)
+{
+    <div class="col-xl-2 col-lg-2 col-md-6 mb-5">
+        <a class="Card-Limedica lift-limedica h-100" href="@Url.RouteUrl("BookDetail", new { title=Model.bookTitleUrl, isbn=Model.bookISBN})">
+            <div class="row">
+                <div class="col-6 col-sm-12 col-xl-12 col-lg-12">
+                    <img class="card-img-top" loading="lazy"
+                         src="@Model.bookImagenSmall"
+                         alt="@Model.bookTitulo" />
+                </div>
+                <div class="card-body col-6 col-sm-12 col-xl-12 col-lg-12 p-3">
+                    <div class="" style="display:flex; justify-content:space-between">                      
+                        <div class="limedica-home-libro-idioma">
+                            @if (Model.esFisico)
+                            {
+                                <span>Físico  @if (Model.esHibrido || Model.esEbook) { <span>|</span> } </span>
+                            }
+                            @if (Model.esHibrido)
+                            {
+                                <span style='color:blue'>Físico + eBook  @if (Model.esEbook) { <span>|</span> } </span>
+                            }
+                            @if (Model.esEbook)
+                            {
+                                <span style='color:blue'>eBook </span>
+                            }
+                        </div>
+                    </div>
+                    <div class="card-title mb-0 limedica-home-libro-titulo">
+                        @Model.bookTitulo
+                    </div>
+                    <div class="limedica-home-libro-edicion">
+                        Autor: @Model.bookAutores    <br />   Edición: @Model.bookEdicion &nbsp;Año:<strong> @Model.bookAnio </strong>
+                        <br />
+                        Idioma:   @Model.idiomaNombre
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+}

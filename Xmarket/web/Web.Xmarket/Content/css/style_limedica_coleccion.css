@@ -1,0 +1,14 @@
+:root {
+    --bs-primary: #E9711C;
+    --bs-secondary: #0090B2;
+    --bs-primary-rgba: 233,113, 28, 0.7;
+    --bs-secondary-rgba: 1,132, 163, 1;
+}
+
+select {
+    border: none !important;
+    font-family: Jost-Medium;
+    font-size: 16px;
+    color: #1E1E1F;
+    letter-spacing: 0;
+}

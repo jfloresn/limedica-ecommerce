@@ -1,0 +1,457 @@
+﻿@model Web.Xmarket.Models.Carrito.CheckOutEntregaModel
+
+@{
+
+    Layout = "~/Views/Shared/_LayoutCarrito.cshtml";
+}
+
+@section Styles {
+    <meta name="robots" content="noindex, nofollow">
+    <link href="@Url.Content("~/Content/css/style_limedica_input.css")" rel="stylesheet">
+
+    <style>
+        .validation-summary-valid {
+            text-align: center;
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+            margin: 10px 0;
+            color: #333;
+
+        }
+    </style>
+
+}
+
+@section Scripts {
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var nombreDepartamento = $("#ddlDepartamento").val();
+            listarProvincias(nombreDepartamento);
+            $("#ddlDepartamento").on("change", function () {
+                listarProvincias($("#ddlDepartamento option:selected").val());
+            });
+
+            $("#ddlProvincia").on("change", function () {
+                listarDistritos($("#ddlProvincia option:selected").val(),$("#ddlDepartamento option:selected").val());
+            });
+        });
+
+        function listarProvincias(departamento) {
+           var formProvincia = new FormData();
+            formProvincia.append("nombreDepartamento", departamento);
+
+             try {
+                $.ajax({
+                    url: "@Url.Action("obtenerProvincias", "Carrito")",
+                    data: formProvincia,
+                    type: 'POST',
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    beforeSend: function ()
+                    {
+                        $('#ddlProvincia').attr('disabled', 'disabled');
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        $('#ddlProvincia').removeAttr('disabled');
+                    },
+                    success: function (result) {
+                        $('#ddlProvincia').removeAttr('disabled');
+                        let hidenProvinciaValue = $("#hidenProvincia").val();
+                        let hidenDepartamentoValue=$("#ddlDepartamento").val();
+
+                        if (result != null) {
+                            if (result.OperacionType.codigo_operacion == "0") {
+                                $("#ddlProvincia").html("");
+                                $("#ddlProvincia").append(new Option("Seleccionar Provincia", ""));
+                                for (i = 0; i < result.OperacionType.Objeto1.length; i++) {
+                                    $("#ddlProvincia").append(new Option(result.OperacionType.Objeto1[i].nombreProvincia, result.OperacionType.Objeto1[i].nombreProvincia));
+                                }
+                            }
+
+                            $("#ddlProvincia option[value='" + hidenProvinciaValue + "']").attr("selected", "selected");
+                            if (hidenProvinciaValue != '') {
+                                listarDistritos(hidenProvinciaValue, hidenDepartamentoValue);
+                            }
+                        }
+                    },
+                    complete: function (data) {
+
+                    }
+                });
+            }
+             catch (error) {
+                 alert(error);
+            }
+        }
+
+        function listarDistritos(provincia, departamento) {
+
+           var formProvincia = new FormData();
+                formProvincia.append("nombreDepartamento", departamento);
+                formProvincia.append("nombreProvincia", provincia);
+
+
+             try {
+
+                $.ajax({
+                    url: "@Url.Action("obtenerDistrito", "Carrito")",
+                    data: formProvincia,
+                    type: 'POST',
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    beforeSend: function ()
+                    {
+
+                        $('#ddlDistrito').attr('disabled', 'disabled');
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+
+
+                        $('#ddlDistrito').removeAttr('disabled');
+
+
+
+
+                    },
+                    success: function (result) {
+
+                        let hidenDistritoValue = $("#hidenDistrito").val();
+
+                        $('#ddlDistrito').removeAttr('disabled');
+
+                        if (result != null) {
+
+                            if (result.OperacionType.codigo_operacion == "0") {
+
+                                $("#ddlDistrito").html("");
+                                $("#ddlDistrito").append(new Option("Seleccionar Distrito", ""));
+
+                                for (i = 0; i < result.OperacionType.Objeto1.length; i++) {
+
+                                    $("#ddlDistrito").append(new Option(result.OperacionType.Objeto1[i].nombreDistrito, result.OperacionType.Objeto1[i].codigoDistrito));
+
+                                }
+                            }
+
+                            $("#ddlDistrito option[value='" + hidenDistritoValue + "']").attr("selected", "selected");
+                        }
+
+                    },
+                    complete: function (data) {
+
+                    }
+                });
+
+            }
+             catch (error) {
+
+                 alert(error);
+
+            }
+
+        }
+
+        function registrarCheckouEntrega() {
+            $("#frmClienteSinSesion").submit();
+        }
+
+    </script>
+
+
+
+}
+
+
+
+
+<!-- Header-->
+<header class="bg-header">
+    <div class="container">
+        <div class="row gx-5 align-items-center pb-5">
+
+            <div class="header-producto" style="">
+
+                <div class="limedica-carrito">
+
+                    <div class="slider-body-path-checkout mt-5">
+
+                        <div>
+                            <a href="@Url.Content("~/carrito")" class="limedica-path activo-path-checkout">1. Carrito</a>
+                        </div>
+
+
+                        <div class="mx-2 limedica-checkout-linea">
+                            <div class="limedica-checkout-linea-item"></div>
+
+                        </div>
+
+                        <div>
+                            <span class="limedica-path activo-path-checkout">2. Entrega </span>
+
+                        </div>
+                        <div class="mx-2 limedica-checkout-linea">
+                            <div class="limedica-checkout-linea-item"></div>
+
+                        </div>
+                        <div>
+                            <span class="limedica-path no-activo-path-checkout">3. Pago </span>
+
+                        </div>
+                        <div class="mx-2 limedica-checkout-linea">
+                            <div class="limedica-checkout-linea-item"></div>
+
+                        </div>
+                        <div>
+                            <span class="limedica-path no-activo-path-checkout">4. Pedido Completado  </span>
+
+                        </div>
+                    </div>
+
+
+                    <div class="row limedica-carrito-body mt-4">
+
+
+                        <div class="col-12 col-sm-8 col-xl-8 col-lg-8 limedica-carrito-item limedica-carrito-productos">
+                            @using (Html.BeginForm("checkoutentrega", "Carrito", FormMethod.Post, new { @id = "frmClienteSinSesion" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <h1 class="my-5 limedica-checkout-titulo">Información de Entrega</h1>
+
+                                <div class="row  mb-4">
+                                    <div class="col-md-6">
+
+
+
+                                        @Html.TextBoxFor(model => model.clienteSinSesionCommand.entregaNombre, new { @class = "form-control", @maxlength = "200", @placeholder = "Nombres*" })
+                                        @Html.ValidationMessageFor(model => model.clienteSinSesionCommand.entregaNombre, "", new { @class = "text-danger small" })
+
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        @Html.TextBoxFor(model => model.clienteSinSesionCommand.entregaApellido, new { @class = "form-control", @maxlength = "200", @placeholder = "Apellidos*" })
+                                        @Html.ValidationMessageFor(model => model.clienteSinSesionCommand.entregaApellido, "", new { @class = "text-danger small" })
+                                    </div>
+                                </div>
+
+
+                                <div class="row  mb-4">
+                                    <div class="col-md-12">
+
+
+                                        @Html.TextBoxFor(model => model.clienteSinSesionCommand.entregaDireccion, new { @class = "form-control", @maxlength = "200", @placeholder = "Dirección*" })
+                                        @Html.ValidationMessageFor(model => model.clienteSinSesionCommand.entregaDireccion, "", new { @class = "text-danger small" })
+                                    </div>
+
+                                </div>
+
+                                <div class="row  mb-4">
+                                    <div class="col-md-12">
+
+
+                                        @Html.TextBoxFor(model => model.clienteSinSesionCommand.entregaReferencia, new { @class = "form-control", @maxlength = "200", @placeholder = "Referencia*" })
+                                        @Html.ValidationMessageFor(model => model.clienteSinSesionCommand.entregaReferencia, "", new { @class = "text-danger small" })
+                                    </div>
+
+                                </div>
+
+                                <div class="row gx-5 mb-4">
+                                    <div class="col-md-6">
+
+
+
+                                        @Html.DropDownListFor(model => model.clienteSinSesionCommand.entregaDepartamento, Model.departamentos, "Seleccionar Departamento", new { id = "ddlDepartamento", @class = "form-select" })
+                                        @Html.ValidationMessageFor(model => model.clienteSinSesionCommand.entregaDepartamento, "", new { @class = "text-danger small" })
+                                        @Html.HiddenFor(model => model.clienteSinSesionCommand.entregaDepartamento, new { @id = "hidenDepartamento" })
+                                    </div>
+                                    <div class="col-md-6">
+
+
+                                        @Html.DropDownListFor(model => model.clienteSinSesionCommand.entregaProvincia, Model.provincias, "Seleccionar Provincia", new { id = "ddlProvincia", @class = "form-select" })
+                                        @Html.ValidationMessageFor(model => model.clienteSinSesionCommand.entregaProvincia, "", new { @class = "text-danger small" })
+                                        @Html.HiddenFor(model => model.clienteSinSesionCommand.entregaProvincia, new { @id = "hidenProvincia" })
+
+                                    </div>
+                                </div>
+
+                                <div class="row gx-5 mb-4">
+                                    <div class="col-md-6">
+
+
+
+                                        @Html.DropDownListFor(model => model.clienteSinSesionCommand.entregaDistrito, Model.provincias, "Seleccionar Distrito", new { id = "ddlDistrito", @class = "form-select" })
+                                        @Html.ValidationMessageFor(model => model.clienteSinSesionCommand.entregaDistrito, "", new { @class = "text-danger small" })
+                                        @Html.HiddenFor(model => model.clienteSinSesionCommand.entregaDistrito, new { @id = "hidenDistrito" })
+
+
+                                    </div>
+
+                                </div>
+
+                                <div class="row gx-5 mb-4">
+                                    <div class="col-md-6">
+
+
+                                        <label class="limedica-checkout-infoentrega-label">Pais </label>: <label class="limedica-checkout-infoentrega-valor"> Peru </label>
+
+                                    </div>
+
+                                </div>
+
+                                <h1 class="my-5 limedica-checkout-titulo">Llegada</h1>
+
+                                <div class="card z-1">
+                                    <div class="card-body ">
+                                        <div class="">
+                                            <div class="limedica-carrito-resumen-item">
+                                                <div class="limedica-carrito-resumen-label">   ENTREGA STANDARD </div>
+                                                <div class="limedica-carrito-resumen-valor">   GRATIS </div>
+                                            </div>
+
+                                            <div class="limedica-carrito-resumen-item">
+                                                <div class="limedica-carrito-resumen-label">
+                                                    <img src="~/Content/assets/img/envio-gratis-icon.svg" width="30px" />
+                                                    <span>Lima</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <h1 class="my-5 limedica-checkout-titulo">Información de Contacto</h1>
+                                <label class="mb-5 limedica-checkout-infocontact-detalle">Usaremos tus datos para informarte sobre la entrega. </label>
+
+                                <div class="row  mb-4">
+                                    <div class="col-md-6">
+                                        @Html.TextBoxFor(model => model.clienteSinSesionCommand.contactoCorreoElectronico, new { @class = "form-control", @maxlength = "200", @placeholder = "Correo Electrónico*" })
+                                        @Html.ValidationMessageFor(model => model.clienteSinSesionCommand.contactoCorreoElectronico, "", new { @class = "text-danger small" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.TextBoxFor(model => model.clienteSinSesionCommand.contactoTelefono, new { @class = "form-control", @maxlength = "200", @placeholder = "Teléfono*" })
+                                        @Html.ValidationMessageFor(model => model.clienteSinSesionCommand.contactoTelefono, "", new { @class = "text-danger small" })
+
+                                    </div>
+                                </div>
+
+                                <div class="row gx-5 mb-4">
+                                    <div class="col-md-12">
+                                        @Html.DropDownListFor(model => model.clienteSinSesionCommand.contactoTipoDocumentoPedido, Model.tipoDocumentosPedido, "Tipo Documento Pedido", new { id = "ddlTipoDocumentosPedido", @class = "form-select" })
+                                        @Html.ValidationMessageFor(model => model.clienteSinSesionCommand.contactoTipoDocumentoPedido, "", new { @class = "text-danger small" })
+                                        @Html.HiddenFor(model => model.clienteSinSesionCommand.contactoTipoDocumentoPedido, new { })
+                                    </div>
+                                </div>
+
+                                <div class="row gx-5 mb-4">
+                                    <div class="col-md-12">
+                                        @Html.DropDownListFor(model => model.clienteSinSesionCommand.contactoTipoDocumento, Model.tipoDocumentos, "Tipo Documento Contacto", new { id = "ddlTipoDocumentos", @class = "form-select" })
+                                        @Html.ValidationMessageFor(model => model.clienteSinSesionCommand.contactoTipoDocumento, "", new { @class = "text-danger small" })
+                                        @Html.HiddenFor(model => model.clienteSinSesionCommand.contactoTipoDocumento, new { })
+                                    </div>
+                                </div>
+
+                                <div class="row  mb-4">
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(model => model.clienteSinSesionCommand.contactoNumeroDocumento, new { @class = "form-control", @maxlength = "200", @placeholder = "Número DNI o C.E. / RUC *" })
+                                        @Html.ValidationMessageFor(model => model.clienteSinSesionCommand.contactoNumeroDocumento, "", new { @class = "text-danger small" })
+                                    </div>
+                                </div>
+
+                                <div class="row gx-5 mb-4">
+                                    <div class="col-md-12">
+                                        <div class="form-check">
+                                            @Html.CheckBoxFor(m => Model.clienteSinSesionCommand.facturacionInfomoIgualEntrega, new { @class = "form-check-input" })
+                                            <label class="form-check-label" for="chkInfoFactIgualDireccEntrega">
+                                                La información de facturación y de entrega es la misma.
+                                            </label>
+                                            <br />
+                                            @Html.ValidationMessageFor(model => model.clienteSinSesionCommand.facturacionInfomoIgualEntrega, "", new { @class = "text-danger small" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                            }
+
+                        </div>
+
+                        <div class="col-12 col-sm-4 col-xl-4 col-lg-4 limedica-carrito-item limedica-carrito-resumen">
+
+                            @using (Html.BeginForm("Index", "Cuenta", FormMethod.Post, new { @id = "frmClienteSinSesion" }))
+                            {
+                                <h1 class="my-5 limedica-checkout-titulo">Iniciar Sesión</h1>
+                                <div class="row gx-5 mb-4">
+                                    <div class="col-md-12">
+                                        <input class="form-control" name="ValidarUsuario.Usuario" type="email" placeholder="Correo electrónico*" />
+                                    </div>
+                                </div>
+
+                                <div class="row gx-5 mb-4">
+                                    <div class="col-md-12">
+                                        <input class="form-control" name="ValidarUsuario.Password" type="password" placeholder="Contraseña*" />
+                                        <input type="hidden" name="ReturnUrl" value="checkout" />
+                                    </div>
+                                </div>
+
+                                <div><a href="#" class="limedica-cuenta-form-olvido-contrasenia" title="Olvido contrasena">  ¿Olvidó su contraseña?</a></div>
+                                <div class="row text-center"><button class="btn-limedica btn-limedica-primary mt-4" type="submit">Iniciar Sesión</button></div>
+                            }
+
+
+                            <br />
+
+                            @Html.Partial("_ResumenPedidoCarrito", Model.carrito)
+
+
+                            <div class="row mt-5">
+
+                                @Html.Partial("_CuponAplicar")
+
+                            </div>
+
+
+                            <h2 class="limedica-carrito-resumen-titulo mt-5">Datos del Pedido</h2>
+
+                            @Html.Partial("_ProductoCheckout", Model.carrito)
+
+
+
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="row limedica-carrito-cupon">
+                                <div class="col-4 limedica-carrito-cupon-item">
+                                    <button class="btn-limedica btn-limedica-secondary " onclick="registrarCheckouEntrega()">
+                                        Continuar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-12 col-sm-8 col-xl-8 col-lg-8"></div>
+                        <div class="col-12 col-sm-4 col-xl-4 col-lg-4">
+
+                            <div class="col-md-12 mt-2 small">
+                                <h5 class="limedica-carrito-checkout-opcion-pago mt-5">Opciones de pago</h5>
+                                @Html.Partial("_OpcionesPago")
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+

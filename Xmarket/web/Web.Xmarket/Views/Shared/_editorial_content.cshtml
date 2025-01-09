@@ -1,0 +1,13 @@
+﻿@model  IEnumerable<QueryContracts.Xmarket.Editorial.EditorialDTO>
+
+@foreach (var item in Model)
+{
+    <div class="col-6 col-sm-4 col-lg-2 limedica-editorial-home">
+        <a href="@Url.RouteUrl("TiendaEditorialOpcion2",new {editorial=@item.nombreUrl, id=@item.id })">
+            <div class="limedica-editorial-home-item">
+                <img src="@Url.Content("~/Content/assets/img/editoriales/"+item.imagen)" alt="@item.nombreUrl" class="lazyload" />
+                <P class="center limedica-editorial-label"> VER LIBROS + </P>
+            </div>
+        </a>
+    </div>
+}

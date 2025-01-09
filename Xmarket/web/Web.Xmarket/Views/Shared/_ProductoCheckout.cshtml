@@ -1,0 +1,26 @@
+﻿@model QueryContracts.Xmarket.Carrito.CarritoDTO
+
+
+@foreach (var item in Model.carritoDetalle) {
+
+<div class="limedica-checkout-producto my-4">
+
+    <div>
+        <img src="@item.imagen" style="max-width:150px" />
+    </div>
+
+    <div class=" mx-2">
+        <div class="card-title small  mb-0 limedica-carrito-producto-titulo">
+            @item.nombreProducto
+        </div>
+
+        <div class="limedica-carrito-producto-detalle">@item.bookISBN</div>
+        <div class="limedica-carrito-producto-detalle">@item.formatoProductoNombre</div>
+
+        <div class="limedica-carrito-producto-stock mt-2">&#8730;&nbsp;&nbsp;En Stock</div>
+
+    </div>
+
+
+</div>
+}
