@@ -34,6 +34,7 @@ namespace QueryContracts.Xmarket.Book
         public bool esFisico { get; set; }
         public bool esHibrido { get; set; }
         public string bookImagenFull { get; set; }
+        public string nombreEspecialidad { get; set; }
         public string bookImagenSmall { get; set; }
 
 

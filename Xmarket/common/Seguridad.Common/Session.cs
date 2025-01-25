@@ -19,7 +19,8 @@ namespace Seguridad.Common
         public DateTime? FechaFin { get; set; }
 
         public bool autenticado { get; set; }
-
+        public string idSesionWeb { get; set; }
+        public string idVerificacionToken { get; set; }
         public Usuario Usuario { get; set; }
         public long idUsuarioLibre { get; set; }
 

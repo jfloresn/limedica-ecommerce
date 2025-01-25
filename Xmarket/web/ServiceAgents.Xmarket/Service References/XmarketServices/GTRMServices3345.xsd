@@ -1,37 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/QueryContracts.Common.Seguridad.Parameters" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/QueryContracts.Common.Seguridad.Parameters" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd15" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Common" />
-  <xs:complexType name="ListarMenusxRolesAdminParameter">
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Book" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Book" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfCriterioBusqueda">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CriterioBusqueda" nillable="true" type="tns:CriterioBusqueda" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCriterioBusqueda" nillable="true" type="tns:ArrayOfCriterioBusqueda" />
+  <xs:complexType name="CriterioBusqueda">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="criterio" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="id" type="xs:long" />
+      <xs:element minOccurs="0" name="type" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CriterioBusqueda" nillable="true" type="tns:CriterioBusqueda" />
+  <xs:complexType name="BookDTO">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/QueryContracts.Common" base="q1:QueryParameter">
+      <xs:extension base="tns:BookFiltroDTO">
         <xs:sequence>
-          <xs:element minOccurs="0" name="rol_int_id" nillable="true" type="xs:int" />
-          <xs:element minOccurs="0" name="sis_str_siglas" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IdEspecialidad" type="xs:int" />
+          <xs:element minOccurs="0" name="alto" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ancho" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="bookImagenFull" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="bookImagenSmall" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="bookMetdataDescripcion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="bookMetdataKeywords" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="bookMetdataSiteName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="bookMetdataTitulo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="bookSoloNombreImagen" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="bookSubTitulo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="consultarPrecio" type="xs:boolean" />
+          <xs:element minOccurs="0" name="descripcionCorta" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="descripcionLarga" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="encuadernacion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="idEditorial" type="xs:int" />
+          <xs:element minOccurs="0" name="idEspecialidadRelacionado" type="xs:int" />
+          <xs:element minOccurs="0" name="indice" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="largo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="pagina" type="xs:int" />
+          <xs:element minOccurs="0" name="peso" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="precioEBook" type="xs:double" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="ListarMenusxRolesAdminParameter" nillable="true" type="tns:ListarMenusxRolesAdminParameter" />
-  <xs:complexType name="ListarMenusxRolesParameter">
-    <xs:complexContent mixed="false">
-      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/QueryContracts.Common" base="q2:QueryParameter">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="rol_int_id" nillable="true" type="xs:int" />
-          <xs:element minOccurs="0" name="sis_str_siglas" nillable="true" type="xs:string" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
+  <xs:element name="BookDTO" nillable="true" type="tns:BookDTO" />
+  <xs:complexType name="BookFiltroDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BookCantidad" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="bookAnio" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="bookAutores" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="bookCodigo" type="xs:int" />
+      <xs:element minOccurs="0" name="bookEdicion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="bookEditorialCodigo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="bookISBN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="bookIdIdioma" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="bookImagen" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="bookImagenFull" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="bookImagenSmall" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="bookPrecio" type="xs:double" />
+      <xs:element minOccurs="0" name="bookPrecioDescuento" type="xs:double" />
+      <xs:element minOccurs="0" name="bookTieneDescuento" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="bookTitleUrl" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="bookTitulo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="editorialNombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="esEbook" type="xs:boolean" />
+      <xs:element minOccurs="0" name="esFisico" type="xs:boolean" />
+      <xs:element minOccurs="0" name="esHibrido" type="xs:boolean" />
+      <xs:element minOccurs="0" name="idiomaNombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="isbnEBook" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="nombreEspecialidad" nillable="true" type="xs:string" />
+    </xs:sequence>
   </xs:complexType>
-  <xs:element name="ListarMenusxRolesParameter" nillable="true" type="tns:ListarMenusxRolesParameter" />
-  <xs:complexType name="VerificarOpcionesParameter">
-    <xs:complexContent mixed="false">
-      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/QueryContracts.Common" base="q3:QueryParameter">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="CodigoOpcion" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="CodigoRol" nillable="true" type="xs:int" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
+  <xs:element name="BookFiltroDTO" nillable="true" type="tns:BookFiltroDTO" />
+  <xs:complexType name="ArrayOfBookFiltroDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BookFiltroDTO" nillable="true" type="tns:BookFiltroDTO" />
+    </xs:sequence>
   </xs:complexType>
-  <xs:element name="VerificarOpcionesParameter" nillable="true" type="tns:VerificarOpcionesParameter" />
+  <xs:element name="ArrayOfBookFiltroDTO" nillable="true" type="tns:ArrayOfBookFiltroDTO" />
 </xs:schema>

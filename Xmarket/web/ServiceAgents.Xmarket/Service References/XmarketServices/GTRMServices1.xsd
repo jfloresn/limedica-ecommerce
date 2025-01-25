@@ -1,36 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Account.Results" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Account.Results" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd15" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Common" />
-  <xs:complexType name="ObtenerUsuarioResult">
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Banner.Results" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Banner.Results" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd58" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Banner" />
+  <xs:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd17" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Common" />
+  <xs:complexType name="BannerListarResult">
     <xs:complexContent mixed="false">
       <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/QueryContracts.Common" base="q1:QueryResult">
-        <xs:sequence />
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="ObtenerUsuarioResult" nillable="true" type="tns:ObtenerUsuarioResult" />
-  <xs:complexType name="ObtenerUsuarioResult1">
-    <xs:complexContent mixed="false">
-      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/QueryContracts.Common" base="q2:QueryResult">
         <xs:sequence>
-          <xs:element minOccurs="0" name="CO_AREA" type="xs:int" />
-          <xs:element minOccurs="0" name="CO_EMPRESA" type="xs:int" />
-          <xs:element minOccurs="0" name="CO_SEDE" type="xs:int" />
-          <xs:element minOccurs="0" name="NO_AREA" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="NO_EMPRESA" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="NO_SEDE" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="NU_CELULAR" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="usr_bit_aprobado" type="xs:int" />
-          <xs:element minOccurs="0" name="usr_int_bloqueado" type="xs:int" />
-          <xs:element minOccurs="0" name="usr_int_id" type="xs:int" />
-          <xs:element minOccurs="0" name="usr_str_apellidos" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="usr_str_email" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="usr_str_nombre" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="usr_str_red" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="usr_str_tipoacceso" nillable="true" type="xs:string" />
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Banner" minOccurs="0" name="Hits" nillable="true" type="q2:ArrayOfBannerDTO" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="ObtenerUsuarioResult1" nillable="true" type="tns:ObtenerUsuarioResult1" />
+  <xs:element name="BannerListarResult" nillable="true" type="tns:BannerListarResult" />
 </xs:schema>

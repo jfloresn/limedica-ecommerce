@@ -1,24 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Banner" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Banner" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:complexType name="ArrayOfBannerDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="BannerDTO" nillable="true" type="tns:BannerDTO" />
-    </xs:sequence>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Book.Result" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Book.Result" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd31" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Book" />
+  <xs:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd17" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Common" />
+  <xs:complexType name="BookLeerResult">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/QueryContracts.Common" base="q1:QueryResult">
+        <xs:sequence>
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Book" minOccurs="0" name="Hit" nillable="true" type="q2:BookDTO" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
-  <xs:element name="ArrayOfBannerDTO" nillable="true" type="tns:ArrayOfBannerDTO" />
-  <xs:complexType name="BannerDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="autoresBanner" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="descripcionBanner" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="enlaceBanner" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="idBanner" type="xs:int" />
-      <xs:element minOccurs="0" name="imagenBanner" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="imagenRutaBanner" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="isbnBook" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="linkBook" type="xs:boolean" />
-      <xs:element minOccurs="0" name="tipoBanner" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="tituloBanner" nillable="true" type="xs:string" />
-    </xs:sequence>
+  <xs:element name="BookLeerResult" nillable="true" type="tns:BookLeerResult" />
+  <xs:complexType name="BookSearchResult">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/QueryContracts.Common" base="q3:QueryResult">
+        <xs:sequence>
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Book" minOccurs="0" name="Hit" nillable="true" type="q4:ArrayOfBookFiltroDTO" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
-  <xs:element name="BannerDTO" nillable="true" type="tns:BannerDTO" />
+  <xs:element name="BookSearchResult" nillable="true" type="tns:BookSearchResult" />
+  <xs:complexType name="BookListarResult">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="http://schemas.datacontract.org/2004/07/QueryContracts.Common" base="q5:QueryResult">
+        <xs:sequence>
+          <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Book" minOccurs="0" name="Hit" nillable="true" type="q6:ArrayOfBookFiltroDTO" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BookListarResult" nillable="true" type="tns:BookListarResult" />
+  <xs:complexType name="BookFiltroResult">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="http://schemas.datacontract.org/2004/07/QueryContracts.Common" base="q7:QueryResult">
+        <xs:sequence>
+          <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Book" minOccurs="0" name="Hit" nillable="true" type="q8:ArrayOfBookFiltroDTO" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BookFiltroResult" nillable="true" type="tns:BookFiltroResult" />
 </xs:schema>

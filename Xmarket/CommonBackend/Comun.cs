@@ -18,16 +18,16 @@ namespace BaseCommon.Common
 
         public static string COOKIES_SESION_PUBLICO = "cookiesSesionPublico";
         public static string COOKIES_SESION_CANTIDAD_CARRITO = "cookiesSesionCantidadCarrito";
-
         public static string COOKIES_SESION_CARRITO = "cookiesSesionCarrito";
-
         public static string COOKIES_CARRITO_CODIGO = "cookiesCarritoCodigo";
-
-
         public static string SESSION_EDITORIALES= "Sesion_Editoriales";
 
         public static string SESSION_WEB_ID = "ASP.NET_SessionId";
         public static string SESSION_REQUEST_VERIFICATION_TOKEN = "ASP.NET_SessionId";
+        public static string CACHE_SESION= "cache-session";
+        public static string CACHE_BANNER = "cache-banner_home";
+        public static string CACHE_ESPECIALIDAD = "cache-especialidad_home";
+        public static string CACHE_EDITORIAL = "cache-editorial_home";
 
     }
 }

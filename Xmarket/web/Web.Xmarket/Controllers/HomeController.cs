@@ -30,6 +30,16 @@ using Seguridad.Common;
 using System.Web.Http.Controllers;
 using System.Runtime.Caching;
 using Newtonsoft.Json;
+using System.Security.RightsManagement;
+using Web.Xmarket.Models.Catalogo;
+using QueryContracts.Xmarket.Editorial;
+using QueryContracts.Xmarket.Especialidad;
+using QueryContracts.Xmarket.Banner;
+using  System.Web.SessionState;
+using System.Reactive.Linq;
+using Org.BouncyCastle.Crypto.Modes;
+using System.Reactive.Threading.Tasks;
+using System.Web.UI;
 
 namespace Web.Xmarket.Helpers.Controllers
 {
@@ -39,78 +49,122 @@ namespace Web.Xmarket.Helpers.Controllers
 
         private ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-       
 
-        [OutputCache(Duration = 600, VaryByParam = "none")]
-        public async  Task<ActionResult> Index()
+        [OutputCache(Duration = 3600, Location = OutputCacheLocation.Server, NoStore = true)]
+        public async Task<ActionResult> Index()
         {
-
             setMetadaHeader();
 
-            HomeModel model = new HomeModel();
             try
             {
-                // Iniciar todas las tareas asincrónicas en paralelo
-                var bannersTask = new BannerListarParameter().ExecuteAsync();
-                var editorialesTask = new ListarEditorialParameter().ExecuteAsync();
-                var especialidadesTask = new ListarEspecialidadParameter().ExecuteAsync();
-
-
-                // Esperar a que todas las tareas completen
-                await Task.WhenAll(bannersTask, editorialesTask, especialidadesTask);
-
-                // Obtener resultados de las tareas completadas
-                model.banners = ((BannerListarResult)await bannersTask).Hits;
-                model.editoriales = ((ListarEditorialResult)await editorialesTask).Hits;
-                model.especialidades = ((ListarEspecialidadResult)await especialidadesTask).Hits;
-
-
-                await updateCookiesSesionPublic();
-
+                var model = await getBannerEditoralEspecial(new HomeModel()).ConfigureAwait(false);
+                return View(model);
             }
-            catch (Exception err)
+            catch (ArgumentException argEx)
             {
-                log.Error(err);
+                log.Warn("Parámetro inválido en Index", argEx);
             }
+            catch (TimeoutException timeoutEx)
+            {
+                log.Warn("Tiempo de espera agotado en Index", timeoutEx);
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error inesperado en Index", ex);
+            }
+
+            return View(new HomeModel()); // Devuelve un modelo vacío en caso de error
+        }
+
+        private async Task<HomeModel> getBannerEditoralEspecial(HomeModel model)
+        {
         
-            return  View(model);
+            string keyMapEspecialidad = $"{BaseCommon.Common.Comun.CACHE_ESPECIALIDAD}";
+            string keyMapBanner = $"{BaseCommon.Common.Comun.CACHE_BANNER}";
+            string keyMapEditorial = $"{BaseCommon.Common.Comun.CACHE_EDITORIAL}";
+
+            var bannersTask = getBanner(keyMapBanner);
+            var especialidadesTask = getEspecialidad(keyMapEspecialidad);
+            var editorialesTask = getEditorial(keyMapEditorial);
+
+            await Task.WhenAll(bannersTask, especialidadesTask, editorialesTask).ConfigureAwait(false);
+
+            model.banners = bannersTask.Result;
+            model.editoriales = editorialesTask.Result;
+            model.especialidades = especialidadesTask.Result;
+
+            return model;
+        }
+
+   
+
+        public async Task<IEnumerable<BannerDTO>> getBanner(string keyMap)
+        {
+            var cacheBanner = (IEnumerable<BannerDTO>)CatalagoManager.Instance.getCache(keyMap);
+
+            if (cacheBanner != null && cacheBanner.Any())
+            {
+
+                log.Info("lectura de banner desde la cache ");
+                return cacheBanner;
+            }
+            log.Info("lectura de banner desde la base de datos ");
+            var bannerTask = await new BannerListarParameter().ExecuteAsync();
+            var bannerBase = ((BannerListarResult)bannerTask).Hits;
+
+            saveCacheBanner(bannerBase, keyMap);
+
+            return bannerBase;
+        }
+
+
+        public async Task<IEnumerable<EspecialidadDTO>> getEspecialidad(string keyMap)
+        {
+            var cacheEspecialidad = (IEnumerable<EspecialidadDTO>)CatalagoManager.Instance.getCache(keyMap);
+
+            if (cacheEspecialidad != null && cacheEspecialidad.Any())
+            {
+                return cacheEspecialidad;
+            }
+
+            var especialidadTask = await new ListarEspecialidadParameter().ExecuteAsync();
+            var especialidadBase = ((ListarEspecialidadResult)especialidadTask).Hits;
+
+            saveCacheEspecialidad(especialidadBase, keyMap);
+
+            return especialidadBase;
+        }
+
+        public async Task<IEnumerable<EditorialDTO>> getEditorial(string keyMap)
+        {
+            var cacheEditorial = (IEnumerable<EditorialDTO>)CatalagoManager.Instance.getCache(keyMap);
+
+            if (cacheEditorial != null && cacheEditorial.Any())
+            {
+                return cacheEditorial;
+            }
+
+            var editorialesTask = await new ListarEditorialParameter().ExecuteAsync();
+            var editorialBase = ((ListarEditorialResult)editorialesTask).Hits;
+            saveCacheEditorial(editorialBase, keyMap);
+
+            return editorialBase;
+        }
+
+        private void saveCacheEditorial(IEnumerable<EditorialDTO> result, string keyMap)
+        {
+            CatalagoManager.Instance.saveCache(result, keyMap);
 
         }
 
-        private async Task updateCookiesSesionPublic()
+        private void saveCacheEspecialidad(IEnumerable<EspecialidadDTO> result, string keyMap)
         {
+            CatalagoManager.Instance.saveCache(result, keyMap);
+        }
 
-            await Task.Run(() =>
-            {
-                MemoryCache cache = MemoryCache.Default;
-                var cachedItem = cache.Get("cache_sesion");
-
-                if (cachedItem != null)
-                {
-
-                    string namewCookies = BaseCommon.Common.Comun.COOKIES_SESION_PUBLICO;
-
-                    var sessionCache = (CrearSesionOutput)cachedItem;
-
-                    var cookies = CookiesManager.Instance.getCookie(this, namewCookies);
-                    Session sesionCookies = JsonConvert.DeserializeObject<Session>(cookies);
-
-                    if (sesionCookies.CodSession <= 0)
-                    {
-
-                        sesionCookies.CodSession = sessionCache.CodigoSesion;
-
-                        var timne = DateTime.UtcNow.AddMonths(3);
-
-                        string valuecookies = JsonConvert.SerializeObject(sesionCookies);
-                        CookiesManager.Instance.updateCookie(this, namewCookies, valuecookies, timne);
-                    }
-                }
-            });
-
-
-
-
+        private void saveCacheBanner(IEnumerable<BannerDTO> result, string keyMap)
+        {
+            CatalagoManager.Instance.saveCache(result, keyMap);
         }
 
         public async Task<PartialViewResult> obtenerProductSlide(string id)
@@ -125,32 +179,23 @@ namespace Web.Xmarket.Helpers.Controllers
 
             var model = new SWeb.Xmarket.Utilitario.Utilitarios().obtenerProductSlide(librosEbook);
             return PartialView("_libro_ebook_content", model);
-
-        }
-
-    
+        }    
 
         public async Task<PartialViewResult> obtenerColeccionSlideAll()
         {
-
             IEnumerable<BookFiltroDTO> librosEbook = ((BookFiltroResult)await new BookFiltroParameter()
             {
                 opcionFiltro = ConstanteGeneral.BOOK_FILTRO.FILTRO_POR_BOOK
             }
             .ExecuteAsync()).Hit;
 
-
             var model = new SWeb.Xmarket.Utilitario.Utilitarios().obtenerProductSlide(librosEbook);
             return PartialView("_libro_coleccion_content", model);
-
         }
 
         public async Task<PartialViewResult> obtenerNovedades(string id)
         {
             var model = ((BookFiltroResult)await new BookFiltroParameter() { opcionFiltro = ConstanteGeneral.BOOK_FILTRO.FILTRO_TODOS }.ExecuteAsync()).Hit;
-
-
-
             return PartialView("_libros_list", model);
         }
         public async Task<PartialViewResult> obtenerColeccionSlide(string id)
@@ -159,22 +204,14 @@ namespace Web.Xmarket.Helpers.Controllers
             var colecciones =  ((ColeccionHomeResult) await new ColeccionHomeParameter() { }.ExecuteAsync()).Hit;
 
             var model = new SWeb.Xmarket.Utilitario.Utilitarios().obtenerColeccionSlide(colecciones);
-
-
             return PartialView("_libro_coleccion_content", model);
-
-
         }
 
         public async Task<PartialViewResult> obtenerEditorialesTodo(string id)
         {
-
             var model = ((ListarTodoEditorialResult)await new ListarTodoEditorialParameter().ExecuteAsync()).Hits;
 
-
             return PartialView("_editorial_content", model);
-
-
         }
 
         public async Task<PartialViewResult> obtenerProductoPorEspecialidad(string id)
@@ -197,7 +234,6 @@ namespace Web.Xmarket.Helpers.Controllers
 
             return PartialView("_libros_vertical", librosVertical);
         }
-
 
         public async Task<PartialViewResult> obtenerProductoPorEditorial(string id)
         {

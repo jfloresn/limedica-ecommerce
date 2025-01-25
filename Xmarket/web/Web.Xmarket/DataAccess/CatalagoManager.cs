@@ -5,6 +5,7 @@ using QueryContracts.Xmarket.Especialidad.Parameters;
 using QueryContracts.Xmarket.Especialidad.Result;
 using ServiceAgents.Common;
 using System;
+using System.Reactive.Linq;
 using System.Reflection;
 using System.Runtime.Caching;
 using System.Threading.Tasks;
@@ -23,11 +24,25 @@ namespace Web.Xmarket.DataAccess
         {
             get { return _instance.Value; }
         }
+
+
         public  object getCache(String key)
         {
                 MemoryCache cache = MemoryCache.Default;
                 var cachedItem = cache.Get(key);
+           
+
                 return cachedItem;
+        }
+
+
+        public async Task<object> getCacheRx(String key)
+        {
+            MemoryCache cache = MemoryCache.Default;
+            var cachedItem = cache.Get(key);
+
+
+            return cachedItem;
         }
 
         public  MenuLimedica obtenerMenus()
@@ -71,7 +86,7 @@ namespace Web.Xmarket.DataAccess
 
             if (result != null)
             {
-                CatalagoManager.Instance.log.Info("lectura de editorial en cache");
+         
 
                 return (ListarTodoEditorialResult) result;
             }
@@ -90,7 +105,7 @@ namespace Web.Xmarket.DataAccess
 
             if (result != null)
             {
-                CatalagoManager.Instance.log.Info("lectura de especialidad de cache");
+           
                 return (ListarTodoEspecialidadResult) result;
             }
 

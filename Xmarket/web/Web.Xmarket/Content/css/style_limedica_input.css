@@ -5,10 +5,6 @@
     --bs-secondary-rgba: 1,132, 163, 1;
 }
 
-input {
-    border: none !important;
-    border-radius: 0px !important;
-}
 
 input[type="checkbox"] {
         border-radius: 0px !important;

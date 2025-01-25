@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30523.141
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Aplicacion", "2. Aplicacion", "{4B9EF80D-E639-4B4B-B850-D77967F69D83}"
 EndProject
@@ -77,6 +77,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Xmarket", "app\Data.Xmarket\Data.Xmarket.csproj", "{DD65FF16-9F53-44BC-B01A-4922D6E3B592}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseCommon.Common", "CommonBackend\BaseCommon.Common.csproj", "{C7F2560A-A049-404B-AACB-5F57DF45B329}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.0 Servicio APIs", "2.0 Servicio APIs", "{AAADB188-69BB-4B93-BAB8-E82FD03C98DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -226,6 +228,7 @@ Global
 		{F4C106D2-14EC-4BB4-A317-5BCAABFCAA92} = {30850FFC-0425-4F57-BD82-39C6A618791D}
 		{DD65FF16-9F53-44BC-B01A-4922D6E3B592} = {583B5A55-F2B1-47E6-A2C3-1670B505536D}
 		{C7F2560A-A049-404B-AACB-5F57DF45B329} = {EF877973-6543-4063-B922-B207A3A6E8D8}
+		{AAADB188-69BB-4B93-BAB8-E82FD03C98DD} = {4B9EF80D-E639-4B4B-B850-D77967F69D83}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0646473A-486C-437B-B4C7-FD1508EB04CA}

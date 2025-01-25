@@ -1,0 +1,100 @@
+﻿@model Web.Xmarket.Models.Test.SystemInfoModel
+
+@{
+
+    Layout = null;
+    ViewBag.Title = "Información del Servidor";
+}
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> @ViewBag.Title </title>
+    <meta name="robots" content="noindex, nofollow">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .info {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+
+
+    <h2>Información del Servidor</h2>
+
+    <table border="1" cellpadding="10">
+        <tr>
+            <th>Parámetro</th>
+            <th>Valor</th>
+        </tr>
+        <tr>
+            <td>Nombre del Procesador</td>
+            <td>@Model.ProcessorFullName</td>
+        </tr>
+        <tr>
+            <td>Identificador</td>
+            <td>@Model.ProcessorName</td>
+        </tr>
+        <tr>
+            <td>Núcleos Lógicos</td>
+            <td>@Model.LogicalCores</td>
+        </tr>
+        <tr>
+            <td>Núcleos Físicos</td>
+            <td>@Model.PhysicalCores</td>
+        </tr>
+        <tr>
+            <td>Hilos</td>
+            <td>@Model.Threads</td>
+        </tr>
+        <tr>
+            <td>Velocidad</td>
+            <td>@Model.SpeedMHz MHz</td>
+        </tr>
+        <tr>
+            <td>Socket</td>
+            <td>@Model.Socket</td>
+        </tr>
+        <tr>
+            <td>Uso de CPU por IIS</td>
+            <td>@Model.CpuUsage %</td>
+        </tr>
+    </table>
+
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <p style="color:red;">@Model.ErrorMessage</p>
+    }
+
+</body>
+</html>

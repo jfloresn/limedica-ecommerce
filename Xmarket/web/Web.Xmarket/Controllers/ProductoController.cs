@@ -15,16 +15,14 @@ using Utilitario.Common;
 using QueryContracts.Xmarket.Book;
 using static Utilitario.Common.ConstanteGeneral;
 using System.Threading.Tasks;
+using System.Web.UI;
 
 namespace Web.Xmarket.Helpers.Controllers
 {
     [AllowAnonymous]
     public class ProductoController : BaseController
     {
-
         private ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-
-      
 
         public ActionResult Index(string isbn)
         {
@@ -58,17 +56,12 @@ namespace Web.Xmarket.Helpers.Controllers
             }
             catch (Exception err)
             {
-
-
-
                 log.Error(err);
-
-
-
             }
             return View(model);
         }
 
+  
         public async Task<ActionResult> productTitle(string title, string isbn)
         {
             ProductoModel model = new ProductoModel();

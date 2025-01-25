@@ -57,7 +57,9 @@ namespace Web.Common
             return new CommandActionResult(command, urlResultRedirect);
         }
 
-     
+    
+
+ 
 
         private  List<MenuOpcion> ObtenerItemsMenu(string codigopadre, List<MenusxRolesDTO> listamenu)
         {

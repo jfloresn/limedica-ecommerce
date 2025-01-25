@@ -14,9 +14,9 @@ using System.Linq;
 
 namespace CommandHandlers.Xmarket.Cliente
 {
-    public class ClienteDireccionHandler : ICommandHandler<RegistrarDireccionCommand>
+    public class BuscarRegistrarHandler : ICommandHandler<RegistrarDireccionCommand>
     {
-        public ClienteDireccionHandler()
+        public BuscarRegistrarHandler()
         {
             
         }

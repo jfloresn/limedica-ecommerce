@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Carrito.Result" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Carrito.Result" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd52" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Carrito" />
-  <xs:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd15" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Common" />
-  <xs:complexType name="LeerCarritoDetalleResult">
-    <xs:complexContent mixed="false">
-      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/QueryContracts.Common" base="q1:QueryResult">
-        <xs:sequence>
-          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Carrito" minOccurs="0" name="Hit" nillable="true" type="q2:CarritoDetalleDTO" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Coleccion" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Coleccion" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ColeccionDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EditorialNombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="esDescuento" type="xs:boolean" />
+      <xs:element minOccurs="0" name="idColeccion" type="xs:int" />
+      <xs:element minOccurs="0" name="idEditorial" type="xs:int" />
+      <xs:element minOccurs="0" name="imagenColeccion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="imagenUrlColeccion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="nombreColeccion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="precioColeccion" type="xs:decimal" />
+      <xs:element minOccurs="0" name="precioDescuentoColeccion" type="xs:decimal" />
+    </xs:sequence>
   </xs:complexType>
-  <xs:element name="LeerCarritoDetalleResult" nillable="true" type="tns:LeerCarritoDetalleResult" />
-  <xs:complexType name="ListarCarritoResult">
-    <xs:complexContent mixed="false">
-      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/QueryContracts.Common" base="q3:QueryResult">
-        <xs:sequence>
-          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Carrito" minOccurs="0" name="Hit" nillable="true" type="q4:CarritoDTO" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
+  <xs:element name="ColeccionDTO" nillable="true" type="tns:ColeccionDTO" />
+  <xs:complexType name="ArrayOfColeccionDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ColeccionDTO" nillable="true" type="tns:ColeccionDTO" />
+    </xs:sequence>
   </xs:complexType>
-  <xs:element name="ListarCarritoResult" nillable="true" type="tns:ListarCarritoResult" />
+  <xs:element name="ArrayOfColeccionDTO" nillable="true" type="tns:ArrayOfColeccionDTO" />
 </xs:schema>

@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 using Web.Xmarket.Models.Catalogo;
 using static Utilitario.Common.ConstanteGeneral;
 
@@ -17,7 +18,8 @@ namespace Web.Xmarket.Controllers
         private ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
 
-        [OutputCache(Duration = 600, VaryByParam = "none")]
+        [OutputCache(Duration = 3600, Location = OutputCacheLocation.Server, NoStore = true)]
+
         public async Task<ActionResult> Index()
         {
             setMetadaHeader();

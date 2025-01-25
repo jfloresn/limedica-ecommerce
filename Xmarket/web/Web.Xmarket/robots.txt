@@ -1,3 +1,6 @@
 ﻿User-agent: *
-Disallow:
+Disallow: /test
+Allow: /
 
+
+Sitemap: https://limedica.pe/sitemap.xml

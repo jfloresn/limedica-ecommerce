@@ -7,8 +7,12 @@ using System.Web.Mvc;
 using log4net;
 using Newtonsoft.Json;
 using Seguridad.Common;
+using Web.Xmarket.DataAccess;
+using System.Web.Http.Controllers;
+using RazorEngine.Compilation.ImpromptuInterface.Dynamic;
+using RazorEngine.Compilation.ImpromptuInterface.InvokeExt;
 
-partial class SessionClientManager
+public class SessionClientManager
 {
 
     private ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
@@ -25,14 +29,34 @@ partial class SessionClientManager
     {
 
     }
-    public SesionCarrito getSesionCarritoCantidad()
+
+
+    public void updatecookiesSesionPublic()
     {
-        string cookiesCarritoCantidad = HttpContext.Current.Request.Cookies[BaseCommon.Common.Comun.COOKIES_SESION_CANTIDAD_CARRITO].Value;
-        return JsonConvert.DeserializeObject<SesionCarrito>(cookiesCarritoCantidad);
+        var current = HttpContext.Current;
 
+        var timeMonthTree = DateTime.UtcNow.AddMonths(3);
 
+        string namewCookies = BaseCommon.Common.Comun.COOKIES_SESION_PUBLICO;
+        var cookies = CookiesManager.Instance.getCookie(current, namewCookies);
+        Session cookiesSesion = JsonConvert.DeserializeObject<Session>(cookies);
+
+        string idSessionPublico = cookiesSesion.CodSessionPulbico;
+        string keyMap = $"{idSessionPublico}";
+        var cacheSesion = (Session)CatalagoManager.Instance.getCache(keyMap);
+
+        if (cacheSesion != null)
+        {
+            if (cookiesSesion.CodSession <= 0)
+            {
+                cookiesSesion.CodSession = cacheSesion.CodSession;
+
+                string cookiesSessionJson = JsonConvert.SerializeObject(cookiesSesion);
+                CookiesManager.Instance.updateCookie(current, namewCookies, cookiesSessionJson, timeMonthTree);
+            }
+
+        }
     }
-
 
 
 

@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Banner.Parameters" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Banner.Parameters" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd15" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Common" />
-  <xs:complexType name="BannerListarParameter">
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Carrito.Parameters" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Carrito.Parameters" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd17" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Common" />
+  <xs:complexType name="LeerCarritoDetalleParameter">
     <xs:complexContent mixed="false">
       <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/QueryContracts.Common" base="q1:QueryParameter">
-        <xs:sequence />
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IdCarrito" type="xs:long" />
+          <xs:element minOccurs="0" name="IdProducto" type="xs:int" />
+        </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="BannerListarParameter" nillable="true" type="tns:BannerListarParameter" />
+  <xs:element name="LeerCarritoDetalleParameter" nillable="true" type="tns:LeerCarritoDetalleParameter" />
+  <xs:complexType name="ListarCarritoParameter">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/QueryContracts.Common" base="q2:QueryParameter">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IdCarrito" type="xs:long" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ListarCarritoParameter" nillable="true" type="tns:ListarCarritoParameter" />
 </xs:schema>

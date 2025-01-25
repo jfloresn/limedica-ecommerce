@@ -139,6 +139,12 @@
     <None Include="Service References\XmarketServices\GTRMServices11.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\XmarketServices\GTRMServices2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\XmarketServices\GTRMServices21.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\XmarketServices\GTRMServices33.xsd">
       <SubType>Designer</SubType>
     </None>

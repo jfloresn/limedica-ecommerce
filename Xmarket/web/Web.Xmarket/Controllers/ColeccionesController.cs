@@ -29,6 +29,7 @@ using QueryContracts.Xmarket.Book.Parameters;
 using Utilitario.Common;
 using static Utilitario.Common.ConstanteGeneral;
 using System.Threading.Tasks;
+using System.Web.UI;
 
 namespace Web.Xmarket.Helpers.Controllers
 {
@@ -38,7 +39,8 @@ namespace Web.Xmarket.Helpers.Controllers
 
         private ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-     
+
+        [OutputCache(Duration = 600, Location = OutputCacheLocation.Server, NoStore = true)]
 
         public async Task<ActionResult> Index()
         {

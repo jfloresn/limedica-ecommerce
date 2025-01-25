@@ -135,8 +135,13 @@
     @RenderSection("Scripts", required: false)
 
 
-    <script>
-        $(function () {
+<script>
+
+
+        // notificacion
+
+        document.addEventListener("DOMContentLoaded", function () {
+
             // Cambia esta URL a la URL del Hub de SignalR en tu proyecto de backoffice
             var connection = $.hubConnection("https://backoffice.limedica.pe/signalr");
             var hub = connection.createHubProxy("notificationHub");
@@ -154,28 +159,143 @@
             }).fail(function (error) {
                 console.error("Error al conectar con SignalR: " + error);
             });
+
+
+
+
         });
 
-        function toggleNotificationDetails() {
-            var details = document.getElementById('notificationDetails');
-            if (details.style.display === 'none' || details.style.display === '') {
-                details.style.display = 'block';
+
+        function addNotification(imageUrl, text, link = null) {
+            const list = document.getElementById("notificationList");
+
+            const newItem = document.createElement("div");
+            newItem.classList.add("notification-item", "new");
+
+            const img = document.createElement("img");
+            img.src = imageUrl;
+            img.alt = "Imagen";
+
+            if (link) {
+                const anchor = document.createElement("a");
+                anchor.href = link;
+                anchor.target = "_blank";
+                anchor.innerText = text;
+                newItem.appendChild(img);
+                newItem.appendChild(anchor);
             } else {
-                details.style.display = 'none';
+                const span = document.createElement("span");
+                span.innerText = text;
+                newItem.appendChild(img);
+                newItem.appendChild(span);
             }
-        }
 
-        // Ocultar notificaciones si se hace clic fuera de ellas
-        window.onclick = function (event) {
-            if (!event.target.matches('.notification-icon')) {
-                var details = document.getElementById('notificationDetails');
-                if (details.style.display === 'block') {
-                    details.style.display = 'none';
+            // Agregar al inicio con animación
+            list.prepend(newItem);
+
+            // Aumentar contador de notificaciones
+            const badge = document.getElementById("notificationBadge");
+            let count = parseInt(badge.innerText) + 1;
+            badge.innerText = count;
+            badge.style.display = "block";
+
+            // Marcar como leído al hacer clic
+            newItem.addEventListener("click", function () {
+                newItem.classList.remove("new");
+                newItem.classList.add("read");
+
+                let remainingNew = document.querySelectorAll(".notification-item.new").length;
+                if (remainingNew === 0) {
+                    badge.style.display = "none";
                 }
+            });
+        }
+
+
+
+
+        function toggleNotifications() {
+            document.getElementById("notificationDropdown").classList.toggle("show");
+        }
+
+
+        // Popup suggest
+
+        let timeout = null;
+
+        function debounceBuscarLibros() {
+            clearTimeout(timeout);
+            timeout = setTimeout(buscarLibros, 300);
+        }
+
+        async function buscarLibros() {
+            const consulta = document.getElementById("consulta").value.trim();
+            if (consulta.length < 3) {
+                document.getElementById("resultado-busqueda").innerHTML = "";
+                return;
+            }
+
+            try {
+                const response = await fetch("/Tienda/getSuggestion", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        criterioBusqueda: consulta,
+                        cantidadRegistroInicio: 1,
+                        cantidadRegistroCompaginado: 30
+                    }) // Enviamos el body con JSON
+                });
+
+                if (!response.ok) throw new Error("Error en la API");
+
+                const data = await response.json();
+                mostrarResultados(data);
+            } catch (error) {
+                console.error("Error al buscar libros:", error);
             }
         }
 
-    </script>
+        function limpiarTexto(texto) {
+            return texto.replace(/\s*\w?\[\d+\]/g, "").trim(); // Elimina texto entre [] y la letra antes
+        }
+
+        function mostrarResultados(resultados) {
+            const contenedor = document.getElementById("resultado-busqueda");
+            contenedor.innerHTML = "";
+
+            if (resultados.length === 0) {
+                contenedor.innerHTML = "<div class='autocomplete-item'>No se encontraron resultados</div>";
+                return;
+            }
+
+            resultados.forEach(item => {
+                const div = document.createElement("div");
+                div.classList.add("autocomplete-item");
+                div.textContent = limpiarTexto(item.criterio);
+                div.onclick = () => seleccionarResultado(item.criterio);
+                contenedor.appendChild(div);
+            });
+        }
+
+    function seleccionarResultado(criterio) {
+        let valor = limpiarTexto(criterio);
+        document.getElementById("consulta").value = valor;
+            document.getElementById("resultado-busqueda").innerHTML = "";
+
+            // Construimos la URL con parámetros
+        const urlDestino = `@Url.RouteUrl("TiendaBuscar")?consulta=${encodeURIComponent(valor)}`;
+
+            // Redirigir a la nueva página en la misma ventana
+            window.location.href = urlDestino;
+        }
+
+
+
+
+
+</script>
 
 
 

@@ -135,7 +135,7 @@ namespace Seguridad.Common
             string result = "";
             try
             {
-                if (System.Web.HttpContext.Current.Request.Cookies.Get(cookieKey) != null)
+                if (System.Web.HttpContext.Current?.Request.Cookies[cookieKey] != null)
                 {
 
                     result = System.Web.HttpContext.Current.Request.Cookies.Get(cookieKey).Value;

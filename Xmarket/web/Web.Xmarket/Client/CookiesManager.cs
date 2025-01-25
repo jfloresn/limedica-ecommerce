@@ -37,10 +37,34 @@ public class CookiesManager
 
     }
 
+    public string getCookie(HttpContext comext, string cookieName)
+    {
+        return comext.Request.Cookies[cookieName].Value;
+
+    }
+
     public void updateCookie(Controller controller, string cookieName, string newValue, DateTime date)
     {
 
-        if (controller.Request.Cookies[cookieName] != null)
+        updateCookies(controller.Request, controller.Response, cookieName, newValue, date);       
+
+
+
+    }
+
+    public void updateCookie(HttpContext context, string cookieName, string newValue, DateTime date)
+    {
+        HttpContextBase contextBase = new HttpContextWrapper(context);
+        updateCookies(contextBase.Request, contextBase.Response, cookieName, newValue, date);
+
+
+
+    }
+
+
+    private void updateCookies(HttpRequestBase request, HttpResponseBase response, string cookieName, string newValue, DateTime date)
+    {
+        if (request.Cookies[cookieName] != null)
         {
             // Crea una cookie con el mismo nombre y una fecha de expiración pasada
             HttpCookie cookie = new HttpCookie(cookieName)
@@ -49,7 +73,7 @@ public class CookiesManager
             };
 
             // Añade la cookie al Response para eliminarla
-            controller.Response.Cookies.Add(cookie);
+            response.Cookies.Add(cookie);
 
 
         }
@@ -59,8 +83,7 @@ public class CookiesManager
         httpCookie.Expires = date;
         httpCookie.Secure = true;
         httpCookie.HttpOnly = true;
-        controller.HttpContext.Response.Cookies.Add(httpCookie);
-
+        response.Cookies.Add(httpCookie);
 
     }
 

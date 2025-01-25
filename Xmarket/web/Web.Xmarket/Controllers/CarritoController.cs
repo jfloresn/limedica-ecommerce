@@ -81,14 +81,11 @@ namespace Web.Xmarket.Helpers.Controllers
 
         private List<ProductoSlide> obtenerProductSlide(IEnumerable<BookFiltroDTO> librosEbook)
         {
-
-
             return new SWeb.Xmarket.Utilitario.Utilitarios().obtenerProductSlide(librosEbook, 6.00);
         }
 
         public ActionResult CheckOut()
         {
-
             if (SessionHelper.Instance.GetUser() <= 0)
             {
                 return RedirectToAction("checkoutentrega");
@@ -98,7 +95,6 @@ namespace Web.Xmarket.Helpers.Controllers
             getCatalogoCheckOut(ref model);
 
             return View(model);
-
         }
 
         [HttpPost]
@@ -115,9 +111,6 @@ namespace Web.Xmarket.Helpers.Controllers
             {
                 try
                 {
-
-
-
                     model.registrarClienteContactoCommand.direcciones = new List<CommandContracts.Xmarket.Pedido.Direccion>();
 
                     var direccionSeleccionado = model.ClienteDireccionListarResult.direcciones.Where(x => x.seleccionado).FirstOrDefault();
@@ -210,10 +203,7 @@ namespace Web.Xmarket.Helpers.Controllers
 
         public ActionResult CheckOutCompletado()
         {
-
             CheckOutCompletadoModel model = new CheckOutCompletadoModel();
-
-
             return View(model);
         }
 

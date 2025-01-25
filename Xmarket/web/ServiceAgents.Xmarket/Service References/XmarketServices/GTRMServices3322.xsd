@@ -1,35 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Coleccion.Result" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Coleccion.Result" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd48" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Coleccion" />
-  <xs:import schemaLocation="http://localhost:8082/GTRMServices.svc?xsd=xsd15" namespace="http://schemas.datacontract.org/2004/07/QueryContracts.Common" />
-  <xs:complexType name="LeerColeccionResult">
-    <xs:complexContent mixed="false">
-      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/QueryContracts.Common" base="q1:QueryResult">
-        <xs:sequence>
-          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Coleccion" minOccurs="0" name="Hit" nillable="true" type="q2:ColeccionDTO" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Especialidad" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Especialidad" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="EspecialidadDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="estadoEspecialidad" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="fechaCreaEspecialidad" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fechaModificaEspecialidad" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="grupoEspecialidad" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="id" type="xs:int" />
+      <xs:element minOccurs="0" name="idUsuarioCreaEspecialidad" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="idUsuarioModificaEspecialidad" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="imagen" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="nombreUrl" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ordenEspecialidad" nillable="true" type="xs:int" />
+    </xs:sequence>
   </xs:complexType>
-  <xs:element name="LeerColeccionResult" nillable="true" type="tns:LeerColeccionResult" />
-  <xs:complexType name="ColeccionListarResult">
-    <xs:complexContent mixed="false">
-      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/QueryContracts.Common" base="q3:QueryResult">
-        <xs:sequence>
-          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Coleccion" minOccurs="0" name="Hit" nillable="true" type="q4:ArrayOfColeccionDTO" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
+  <xs:element name="EspecialidadDTO" nillable="true" type="tns:EspecialidadDTO" />
+  <xs:complexType name="ArrayOfEspecialidadDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EspecialidadDTO" nillable="true" type="tns:EspecialidadDTO" />
+    </xs:sequence>
   </xs:complexType>
-  <xs:element name="ColeccionListarResult" nillable="true" type="tns:ColeccionListarResult" />
-  <xs:complexType name="ColeccionHomeResult">
-    <xs:complexContent mixed="false">
-      <xs:extension xmlns:q5="http://schemas.datacontract.org/2004/07/QueryContracts.Common" base="q5:QueryResult">
-        <xs:sequence>
-          <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/QueryContracts.Xmarket.Coleccion" minOccurs="0" name="Hit" nillable="true" type="q6:ArrayOfColeccionDTO" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="ColeccionHomeResult" nillable="true" type="tns:ColeccionHomeResult" />
+  <xs:element name="ArrayOfEspecialidadDTO" nillable="true" type="tns:ArrayOfEspecialidadDTO" />
 </xs:schema>

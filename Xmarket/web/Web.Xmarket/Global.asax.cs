@@ -1,6 +1,4 @@
-﻿
-
-namespace Web.Xmarket
+﻿namespace Web.Xmarket
 {
     using BaseCommon.Common;
     using CommandContracts.Xmarket.Sesion;
@@ -14,12 +12,11 @@ namespace Web.Xmarket
     using System.Runtime.Caching;
     using System.Threading.Tasks;
     using System.Web;
+    using System.Windows.Input;
     using Web.Common.HttpApplications;
     using Web.Xmarket.DataAccess;
     using Web.Xmarket.Security;
  
-
-
     public class MvcApplication : CommonHttpApplication
     {
         private readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
@@ -50,9 +47,16 @@ namespace Web.Xmarket
             session.autenticado = false;
             session.FechaInicio = DateTime.Now;
             session.IpCliente = ipPublica;
+            session.idSesionWeb = sesionWeb;
+            session.idVerificacionToken= sesionVericationtoekn;
+
+
+            Session.Add(BaseCommon.Common.Comun.COOKIES_SESION_PUBLICO, session);
+
 
             registerCookies(session);
-            crearSesion(sessionPublico, ipPublica, sesionWeb, sesionVericationtoekn);
+            createAndUpdateCacheSesion(session);
+            crearSesion(session);
         }
 
         private void registerCookies(Session _sesion)
@@ -89,7 +93,25 @@ namespace Web.Xmarket
 
         }
 
-        private void crearSesion(String sessionPublico, String ip, string sesionWeb, string SesionVerifcation)
+        private void createAndUpdateCacheSesion(Session session)
+        {
+            string idSession = session.CodSessionPulbico;
+
+            CatalagoManager.Instance.saveCache(session, idSession);
+        }
+
+        private Session getCacheSesion(Session session)
+        {
+            string idSession = session.CodSessionPulbico;
+            string keyMap = $"{idSession}";
+            var cacheSesion = (Session)CatalagoManager.Instance.getCache(keyMap);
+
+            return cacheSesion;
+
+
+        }
+
+        private void crearSesion(Session session)
         {
 
             Task.Run(async () =>
@@ -98,25 +120,23 @@ namespace Web.Xmarket
                 {
                     CrearSesionCommand sesionComman = new CrearSesionCommand();
 
-                    sesionComman.codigoSesionPublico = sessionPublico;
-                    sesionComman.FechaInicio = DateTime.Now;
-                    sesionComman.IpPublica = ip;
-                    sesionComman.idSessionWeb = sesionWeb;
-                    sesionComman.requestVerificationToken = SesionVerifcation;
+                    sesionComman.codigoSesionPublico = session.CodSessionPulbico;
+                    sesionComman.FechaInicio = session.FechaInicio;
+                    sesionComman.IpPublica = session.IpCliente;
+                    sesionComman.idSessionWeb = session.idSesionWeb;
+                    sesionComman.requestVerificationToken = session.idVerificacionToken;
 
-                    var sesion = (CrearSesionOutput) await sesionComman.ExecuteAsync();
+                    var sesion = (CrearSesionOutput)await sesionComman.ExecuteAsync();
 
-                 
-                   // registrar en cache
-                   CatalagoManager.Instance.saveCache(sesion, "cache_sesion");
-
+                    var cacheSesion = getCacheSesion(session);
+                    cacheSesion.CodSession = sesion.CodigoSesion;
+                    createAndUpdateCacheSesion(session);
                 }
                 catch (Exception ex)
                 {
                     Log.Error(ex);
                 }
             });
-
         }
 
         protected virtual void Session_End(Object sender, EventArgs e)
