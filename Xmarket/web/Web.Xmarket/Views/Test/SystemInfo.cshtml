@@ -89,6 +89,10 @@
             <td>Uso de CPU por IIS</td>
             <td>@Model.CpuUsage %</td>
         </tr>
+              <tr>
+          <td>Usuarios Conectados</td>
+          <td>@Model.usuariosConectador</td>
+      </tr>
     </table>
 
     @if (!string.IsNullOrEmpty(Model.ErrorMessage))

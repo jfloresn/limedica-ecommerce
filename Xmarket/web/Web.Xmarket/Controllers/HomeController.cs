@@ -50,7 +50,7 @@ namespace Web.Xmarket.Helpers.Controllers
         private ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
 
-        [OutputCache(Duration = 3600, Location = OutputCacheLocation.Server, NoStore = true)]
+        [OutputCache(Duration = 600, Location = OutputCacheLocation.Server, NoStore = true)]
         public async Task<ActionResult> Index()
         {
             setMetadaHeader();

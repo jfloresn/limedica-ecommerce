@@ -4,20 +4,12 @@
 @using System.Linq;
 
 @{
-
-
     var menus = CatalagoManager.Instance.obtenerMenus();
-
     var editoriales = menus.todoEditorial.Hits;
     var especialidades = menus.especialidad;
     var sesionCarrito = SessionManager.Instance.getsesionCarritoCantidad();
-
-
     SessionClientManager.Instance.updatecookiesSesionPublic();
-
-
 }
-
 <header class="Header-top-customer">
     <div class="container nav-top">
         <div class="nav-top-content">
@@ -58,6 +50,23 @@
             </div>
         </div>
     </div>
+    <div class="container nav-top nav-top-movil">
+        <div class="nav-top-content">
+            <div class="nav-top-item">
+                <ul class="" style=" padding-left: 0px !important;">
+                    <li class="me-4"><a href="@Url.RouteUrl("PreguntasFrecuentes")"> Preguntas Frecuentes </a> </li>
+                    <li> <a href="@Url.RouteUrl("Contactenos")"> Contactenos </a></li>
+                </ul>
+            </div>
+     
+            <div class="nav-top-item">
+                <img src="@Url.Content("~/Content/assets/img/llamanos-icon.svg")" alt="Llamanos al 4715606 ó 999774449" />
+             
+             
+                <span class="nav-top-item-span">999774449</span>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <nav class="navbar navbar-marketing navbar-expand-lg">
 
@@ -67,9 +76,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
             </button>
 
-
             <a class="#" href="~/" style="padding:0px">
-
                 <picture>
                     <!-- Versión de la imagen para pantallas grandes (laptops y desktops) -->
                     <source media="(min-width: 1024px)" srcset="@Url.Content("~/Content/assets/img/limedica-medica-eirl.svg")">
@@ -78,10 +85,39 @@
                     <!-- Imagen de fallback (se mostrará si las otras no son compatibles) -->
                     <img src="@Url.Content("~/Content/assets/img/limedica-medica-eirl.svg")" alt="Logo de Limedica - Literatura Médica" loading="lazy">
                 </picture>
-
-
             </a>
 
+            <div class="limedica-movil">
+                <a href="@Url.RouteUrl("Carrito")" class="cart-container lm-navbar-carrito-show">
+                    <div class="cart-icon">
+                        <img src="@Url.Content("~/Content/assets/img/carrito-icon.svg")" alt="Carrito de compras" width="35" height="35">
+                        <span class="cart-counter" id="limedicaSpanCantidadCarritoMovil">
+                            @if (sesionCarrito != null && !@sesionCarrito.cantidadCarrito.Equals("0"))
+                            {
+                                <strong>@sesionCarrito.cantidadCarrito</strong>
+                            }
+                        </span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="limedica-movil">
+                <a class="lm-navbar-carrito-show" style="padding: 0.5rem;"
+                   href="~/cuenta"><img src="@Url.Content("~/Content/assets/img/mi-cuenta-icon.svg")" alt="Mi cuenta" /></a>
+            </div>
+            <div class="limedica-movil">
+                <div class="notification-container">
+                    <div class="notification-icon" onclick="toggleNotifications()">
+                        🔔 <span id="notificationBadge">0</span>
+                    </div>
+                    <div class="notification-dropdown" id="notificationDropdown">
+                        <div class="notification-header">Notificaciones</div>
+                        <div id="notificationList"></div>
+                    </div>
+                </div>
+
+
+            </div>
 
             <div class="collapse navbar-collapse" id="navbarNav">
 
@@ -178,69 +214,82 @@
 
                     </li>
                 </ul>
-                @using (Html.BeginForm("buscar", "Tienda", FormMethod.Get, new { @id = "frmBuscarLibro", @class = "d-flex" }))
-                {
 
-                    <div class="input-group">
-                        <input class="form-control" id="consulta" name="consulta" type="text" placeholder="Título, ISBN, Especialidad, Colección o Autor" oninput="debounceBuscarLibros()" aria-label="Buscar">
-                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2" aria-label="Buscar">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
-                                <circle cx="11" cy="11" r="8"></circle>
-                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                            </svg>
-                        </button>
-
-
-                    </div>
-                    <div id="resultado-busqueda" class="autocomplete-list"></div>
-
-                }
+                <div class="limedica-web">
 
 
 
+                    <div class="d-flex align-items-center ms-3">
 
 
-                <div class="d-flex align-items-center ms-3">
-                    <a href="@Url.RouteUrl("Carrito")" class="cart-container">
-                        <div class="cart-icon">
-                            <img src="@Url.Content("~/Content/assets/img/carrito-icon.svg")" alt="Carrito de compras" width="35" height="35">
-                            <span class="cart-counter" id="limedicaSpanCantidadCarritoMovil">
-                                @if (sesionCarrito != null && !@sesionCarrito.cantidadCarrito.Equals("0"))
-                                {
-                                    <strong>@sesionCarrito.cantidadCarrito</strong>
-                                }
-                            </span>
+                        @using (Html.BeginForm("buscar", "Tienda", FormMethod.Get, new { @id = "frmBuscarLibro", @class = "d-flex " }))
+                        {
+
+                            <div class="input-group">
+                                <input class="form-control" id="consulta" name="consulta" type="text" placeholder="Título, ISBN, Especialidad, Colección o Autor" oninput="debounceBuscarLibros()" aria-label="Buscar">
+                                <button class="btn btn-outline-secondary" type="submit" id="button-addon2" aria-label="Buscar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+                                        <circle cx="11" cy="11" r="8"></circle>
+                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                    </svg>
+                                </button>
+
+
+                            </div>
+                            <div id="resultado-busqueda" class="autocomplete-list"></div>
+
+                        }
+
+
+
+                        <a href="@Url.RouteUrl("Carrito")" class="cart-container">
+                            <div class="cart-icon">
+                                <img src="@Url.Content("~/Content/assets/img/carrito-icon.svg")" alt="Carrito de compras" width="35" height="35">
+                                <span class="cart-counter" id="limedicaSpanCantidadCarritoMovil">
+                                    @if (sesionCarrito != null && !@sesionCarrito.cantidadCarrito.Equals("0"))
+                                    {
+                                        <strong>@sesionCarrito.cantidadCarrito</strong>
+                                    }
+                                </span>
+                            </div>
+                        </a>
+
+
+                        <div class="notification-container">
+                            <div class="notification-icon" onclick="toggleNotifications()">
+                                🔔 <span id="notificationBadge">0</span>
+                            </div>
+                            <div class="notification-dropdown" id="notificationDropdown">
+                                <div class="notification-header">Notificaciones</div>
+                                <div id="notificationList"></div>
+                            </div>
                         </div>
-                    </a>
-
-
-                    <div class="notification-container">
-                        <div class="notification-icon" onclick="toggleNotifications()">
-                            🔔 <span id="notificationBadge">0</span>
-                        </div>
-                        <div class="notification-dropdown" id="notificationDropdown">
-                            <div class="notification-header">Notificaciones</div>
-                            <div id="notificationList"></div>
-                        </div>
                     </div>
-
-                    <div style="display:flex">
-
-                        <a class="lm-navbar-carrito-show" style="padding: 0.5rem;"
-                           href="~/cuenta"><img src="@Url.Content("~/Content/assets/img/mi-cuenta-icon.svg")" alt="Mi cuenta" /></a>
-
-
-                    </div>
-
-
                 </div>
 
             </div>
 
-
-
-
-
         </nav>
+
+        <div class="limedica-movil py-1 px-2">
+            @using (Html.BeginForm("buscar", "Tienda", FormMethod.Get, new { @id = "frmBuscarLibro", @class = "d-flex" }))
+            {
+
+                <div class="input-group">
+                    <input class="form-control" id="consulta" name="consulta" type="text" placeholder="Título, ISBN, Especialidad, Colección o Autor" oninput="debounceBuscarLibros()" aria-label="Buscar">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2" aria-label="Buscar">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+
+
+                </div>
+                <div id="resultado-busqueda" class="autocomplete-list"></div>
+
+            }
+
+        </div>
     </div>
 </header>

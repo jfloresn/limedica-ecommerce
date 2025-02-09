@@ -304,7 +304,6 @@
                         <img src="~/Content/assets/img/producto-iconos/arrow-breadcrumbs.svg" alt="Separador de tienda" class="lazyloaded" />
                         <a href="@Url.RouteUrl("BookDetail", new { title=Model.bookResult.Hit.bookTitleUrl, isbn=Model.bookResult.Hit.bookISBN})">@Model.bookResult.Hit.bookTitulo</a>
 
-
                     </div>
 
                     <div class="producto-body">
@@ -316,7 +315,7 @@
                                 </div>
 
                                 <div class="limedica-producto-galeria-item limedica-producto-imagen mx-5">
-                                    <img src="@Model.bookResult.Hit.bookImagen" alt="@Model.bookResult.Hit.bookTitulo" class="lazyloaded" />
+                                    <img src="@Model.bookResult.Hit.bookImagen"   alt="@Model.bookResult.Hit.bookTitulo" class="lazyloaded limedica-imagen" />
 
                                 </div>
                             </div>
@@ -634,10 +633,10 @@
                     </div>
 
                     <div class="col-md-6" style="display:flex; justify-content:end">
-                        <img src="@Model.bookResult.Hit.bookImagenSmall" alt="@Model.bookResult.Hit.bookTitulo" class="lazyloaded" />
+                        <img src="@Model.bookResult.Hit.bookImagen" alt="@Model.bookResult.Hit.bookTitulo" class="lazyloaded" />
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <br />
                         <strong>   Detalles:</strong>
                         <br />

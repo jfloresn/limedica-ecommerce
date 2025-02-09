@@ -10,6 +10,7 @@
     using System;
     using System.Reflection;
     using System.Runtime.Caching;
+    using System.Threading;
     using System.Threading.Tasks;
     using System.Web;
     using System.Windows.Input;
@@ -21,7 +22,8 @@
     {
         private readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-      
+
+        private static int _usuariosConectados = 0;
 
         protected virtual void Application_PostAuthenticateRequest(object sender, EventArgs e)
         {
@@ -36,6 +38,9 @@
 
         protected virtual void Session_Start(Object sender, EventArgs e)
         {
+            Interlocked.Increment(ref _usuariosConectados);
+
+
             String sessionPublico = AppConfigWeb.serverName + new BaseCommon.Common.ClienteWeb().getCodigoSesionPublico();
             String ipPublica = new BaseCommon.Common.ClienteWeb().ObtenerIpPublic();
             String sesionWeb = getSessionWebId();
@@ -141,6 +146,7 @@
 
         protected virtual void Session_End(Object sender, EventArgs e)
         {
+            Interlocked.Decrement(ref _usuariosConectados);
 
             MemoryCache cache = MemoryCache.Default;
             var cachedItem = cache.Get("cache_sesion");
@@ -148,6 +154,11 @@
             // este metodo es adecuado para elikminar datos de cache
 
 
+        }
+
+        public static int ObtenerUsuariosConectados()
+        {
+            return _usuariosConectados;
         }
     }
 }

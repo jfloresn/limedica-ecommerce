@@ -16,5 +16,7 @@ namespace Web.Xmarket.Models.Test
         public string Socket { get; set; }
         public float CpuUsage { get; set; }
         public string ErrorMessage { get; set; }
+        public int usuariosConectador { get; set; }
+
     }
 }

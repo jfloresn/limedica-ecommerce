@@ -55,6 +55,11 @@ namespace Web.Xmarket.Controllers
             // Obtener uso del procesador en IIS
             try
             {
+
+
+                model.usuariosConectador = MvcApplication.ObtenerUsuariosConectados();
+
+
                 PerformanceCounter cpuCounter = new PerformanceCounter("Process", "% Processor Time", "w3wp");
                 cpuCounter.NextValue();
                 System.Threading.Thread.Sleep(1000); // Esperar para obtener un valor real
